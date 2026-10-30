@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Watchlist</title>
+  <meta name="description" content="Tap for a random film from my Letterboxd watchlist.">
+  <meta name="theme-color" content="#5f0f40">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Watchlist">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <button id="stage" type="button" aria-label="Show a random film">
+    <span class="frame">
+      <span class="poster-box">
+        <img id="poster" alt="" hidden>
+        <span id="prompt" class="prompt">Tap</span>
+      </span>
+    </span>
+    <span class="caption" aria-live="polite">
+      <span id="title" class="title"></span>
+      <span id="meta" class="meta"></span>
+    </span>
+    <span id="credit" class="credit">Film data and posters from TMDB. This app uses the TMDB API but is not endorsed or certified by TMDB.</span>
+  </button>
+  <script src="app.js"></script>
+</body>
+</html>

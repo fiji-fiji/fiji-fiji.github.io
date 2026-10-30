@@ -1,0 +1,16 @@
+{
+  "name": "Watchlist",
+  "short_name": "Watchlist",
+  "description": "Tap for a random film from my Letterboxd watchlist.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#5f0f40",
+  "theme_color": "#5f0f40",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

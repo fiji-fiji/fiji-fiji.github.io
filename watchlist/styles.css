@@ -1,0 +1,139 @@
+:root {
+  --crimson-violet: #5f0f40;
+  --deep-crimson: #9a031e;
+  --princeton-orange: #fb8b24;
+  --autumn-leaf: #e36414;
+  --dark-teal: #0f4c5c;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
+  background: var(--crimson-violet);
+}
+
+#stage {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  gap: 20px;
+  width: 100%;
+  padding:
+    max(env(safe-area-inset-top), 24px)
+    max(env(safe-area-inset-right), 24px)
+    max(env(safe-area-inset-bottom), 24px)
+    max(env(safe-area-inset-left), 24px);
+  border: 0;
+  background: var(--crimson-violet);
+  color: var(--princeton-orange);
+  font: inherit;
+  text-align: center;
+  cursor: pointer;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+#stage:focus-visible {
+  outline: 3px solid var(--princeton-orange);
+  outline-offset: -3px;
+}
+
+.frame {
+  display: grid;
+  place-items: center;
+  min-height: 0;
+  container-type: size;
+}
+
+.poster-box {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: min(100cqw, calc(100cqh * 2 / 3));
+  aspect-ratio: 2 / 3;
+  overflow: hidden;
+  container-type: inline-size;
+  border-radius: 6px;
+  background: var(--dark-teal);
+  transition: transform 120ms ease;
+}
+
+#stage:active .poster-box {
+  transform: scale(0.985);
+}
+
+#poster {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: reveal 180ms ease-out;
+  -webkit-user-drag: none;
+}
+
+#poster[hidden],
+.prompt[hidden],
+.credit[hidden] {
+  display: none;
+}
+
+.prompt {
+  display: grid;
+  place-items: center;
+  width: 38%;
+  aspect-ratio: 1;
+  border: 2px solid var(--autumn-leaf);
+  border-radius: 50%;
+  background: var(--deep-crimson);
+  font: italic 600 12cqw ui-serif, Georgia, serif;
+}
+
+/* Fixed height so the poster does not shift between one- and two-line titles. */
+.caption {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-height: 6rem;
+}
+
+.title {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  font: 600 1.5rem/1.2 ui-serif, Georgia, serif;
+}
+
+.meta {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  font: 400 1rem/1.3 -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+}
+
+.credit {
+  grid-column: 1;
+  font: 400 0.6875rem/1.35 -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+}
+
+@keyframes reveal {
+  from { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #poster { animation: none; }
+  .poster-box { transition: none; }
+}
