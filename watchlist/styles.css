@@ -1,11 +1,52 @@
 :root {
-  --crimson-violet: #5f0f40;
-  --deep-crimson: #9a031e;
-  --princeton-orange: #fb8b24;
-  --autumn-leaf: #e36414;
-  --dark-teal: #0f4c5c;
-  --sans: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
-  --serif: ui-serif, Georgia, serif;
+  --spring: cubic-bezier(0.2, 0.9, 0.3, 1.04);
+  --spring-soft: cubic-bezier(0.25, 0.8, 0.3, 1);
+  --spring-quick: cubic-bezier(0.25, 0.9, 0.3, 1);
+  --ease-out: cubic-bezier(0.22, 0.8, 0.3, 1);
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
+  --font-round: ui-rounded, -apple-system, BlinkMacSystemFont, "SF Pro Rounded", "Helvetica Neue", sans-serif;
+  --radius-card: 20px;
+
+  /* Emilio */
+  --base: #5f0f40;
+  --base-rgb: 95, 15, 64;
+  --text: #fb8b24;
+  --on-accent: #5f0f40;
+  --accent: #fb8b24;
+  --empty: #0f4c5c;
+  --orb-glow: rgba(251, 139, 36, 0.45);
+  --orb: radial-gradient(circle at 34% 28%, #fb8b24 0%, #e36414 42%, #9a031e 100%);
+  --orb-text: #5f0f40;
+  --line: rgba(251, 139, 36, 0.28);
+  --edge: rgba(251, 139, 36, 0.38);
+  --group: rgba(251, 139, 36, 0.09);
+  --pressed: rgba(251, 139, 36, 0.2);
+  --glass-alpha: 0.8;
+  --sheet-alpha: 0.86;
+}
+
+@supports (transition-timing-function: linear(0, 1)) {
+  :root {
+    --spring: linear(0, 0.0177, 0.0643, 0.131, 0.2104, 0.2968, 0.3855, 0.4729, 0.5563, 0.6339, 0.7046, 0.7677, 0.8229, 0.8703, 0.9103, 0.9434, 0.9701, 0.9912, 1.0073, 1.0192, 1.0274, 1.0327, 1.0355, 1.0365, 1.0359, 1.0343, 1.0319, 1.0291, 1.0259, 1.0227, 1.0195, 1.0164, 1.0136, 1.011, 1.0087, 1.0066, 1.0049, 1.0034, 1);
+    --spring-soft: linear(0, 0.0116, 0.0422, 0.0862, 0.1393, 0.1981, 0.2597, 0.3221, 0.3837, 0.4434, 0.5003, 0.5538, 0.6037, 0.6497, 0.6918, 0.73, 0.7646, 0.7956, 0.8233, 0.8479, 0.8696, 0.8887, 0.9055, 0.9201, 0.9327, 0.9437, 0.9531, 0.9612, 0.9681, 0.9739, 0.9789, 0.983, 0.9865, 0.9894, 0.9918, 0.9938, 0.9954, 0.9967, 1);
+    --spring-quick: linear(0, 0.0199, 0.0708, 0.1414, 0.2232, 0.3098, 0.3964, 0.4799, 0.558, 0.6293, 0.6933, 0.7497, 0.7986, 0.8405, 0.8759, 0.9053, 0.9296, 0.9492, 0.9648, 0.9772, 0.9866, 0.9938, 0.999, 1.0028, 1.0053, 1.0068, 1.0076, 1.0079, 1.0078, 1.0075, 1.007, 1.0063, 1.0056, 1.0049, 1.0043, 1.0036, 1.0031, 1.0025, 1);
+  }
+}
+
+:root[data-theme="emma"] {
+  --base: #05668d;
+  --base-rgb: 5, 102, 141;
+  --text: #f0f3bd;
+  --on-accent: #05668d;
+  --accent: #f0f3bd;
+  --empty: #028090;
+  --orb-glow: rgba(2, 195, 154, 0.5);
+  --orb: radial-gradient(circle at 34% 28%, #f0f3bd 0%, #f0f3bd 46%, #02c39a 100%);
+  --orb-text: #05668d;
+  --line: rgba(240, 243, 189, 0.26);
+  --edge: rgba(240, 243, 189, 0.4);
+  --group: rgba(240, 243, 189, 0.09);
+  --pressed: rgba(240, 243, 189, 0.2);
 }
 
 * {
@@ -18,9 +59,14 @@ body {
   height: 100%;
   overflow: hidden;
   overscroll-behavior: none;
-  background: var(--crimson-violet);
-  color: var(--princeton-orange);
-  font-family: var(--sans);
+}
+
+html {
+  background: var(--base);
+  color: var(--text);
+  font-family: var(--font);
+  -webkit-font-smoothing: antialiased;
+  transition: color 480ms ease, background-color 480ms ease;
 }
 
 button {
@@ -37,52 +83,268 @@ button:focus-visible,
 a:focus-visible,
 input:focus-visible,
 summary:focus-visible {
-  outline: 3px solid var(--princeton-orange);
-  outline-offset: -3px;
+  outline: 2px solid var(--text);
+  outline-offset: 2px;
 }
 
 a {
   color: inherit;
+  -webkit-tap-highlight-color: transparent;
 }
+
+[hidden] {
+  display: none !important;
+}
+
+/* Water: the moving background. Both palettes exist so one can ripple over the other. */
+
+.water,
+#ambient,
+.scrim {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+.water {
+  z-index: 0;
+  overflow: hidden;
+  visibility: hidden;
+}
+
+.water.is-leaving {
+  z-index: 1;
+  visibility: visible;
+}
+
+:root[data-theme="emilio"] .water[data-water="emilio"],
+:root[data-theme="emma"] .water[data-water="emma"] {
+  z-index: 2;
+  visibility: visible;
+}
+
+.water[data-water="emilio"] {
+  background: #5f0f40;
+}
+
+.water[data-water="emma"] {
+  background: #05668d;
+}
+
+.water i {
+  position: absolute;
+  width: 130vmax;
+  height: 130vmax;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, var(--blob), transparent);
+  will-change: transform;
+  animation: drift 24s ease-in-out infinite alternate;
+}
+
+.water i:nth-child(1) {
+  top: -70vmax;
+  right: -60vmax;
+}
+
+.water i:nth-child(2) {
+  bottom: -70vmax;
+  left: -70vmax;
+  animation-duration: 31s;
+  animation-delay: -9s;
+}
+
+.water i:nth-child(3) {
+  top: -50vmax;
+  left: -80vmax;
+  animation-duration: 37s;
+  animation-delay: -17s;
+}
+
+.water[data-water="emilio"] i:nth-child(1) { --blob: rgba(154, 3, 30, 0.95); }
+.water[data-water="emilio"] i:nth-child(2) { --blob: rgba(15, 76, 92, 0.65); }
+.water[data-water="emilio"] i:nth-child(3) { --blob: rgba(227, 100, 20, 0.34); }
+.water[data-water="emma"] i:nth-child(1) { --blob: rgba(2, 195, 154, 0.34); }
+.water[data-water="emma"] i:nth-child(2) { --blob: rgba(2, 128, 144, 0.8); }
+.water[data-water="emma"] i:nth-child(3) { --blob: rgba(0, 168, 150, 0.5); }
+
+/* The poster's colours soak into the water. A tiny image scaled up keeps the blur cheap. */
+#ambient {
+  z-index: 3;
+  overflow: hidden;
+}
+
+#ambient img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 25%;
+  height: 25%;
+  object-fit: cover;
+  opacity: 0;
+  filter: blur(10px) saturate(1.3);
+  transform: scale(4.3);
+  transform-origin: 0 0;
+  transition: opacity 700ms ease;
+}
+
+#ambient img.is-on {
+  opacity: 0.24;
+}
+
+/* Keeps the caption readable whatever colour the poster adds. */
+.scrim {
+  z-index: 4;
+  opacity: 0;
+  transition: opacity 480ms ease;
+}
+
+.scrim[data-scrim="emilio"] {
+  background: linear-gradient(to top, rgba(95, 15, 64, 0.96) 0%, rgba(95, 15, 64, 0.9) 30%, rgba(95, 15, 64, 0) 58%);
+}
+
+.scrim[data-scrim="emma"] {
+  background: linear-gradient(to top, rgba(5, 102, 141, 0.96) 0%, rgba(5, 102, 141, 0.9) 30%, rgba(5, 102, 141, 0) 58%);
+}
+
+:root[data-theme="emilio"] .scrim[data-scrim="emilio"],
+:root[data-theme="emma"] .scrim[data-scrim="emma"] {
+  opacity: 1;
+}
+
+/* Glass */
+
+.glass {
+  border: 1px solid var(--edge);
+  background: rgba(var(--base-rgb), var(--glass-alpha));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.05),
+    0 10px 30px rgba(0, 0, 0, 0.24);
+  -webkit-backdrop-filter: blur(22px) saturate(170%);
+  backdrop-filter: blur(22px) saturate(170%);
+  transition: background-color 480ms ease, border-color 480ms ease;
+}
+
+/* Layout */
 
 #app {
   position: fixed;
   inset: 0;
+  z-index: 5;
   display: grid;
-  grid-template-rows: auto minmax(0, 1fr) auto auto;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  /* Without the minimum, a long filter label would widen the whole page. */
+  grid-template-columns: minmax(0, 1fr);
 }
 
 .top {
   display: flex;
+  align-items: center;
   justify-content: flex-end;
-  min-height: 8px;
+  gap: 8px;
+  min-height: 48px;
   padding:
-    env(safe-area-inset-top)
+    calc(env(safe-area-inset-top) + 6px)
     max(env(safe-area-inset-right), 12px)
     0
     max(env(safe-area-inset-left), 12px);
 }
 
+/* The switch */
+
 .switch {
-  display: flex;
-  margin-top: 6px;
-  overflow: hidden;
-  border: 1px solid var(--autumn-leaf);
-  border-radius: 20px;
+  position: relative;
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-auto-flow: column;
+  flex: none;
+  padding: 3px;
+  border-radius: 22px;
+}
+
+.switch-thumb {
+  position: absolute;
+  top: 3px;
+  bottom: 3px;
+  left: 3px;
+  width: calc((100% - 6px) / var(--count, 2));
+  transform: translateX(calc(var(--index, 0) * 100%));
+  transition: transform 545ms var(--spring);
+}
+
+.switch-thumb b {
+  display: block;
+  height: 100%;
+  border-radius: 19px;
+  background: var(--accent);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6), 0 2px 8px rgba(0, 0, 0, 0.25);
+  transition: background-color 480ms ease;
 }
 
 .switch button {
+  position: relative;
   min-width: 68px;
-  min-height: 38px;
+  min-height: 36px;
   padding: 0 12px;
+  border-radius: 19px;
   font-size: 0.875rem;
+  font-weight: 500;
+  transition: color 320ms ease;
 }
 
 .switch button[aria-pressed="true"] {
-  background: var(--princeton-orange);
-  color: var(--crimson-violet);
+  color: var(--on-accent);
   font-weight: 600;
 }
+
+/* Active filters sit beside the switch, so turning them on doesn't move the poster. */
+.lens {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+  min-height: 42px;
+  padding-left: 14px;
+  border-radius: 21px;
+  font-size: 0.8125rem;
+  animation: pop-in 455ms var(--spring-quick);
+}
+
+.lens-text {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.lens-clear {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.icon {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.lens-clear .icon {
+  width: 16px;
+  height: 16px;
+  stroke-width: 2.2;
+}
+
+/* Stage */
 
 #stage {
   display: grid;
@@ -91,17 +353,20 @@ a {
   width: 100%;
   min-height: 0;
   padding:
-    10px
-    max(env(safe-area-inset-right), 20px)
     8px
+    max(env(safe-area-inset-right), 20px)
+    6px
     max(env(safe-area-inset-left), 20px);
   text-align: center;
+  touch-action: none;
   user-select: none;
   -webkit-user-select: none;
   -webkit-touch-callout: none;
 }
 
 .frame {
+  position: relative;
+  z-index: 1;
   display: grid;
   place-items: center;
   min-height: 0;
@@ -114,48 +379,78 @@ a {
   place-items: center;
   width: min(100cqw, calc(100cqh * 2 / 3));
   aspect-ratio: 2 / 3;
-  overflow: hidden;
   container-type: inline-size;
-  border-radius: 6px;
-  background: var(--dark-teal);
-  transition: transform 120ms ease;
+  transition: transform 450ms var(--spring-quick);
 }
 
 #stage:active .poster-box {
-  transform: scale(0.985);
+  transform: scale(0.975);
 }
 
-#poster {
+.deck {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.card {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: var(--radius-card);
+  background: var(--empty);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.38);
+  will-change: transform, opacity;
+  transition: background-color 480ms ease;
+}
+
+/* A thin bright rim, like light catching the edge of glass. */
+.card::after {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.28);
+  content: "";
+}
+
+.card img {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  animation: reveal 180ms ease-out;
+  opacity: 0;
+  transition: opacity 240ms ease;
   -webkit-user-drag: none;
 }
 
-[hidden] {
-  display: none !important;
+.card img.is-ready {
+  opacity: 1;
 }
 
 .prompt {
+  position: relative;
   display: grid;
   place-items: center;
-  width: 38%;
+  width: 42%;
   aspect-ratio: 1;
-  border: 2px solid var(--autumn-leaf);
   border-radius: 50%;
-  background: var(--deep-crimson);
-  font: italic 600 12cqw var(--serif);
+  background: var(--orb);
+  box-shadow:
+    inset 0 2px 3px rgba(255, 255, 255, 0.6),
+    inset 0 -10px 22px rgba(0, 0, 0, 0.18),
+    0 20px 60px var(--orb-glow);
+  color: var(--orb-text);
+  font: 700 12cqw var(--font-round);
+  letter-spacing: -0.02em;
+  animation: breathe 5s ease-in-out infinite, pop-in 545ms var(--spring);
 }
 
-/* Fixed height so the poster does not shift between one- and two-line titles. */
 .caption {
   display: flex;
   flex-direction: column;
   gap: 3px;
-  min-height: 7.25rem;
+  min-height: 6.5rem;
 }
 
 .title,
@@ -168,60 +463,57 @@ a {
 
 .title {
   -webkit-line-clamp: 2;
-  font: 600 1.375rem/1.2 var(--serif);
+  font: 700 1.5rem/1.15 var(--font-round);
+  letter-spacing: -0.022em;
 }
 
 .meta {
   -webkit-line-clamp: 1;
-  font: 400 1rem/1.3 var(--sans);
+  margin-top: 1px;
+  font: 500 0.9375rem/1.3 var(--font);
 }
 
 .why {
   -webkit-line-clamp: 2;
   margin-top: 2px;
-  font: italic 400 0.875rem/1.3 var(--serif);
+  font: 400 0.8125rem/1.3 var(--font);
 }
 
-.lens {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 0 max(env(safe-area-inset-right), 20px) 6px max(env(safe-area-inset-left), 20px);
-  font-size: 0.8125rem;
-}
-
-.lens-text {
-  flex: 1;
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.lens-clear {
-  min-height: 32px;
-  padding: 0 10px;
-  border: 1px solid var(--autumn-leaf);
-  border-radius: 16px;
-  font-size: 0.8125rem;
-}
+/* Floating tab bar */
 
 .bar {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  padding-bottom: env(safe-area-inset-bottom);
-  border-top: 1px solid var(--autumn-leaf);
+  margin:
+    0
+    max(env(safe-area-inset-right), 16px)
+    max(env(safe-area-inset-bottom), 12px)
+    max(env(safe-area-inset-left), 16px);
+  padding: 4px;
+  border-radius: 30px;
 }
 
 .bar button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
   min-height: 52px;
-  font-size: 1rem;
-  font-weight: 500;
+  border-radius: 26px;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  transition: transform 450ms var(--spring-quick), background-color 240ms ease, opacity 240ms ease, color 240ms ease;
 }
 
-.bar button:active,
+.bar button:active {
+  background: var(--pressed);
+  transform: scale(0.93);
+}
+
 .bar button.is-active {
-  background: var(--deep-crimson);
+  background: var(--accent);
+  color: var(--on-accent);
 }
 
 .bar button:disabled {
@@ -232,69 +524,114 @@ a {
 /* Sheets */
 
 dialog {
-  width: 100%;
+  width: calc(100% - 16px);
   max-width: 560px;
-  max-height: 88vh;
-  max-height: 88dvh;
-  margin: auto auto 0;
+  max-height: 86vh;
+  max-height: 86dvh;
+  margin: auto auto max(env(safe-area-inset-bottom), 8px);
   padding: 0;
   overflow: hidden;
-  border: 0;
-  border-top: 2px solid var(--princeton-orange);
-  border-radius: 14px 14px 0 0;
-  background: var(--crimson-violet);
-  color: var(--princeton-orange);
+  border: 1px solid var(--edge);
+  border-radius: 30px;
+  background: rgba(var(--base-rgb), var(--sheet-alpha));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.24), 0 -10px 50px rgba(0, 0, 0, 0.3);
+  color: var(--text);
+  -webkit-backdrop-filter: blur(34px) saturate(180%);
+  backdrop-filter: blur(34px) saturate(180%);
+}
+
+dialog[open] {
+  animation: sheet-in 545ms var(--spring);
 }
 
 dialog::backdrop {
-  background: rgba(15, 76, 92, 0.75);
+  background: rgba(0, 0, 0, 0.45);
+  animation: fade-in 300ms ease;
+}
+
+dialog.is-closing {
+  animation: sheet-out 240ms cubic-bezier(0.4, 0, 1, 1) forwards;
+}
+
+dialog.is-closing::backdrop {
+  animation: fade-out 240ms ease forwards;
 }
 
 .sheet-inner {
   display: flex;
   flex-direction: column;
-  max-height: 88vh;
-  max-height: 88dvh;
+  max-height: 86vh;
+  max-height: 86dvh;
 }
 
 .sheet-head {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  padding: 10px 8px 6px 20px;
+  padding: 18px 12px 8px 20px;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.sheet-head::before {
+  position: absolute;
+  top: 7px;
+  left: 50%;
+  width: 36px;
+  height: 5px;
+  border-radius: 3px;
+  background: var(--line);
+  content: "";
+  transform: translateX(-50%);
 }
 
 .sheet-head h2 {
   min-width: 0;
-  font: 600 1.375rem/1.2 var(--serif);
+  font: 700 1.375rem/1.2 var(--font-round);
+  letter-spacing: -0.02em;
   outline: none;
 }
 
 #sheet-close {
+  display: grid;
   flex: none;
-  min-width: 64px;
-  min-height: 44px;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  transition: transform 450ms var(--spring-quick), background-color 240ms ease;
+}
+
+#sheet-close .icon {
+  width: 18px;
+  height: 18px;
+  stroke-width: 2.2;
+}
+
+#sheet-close:active {
+  background: var(--pressed);
+  transform: scale(0.9);
 }
 
 .sheet-body {
   flex: 1;
   min-height: 0;
-  padding: 0 20px max(env(safe-area-inset-bottom), 20px);
+  padding: 0 16px max(env(safe-area-inset-bottom), 16px);
   overflow-y: auto;
   overscroll-behavior: contain;
   -webkit-overflow-scrolling: touch;
 }
 
 .group {
-  padding: 12px 0;
+  padding: 10px 4px;
 }
 
 .group h3 {
   margin-bottom: 8px;
-  font: 600 0.8125rem/1.3 var(--sans);
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  font: 600 0.8125rem/1.3 var(--font);
 }
 
 .note {
@@ -319,49 +656,74 @@ dialog::backdrop {
 
 .chip {
   min-height: 44px;
-  padding: 0 14px;
-  border: 1px solid var(--autumn-leaf);
+  padding: 0 15px;
+  border: 1px solid var(--line);
   border-radius: 22px;
+  background: var(--group);
   font-size: 0.9375rem;
+  font-weight: 500;
   line-height: 42px;
   text-decoration: none;
+  transition: transform 450ms var(--spring-quick), background-color 220ms ease, color 220ms ease, border-color 220ms ease;
+}
+
+.chip:active {
+  transform: scale(0.94);
 }
 
 .chip[aria-pressed="true"] {
-  border-color: var(--princeton-orange);
-  background: var(--princeton-orange);
-  color: var(--crimson-violet);
+  border-color: var(--accent);
+  background: var(--accent);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55);
+  color: var(--on-accent);
   font-weight: 600;
+}
+
+.chip:disabled {
+  opacity: 0.5;
 }
 
 .primary {
   display: block;
   width: 100%;
   min-height: 52px;
-  border-radius: 10px;
-  background: var(--princeton-orange);
-  color: var(--crimson-violet);
-  font-size: 1rem;
+  border-radius: 26px;
+  background: var(--accent);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55), 0 8px 22px rgba(0, 0, 0, 0.22);
+  color: var(--on-accent);
+  font-size: 1.0625rem;
   font-weight: 600;
   line-height: 52px;
   text-align: center;
   text-decoration: none;
+  transition: transform 450ms var(--spring-quick), opacity 220ms ease;
+}
+
+.primary:active {
+  transform: scale(0.97);
 }
 
 .primary:disabled {
-  opacity: 0.45;
+  opacity: 0.5;
 }
 
 /* The negative offset cancels the sheet's bottom padding, so nothing shows below the button. */
 .sticky-action {
   position: sticky;
-  bottom: calc(-1 * max(env(safe-area-inset-bottom), 20px));
-  padding: 12px 0 max(env(safe-area-inset-bottom), 20px);
-  background: var(--crimson-violet);
+  bottom: calc(-1 * max(env(safe-area-inset-bottom), 16px));
+  padding: 12px 0 max(env(safe-area-inset-bottom), 16px);
+  background: linear-gradient(to top, rgb(var(--base-rgb)) 75%, rgba(var(--base-rgb), 0));
 }
 
-details {
-  border-top: 1px solid rgba(227, 100, 20, 0.5);
+.sheet-body > details {
+  margin-bottom: 8px;
+  padding: 0 14px;
+  border-radius: 18px;
+  background: var(--group);
+}
+
+.panel details {
+  border-top: 1px solid var(--line);
 }
 
 summary {
@@ -370,10 +732,16 @@ summary {
   justify-content: space-between;
   gap: 12px;
   min-height: 52px;
-  font-size: 1.0625rem;
-  font-weight: 500;
+  font-size: 1rem;
+  font-weight: 600;
   list-style: none;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.panel summary {
+  padding: 8px 0;
+  font-weight: 400;
 }
 
 summary::-webkit-details-marker {
@@ -381,26 +749,37 @@ summary::-webkit-details-marker {
 }
 
 summary::after {
-  content: "+";
-  font-size: 1.25rem;
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-top: 2px solid currentColor;
+  border-right: 2px solid currentColor;
+  content: "";
+  transform: rotate(45deg);
+  transition: transform 450ms var(--spring-quick);
 }
 
 details[open] > summary::after {
-  content: "–";
+  transform: rotate(135deg);
 }
 
 .panel {
-  padding-bottom: 16px;
+  padding-bottom: 14px;
 }
 
 .row {
   display: block;
   width: 100%;
   min-height: 44px;
-  padding: 9px 0;
-  border-top: 1px solid rgba(227, 100, 20, 0.25);
+  padding: 10px 0;
+  border-top: 1px solid var(--line);
   text-align: left;
   text-decoration: none;
+  transition: opacity 180ms ease;
+}
+
+.row:active {
+  opacity: 0.6;
 }
 
 .row-title {
@@ -418,21 +797,21 @@ details[open] > summary::after {
 
 .search {
   width: 100%;
-  min-height: 46px;
+  min-height: 44px;
   margin-bottom: 8px;
-  padding: 0 12px;
-  border: 1px solid var(--princeton-orange);
-  border-radius: 10px;
-  background: transparent;
-  color: var(--princeton-orange);
+  padding: 0 14px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--group);
+  color: var(--text);
   /* Below 16px, iOS zooms the page when the field is focused. */
-  font: 400 1rem var(--sans);
+  font: 400 1rem var(--font);
   -webkit-appearance: none;
 }
 
 .search::placeholder {
-  color: var(--princeton-orange);
-  opacity: 0.7;
+  color: var(--text);
+  opacity: 0.75;
 }
 
 .file-input {
@@ -448,14 +827,71 @@ details[open] > summary::after {
 }
 
 .file-input:focus-visible + .file-label {
-  outline: 3px solid var(--princeton-orange);
+  outline: 2px solid var(--text);
+  outline-offset: 2px;
 }
 
-@keyframes reveal {
+@keyframes drift {
+  from { transform: translate3d(-5%, -4%, 0) scale(1); }
+  to { transform: translate3d(6%, 7%, 0) scale(1.14); }
+}
+
+@keyframes breathe {
+  50% { transform: scale(1.035); }
+}
+
+@keyframes pop-in {
+  from { opacity: 0; transform: scale(0.86); }
+}
+
+@keyframes sheet-in {
+  from { transform: translateY(105%); }
+}
+
+@keyframes sheet-out {
+  from { transform: translateY(var(--drag-y, 0)); }
+  to { transform: translateY(110%); }
+}
+
+@keyframes fade-in {
   from { opacity: 0; }
 }
 
+@keyframes fade-out {
+  to { opacity: 0; }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  #poster { animation: none; }
-  .poster-box { transition: none; }
+  .water i,
+  .prompt,
+  .lens,
+  dialog[open],
+  dialog::backdrop {
+    animation: none;
+  }
+
+  .poster-box,
+  .switch-thumb,
+  #stage:active .poster-box {
+    transition: none;
+    transform: none;
+  }
+
+  .switch-thumb {
+    transform: translateX(calc(var(--index, 0) * 100%));
+  }
+}
+
+/* Honour the iOS "Reduce Transparency" setting with solid surfaces. */
+@media (prefers-reduced-transparency: reduce) {
+  .glass,
+  dialog {
+    background: rgb(var(--base-rgb));
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  #ambient {
+    display: none;
+  }
 }

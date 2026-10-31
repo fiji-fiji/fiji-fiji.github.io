@@ -14,16 +14,36 @@
   <link rel="icon" href="icons/icon-192.png" type="image/png">
   <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
   <link rel="stylesheet" href="styles.css">
+  <script>
+    // Set the colours before the first paint, so opening the app never flashes the wrong palette.
+    try {
+      document.documentElement.dataset.theme = localStorage.getItem("watchlist.profile") === "emma" ? "emma" : "emilio";
+    } catch (error) {
+      document.documentElement.dataset.theme = "emilio";
+    }
+  </script>
 </head>
 <body>
+  <div class="water" data-water="emilio" aria-hidden="true"><i></i><i></i><i></i></div>
+  <div class="water" data-water="emma" aria-hidden="true"><i></i><i></i><i></i></div>
+  <div id="ambient" aria-hidden="true"></div>
+  <div class="scrim" data-scrim="emilio" aria-hidden="true"></div>
+  <div class="scrim" data-scrim="emma" aria-hidden="true"></div>
+
   <main id="app">
     <header class="top">
-      <div id="profile-switch" class="switch" role="group" aria-label="Whose watchlist" hidden></div>
+      <div id="lens" class="lens glass" hidden>
+        <span id="lens-text" class="lens-text"></span>
+        <button id="lens-clear" type="button" class="lens-clear" aria-label="Clear filters">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+      <div id="profile-switch" class="switch glass" role="group" aria-label="Whose watchlist" hidden></div>
     </header>
     <button id="stage" type="button" aria-label="Show a random film">
       <span class="frame">
         <span class="poster-box">
-          <img id="poster" alt="" hidden>
+          <span id="deck" class="deck"></span>
           <span id="prompt" class="prompt">Tap</span>
         </span>
       </span>
@@ -33,14 +53,19 @@
         <span id="why" class="why"></span>
       </span>
     </button>
-    <div id="lens" class="lens" hidden>
-      <span id="lens-text" class="lens-text"></span>
-      <button id="lens-clear" type="button" class="lens-clear">Clear</button>
-    </div>
-    <nav class="bar" aria-label="Main">
-      <button type="button" id="open-tonight">Tonight</button>
-      <button type="button" id="open-film" disabled>This film</button>
-      <button type="button" id="open-explore">Explore</button>
+    <nav class="bar glass" aria-label="Main">
+      <button type="button" id="open-tonight">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
+        Tonight
+      </button>
+      <button type="button" id="open-film" disabled>
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3.5" width="16" height="17" rx="3"/><path d="M8 3.5v17M16 3.5v17M4 9h4M4 15h4M16 9h4M16 15h4"/></svg>
+        This film
+      </button>
+      <button type="button" id="open-explore">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg>
+        Explore
+      </button>
     </nav>
   </main>
 
@@ -48,7 +73,9 @@
     <div class="sheet-inner">
       <header class="sheet-head">
         <h2 id="sheet-title" tabindex="-1" autofocus></h2>
-        <button type="button" id="sheet-close">Close</button>
+        <button type="button" id="sheet-close" aria-label="Close">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
       </header>
       <div id="sheet-body" class="sheet-body"></div>
     </div>

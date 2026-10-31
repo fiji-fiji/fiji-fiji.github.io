@@ -13,8 +13,21 @@ const TEXT_MATCH = 1;
 const TMDB_URL = "https://www.themoviedb.org/movie/";
 const NEEDS_EXPORT = "This needs your ratings and watched history. Import your full Letterboxd export to turn it on.";
 
+// Gesture and animation tuning, in pixels, px per ms and ms.
+const DRAG_SLOP = 8;
+const SWIPE_DISTANCE = 90;
+const SWIPE_SPEED = 0.5;
+const SWIPE_TILT = 0.035;
+const CLICK_GUARD = 300;
+const SHEET_DRAG_DISTANCE = 110;
+const SHEET_CLOSE_MS = 240;
+const THEME_COLORS = { emilio: "#5f0f40", emma: "#05668d" };
+
+const root = document.documentElement;
 const stage = document.getElementById("stage");
-const poster = document.getElementById("poster");
+const deck = document.getElementById("deck");
+const ambient = document.getElementById("ambient");
+const caption = document.querySelector(".caption");
 const promptMark = document.getElementById("prompt");
 const titleLine = document.getElementById("title");
 const metaLine = document.getElementById("meta");
@@ -46,6 +59,16 @@ let insights = null;
 let current = null;
 let upcoming = null;
 let preloaded = null;
+let activeCard = null;
+
+const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+const cssVar = (name) => getComputedStyle(root).getPropertyValue(name).trim();
+const SPRING = cssVar("--spring");
+const SPRING_SOFT = cssVar("--spring-soft");
+
+function calm() {
+  return motionQuery.matches;
+}
 
 let profiles = [];
 let profile = null;
@@ -162,8 +185,101 @@ function pick(excludeId) {
 function preload(film) {
   preloaded = null;
   if (!film || !film.poster) return;
-  preloaded = new Image();
-  preloaded.src = film.poster;
+  const image = new Image();
+  image.src = film.poster;
+  preloaded = { film, image };
+}
+
+// Motion
+
+function makeCard(film) {
+  const card = el("span", { class: "card" });
+  if (!film.poster) return card;
+  const image = preloaded && preloaded.film === film ? preloaded.image : new Image();
+  image.alt = `Poster for ${film.title}`;
+  image.draggable = false;
+  const reveal = () => image.classList.add("is-ready");
+  if (image.complete && image.naturalWidth) {
+    reveal();
+  } else {
+    image.addEventListener("load", reveal, { once: true });
+    // Without a poster the empty frame stands in.
+    image.addEventListener("error", () => image.remove(), { once: true });
+  }
+  if (!image.getAttribute("src")) image.src = film.poster;
+  card.append(image);
+  return card;
+}
+
+function retireCard(card, exit) {
+  if (calm()) {
+    card.remove();
+    return;
+  }
+  let frames;
+  let timing;
+  if (exit && exit.direction) {
+    const reach = exit.direction * (window.innerWidth + card.offsetWidth);
+    frames = [
+      { transform: `translateX(${exit.from}px) rotate(${exit.from * SWIPE_TILT}deg)`, opacity: 1 },
+      { transform: `translateX(${reach}px) rotate(${exit.direction * 14}deg)`, opacity: 0.7 },
+    ];
+    timing = { duration: 340, easing: "cubic-bezier(0.25, 0.6, 0.4, 1)", fill: "forwards" };
+  } else {
+    frames = [{ transform: "scale(1)", opacity: 1 }, { transform: "scale(1.06)", opacity: 0 }];
+    timing = { duration: 220, easing: "ease-out", fill: "forwards" };
+  }
+  const animation = card.animate(frames, timing);
+  const remove = () => card.remove();
+  animation.onfinish = remove;
+  animation.oncancel = remove;
+}
+
+function swapCard(card, exit) {
+  const previous = activeCard;
+  activeCard = card;
+  deck.append(card);
+  if (previous) retireCard(previous, exit);
+  if (!calm()) {
+    card.animate(
+      [{ transform: "scale(0.9)", opacity: 0 }, { transform: "scale(1)", opacity: 1 }],
+      { duration: 545, easing: SPRING },
+    );
+  }
+}
+
+function clearCards() {
+  if (activeCard) retireCard(activeCard);
+  activeCard = null;
+}
+
+function setAmbient(film) {
+  for (const old of [...ambient.children]) {
+    old.classList.remove("is-on");
+    if (calm()) {
+      old.remove();
+    } else {
+      setTimeout(() => old.remove(), 750);
+    }
+  }
+  if (!film || !film.poster) return;
+  const image = new Image();
+  image.alt = "";
+  image.addEventListener("load", () => {
+    // Force a style pass so the fade runs from zero.
+    void image.offsetWidth;
+    image.classList.add("is-on");
+  }, { once: true });
+  image.src = film.poster;
+  ambient.append(image);
+}
+
+function animateCaption() {
+  if (calm()) return;
+  caption.animate(
+    [{ opacity: 0, transform: "translateY(8px)" }, { opacity: 1, transform: "none" }],
+    { duration: 450, easing: SPRING_SOFT },
+  );
 }
 
 function refreshUpcoming() {
@@ -181,57 +297,100 @@ function rememberSkip(film) {
   writeJson(stateKey("skips"), skips);
 }
 
-function show(film) {
+function show(film, exit) {
   current = film;
   promptMark.hidden = true;
   openFilm.disabled = false;
   titleLine.textContent = film.title;
   metaLine.textContent = [film.year, film.director].filter(Boolean).join(" · ");
   whyLine.textContent = film.why || "";
-
-  // Without a poster, or until it arrives, the empty teal frame stands in.
-  poster.hidden = true;
-  poster.alt = `Poster for ${film.title}`;
-  if (film.poster) {
-    poster.src = film.poster;
-  } else {
-    poster.removeAttribute("src");
-  }
+  animateCaption();
+  swapCard(makeCard(film), exit);
+  setAmbient(film);
   refreshUpcoming();
 }
 
 function showNoMatch() {
   current = null;
   upcoming = null;
-  poster.hidden = true;
-  poster.removeAttribute("src");
+  clearCards();
+  setAmbient(null);
   promptMark.hidden = true;
   openFilm.disabled = true;
+  animateCaption();
   titleLine.textContent = "No films match";
   metaLine.textContent = "Clear a filter to see more.";
   whyLine.textContent = "";
 }
 
-function advance({ skipCurrent }) {
+function advance({ skipCurrent, exit }) {
   if (!films.length) return;
   if (skipCurrent && current) rememberSkip(current);
   const next = upcoming && matches(upcoming) ? upcoming : pick(current && current.id);
   if (next) {
-    show(next);
+    show(next, exit);
   } else {
     showNoMatch();
   }
 }
 
-poster.addEventListener("load", () => {
-  poster.hidden = false;
+let ignoreClicksUntil = 0;
+let stageDrag = null;
+
+stage.addEventListener("click", () => {
+  // A swipe already moved on, and its finger lift can also arrive as a click.
+  if (performance.now() < ignoreClicksUntil) return;
+  advance({ skipCurrent: true });
 });
 
-poster.addEventListener("error", () => {
-  poster.hidden = true;
+stage.addEventListener("pointerdown", (event) => {
+  if (!activeCard || event.button) return;
+  stageDrag = { id: event.pointerId, startX: event.clientX, lastX: event.clientX, lastTime: event.timeStamp, speed: 0, moved: false, card: activeCard };
 });
 
-stage.addEventListener("click", () => advance({ skipCurrent: true }));
+stage.addEventListener("pointermove", (event) => {
+  if (!stageDrag || event.pointerId !== stageDrag.id) return;
+  const offset = event.clientX - stageDrag.startX;
+  if (!stageDrag.moved) {
+    if (Math.abs(offset) < DRAG_SLOP) return;
+    stageDrag.moved = true;
+    stage.setPointerCapture?.(event.pointerId);
+    stageDrag.card.getAnimations().forEach((animation) => animation.cancel());
+  }
+  const elapsed = event.timeStamp - stageDrag.lastTime;
+  if (elapsed > 0) stageDrag.speed = (event.clientX - stageDrag.lastX) / elapsed;
+  stageDrag.lastX = event.clientX;
+  stageDrag.lastTime = event.timeStamp;
+  stageDrag.card.style.transform = `translateX(${offset}px) rotate(${offset * SWIPE_TILT}deg)`;
+});
+
+function endStageDrag(event, cancelled) {
+  if (!stageDrag || event.pointerId !== stageDrag.id) return;
+  const drag = stageDrag;
+  stageDrag = null;
+  if (!drag.moved) return;
+  ignoreClicksUntil = performance.now() + CLICK_GUARD;
+  const offset = event.clientX - drag.startX;
+  const flung = Math.abs(offset) > SWIPE_DISTANCE || Math.abs(drag.speed) > SWIPE_SPEED;
+  if (!cancelled && flung) {
+    drag.card.style.transform = "";
+    advance({ skipCurrent: true, exit: { direction: Math.sign(offset) || 1, from: offset } });
+    return;
+  }
+  drag.card.style.transform = "";
+  if (!calm()) {
+    drag.card.animate(
+      [{ transform: `translateX(${offset}px) rotate(${offset * SWIPE_TILT}deg)` }, { transform: "none" }],
+      { duration: 545, easing: SPRING },
+    );
+  }
+}
+
+stage.addEventListener("pointerup", (event) => endStageDrag(event, false));
+stage.addEventListener("pointercancel", (event) => endStageDrag(event, true));
+
+// iOS only applies :active press states once a touch listener exists.
+document.addEventListener("touchstart", () => {}, { passive: true });
 
 // Filters
 
@@ -266,7 +425,7 @@ lensClear.addEventListener("click", () => {
 });
 
 function applyAndShow() {
-  sheet.close();
+  closeSheet();
   filtersChanged();
   advance({ skipCurrent: false });
 }
@@ -276,14 +435,113 @@ function applyAndShow() {
 function openSheet(title, render) {
   sheetTitle.textContent = title;
   sheetBody.replaceChildren(...render());
+  clearTimeout(sheetCloseTimer);
+  sheet.classList.remove("is-closing");
+  sheet.style.removeProperty("--drag-y");
+  sheet.style.transform = "";
   if (!sheet.open) sheet.showModal();
   sheetBody.scrollTop = 0;
 }
 
-sheetClose.addEventListener("click", () => sheet.close());
+let sheetCloseTimer = null;
+
+function closeSheet() {
+  if (!sheet.open || sheet.classList.contains("is-closing")) return;
+  const finish = () => {
+    sheet.classList.remove("is-closing");
+    sheet.style.removeProperty("--drag-y");
+    if (sheet.open) sheet.close();
+  };
+  if (calm()) {
+    finish();
+    return;
+  }
+  sheet.classList.add("is-closing");
+  sheetCloseTimer = setTimeout(finish, SHEET_CLOSE_MS);
+}
+
+sheetClose.addEventListener("click", closeSheet);
 
 sheet.addEventListener("click", (event) => {
-  if (event.target === sheet) sheet.close();
+  if (event.target === sheet) closeSheet();
+});
+
+// Escape on a keyboard: play the same exit as every other way of closing.
+sheet.addEventListener("cancel", (event) => {
+  event.preventDefault();
+  closeSheet();
+});
+
+// Pull the sheet down by its header to dismiss it.
+const sheetHead = document.querySelector(".sheet-head");
+let sheetDrag = null;
+
+sheetHead.addEventListener("pointerdown", (event) => {
+  if (event.target.closest("button")) return;
+  sheetDrag = { id: event.pointerId, startY: event.clientY, lastY: event.clientY, lastTime: event.timeStamp, speed: 0 };
+  sheetHead.setPointerCapture?.(event.pointerId);
+});
+
+sheetHead.addEventListener("pointermove", (event) => {
+  if (!sheetDrag || event.pointerId !== sheetDrag.id) return;
+  const elapsed = event.timeStamp - sheetDrag.lastTime;
+  if (elapsed > 0) sheetDrag.speed = (event.clientY - sheetDrag.lastY) / elapsed;
+  sheetDrag.lastY = event.clientY;
+  sheetDrag.lastTime = event.timeStamp;
+  sheet.style.animation = "none";
+  sheet.style.transform = `translateY(${Math.max(0, event.clientY - sheetDrag.startY)}px)`;
+});
+
+function endSheetDrag(event) {
+  if (!sheetDrag || event.pointerId !== sheetDrag.id) return;
+  const offset = Math.max(0, event.clientY - sheetDrag.startY);
+  const flung = offset > SHEET_DRAG_DISTANCE || sheetDrag.speed > SWIPE_SPEED;
+  sheetDrag = null;
+  sheet.style.animation = "";
+  sheet.style.transform = "";
+  if (offset > 0 && flung) {
+    sheet.style.setProperty("--drag-y", `${offset}px`);
+    closeSheet();
+  } else if (offset > 0 && !calm()) {
+    sheet.animate([{ transform: `translateY(${offset}px)` }, { transform: "none" }], { duration: 545, easing: SPRING });
+  }
+}
+
+sheetHead.addEventListener("pointerup", endSheetDrag);
+sheetHead.addEventListener("pointercancel", endSheetDrag);
+
+// Sections open and close smoothly; browsers can't animate <details> height on their own.
+function toggleDetails(details) {
+  const panel = details.querySelector(":scope > .panel");
+  panel.getAnimations().forEach((animation) => animation.cancel());
+  const opening = !details.open;
+  if (opening && details.fillPanel) {
+    panel.append(...details.fillPanel());
+    details.fillPanel = null;
+  }
+  details.open = true;
+  if (calm()) {
+    details.open = opening;
+    return;
+  }
+  const height = `${panel.offsetHeight}px`;
+  panel.style.overflow = "hidden";
+  const frames = [{ height: "0px", opacity: 0 }, { height, opacity: 1 }];
+  const animation = panel.animate(opening ? frames : [...frames].reverse(), {
+    duration: opening ? 450 : 240,
+    easing: opening ? SPRING_SOFT : "ease-in",
+  });
+  animation.onfinish = () => {
+    panel.style.overflow = "";
+    details.open = opening;
+  };
+}
+
+sheetBody.addEventListener("click", (event) => {
+  const summary = event.target.closest("summary");
+  if (!summary) return;
+  event.preventDefault();
+  toggleDetails(summary.parentElement);
 });
 
 sheet.addEventListener("close", () => {
@@ -502,7 +760,7 @@ function filmByTmdb(tmdbId) {
 }
 
 function showFromExplore(film) {
-  sheet.close();
+  closeSheet();
   show(film);
 }
 
@@ -833,12 +1091,8 @@ function moviePanel() {
 function renderExplore() {
   const section = (title, build) => {
     const panel = el("div", { class: "panel" });
-    const details = el("details", {}, el("summary", { textContent: title }), panel);
     // Sections are built on first open so the sheet appears at once.
-    details.addEventListener("toggle", () => {
-      if (details.open && !panel.childElementCount) panel.append(...build());
-    });
-    return details;
+    return el("details", { fillPanel: build }, el("summary", { textContent: title }), panel);
   };
   const about = el(
     "div",
@@ -889,22 +1143,64 @@ function migrateLegacyState() {
 
 function renderSwitch() {
   profileSwitch.hidden = profiles.length < 2;
-  profileSwitch.replaceChildren(...profiles.map((option) => el("button", {
-    type: "button",
-    textContent: option.name,
-    "aria-pressed": String(option.id === profile.id),
-    on: { click: () => selectProfile(option) },
-  })));
+  if (!profileSwitch.childElementCount) {
+    profileSwitch.style.setProperty("--count", profiles.length);
+    profileSwitch.append(
+      el("span", { class: "switch-thumb" }, el("b")),
+      ...profiles.map((option) => el("button", {
+        type: "button",
+        textContent: option.name,
+        on: { click: (event) => selectProfile(option, event.currentTarget) },
+      })),
+    );
+  }
+  profiles.forEach((option, index) => {
+    const selected = option.id === profile.id;
+    profileSwitch.querySelectorAll("button")[index].setAttribute("aria-pressed", String(selected));
+    if (selected) profileSwitch.style.setProperty("--index", index);
+  });
+}
+
+// The new palette spreads across the screen like a ripple from the switch.
+let rippleAnimation = null;
+
+function flowTheme(id, origin) {
+  const previous = root.dataset.theme;
+  root.dataset.theme = id;
+  document.querySelector('meta[name="theme-color"]').content = THEME_COLORS[id] || THEME_COLORS.emilio;
+  if (!origin || previous === id || calm()) return;
+
+  const incoming = document.querySelector(`.water[data-water="${id}"]`);
+  const outgoing = document.querySelector(`.water[data-water="${previous}"]`);
+  if (!incoming || !outgoing) return;
+  if (rippleAnimation) rippleAnimation.cancel();
+  document.querySelectorAll(".water.is-leaving").forEach((water) => water.classList.remove("is-leaving"));
+  outgoing.classList.add("is-leaving");
+
+  const box = origin.getBoundingClientRect();
+  const x = box.left + box.width / 2;
+  const y = box.top + box.height / 2;
+  const reach = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y));
+  const animation = incoming.animate(
+    { clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${reach}px at ${x}px ${y}px)`] },
+    { duration: 760, easing: "cubic-bezier(0.3, 0.7, 0.2, 1)" },
+  );
+  rippleAnimation = animation;
+  animation.onfinish = () => {
+    outgoing.classList.remove("is-leaving");
+    rippleAnimation = null;
+  };
 }
 
 function resetStage() {
   current = null;
   upcoming = null;
   preload(null);
-  poster.hidden = true;
-  poster.removeAttribute("src");
+  clearCards();
+  setAmbient(null);
   promptMark.hidden = false;
   openFilm.disabled = true;
+  animateCaption();
   titleLine.textContent = "";
   metaLine.textContent = "";
   whyLine.textContent = "";
@@ -920,8 +1216,10 @@ function cacheOtherProfiles() {
   }
 }
 
-async function selectProfile(option) {
+async function selectProfile(option, origin) {
   if (profile && option.id === profile.id) return;
+  closeSheet();
+  flowTheme(option.id, origin);
   loadId += 1;
   const thisLoad = loadId;
   profile = option;
