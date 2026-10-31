@@ -100,21 +100,21 @@
   margin: 0;
 }
 
+/* No overflow: hidden here: on iPhones it would clip the background layers short of the
+   bottom edge. Everything on screen is fixed, so the page has nothing to scroll anyway. */
 html,
 body {
   height: 100%;
-  overflow: hidden;
   overscroll-behavior: none;
 }
 
-/* On iPhones the layers above can stop short of the bottom edge, leaving this showing.
-   It changes with the same timing as the pools, so it always matches what's above it. */
+/* While pools are showing, app.js keeps this matched to their exact colour. */
 html {
-  background: var(--page, var(--base));
+  background: var(--base);
   color: var(--text);
   font-family: var(--font);
   -webkit-font-smoothing: antialiased;
-  transition: color 480ms ease, background-color var(--page-fade, 700ms) ease-in-out;
+  transition: color 480ms ease;
 }
 
 button {
@@ -318,6 +318,7 @@ a {
   position: fixed;
   inset: 0;
   z-index: 5;
+  touch-action: none;
   display: grid;
   grid-template-rows: auto minmax(0, 1fr) auto;
   /* Without the minimum, a long filter label would widen the whole page. */
@@ -619,6 +620,10 @@ a {
 .year {
   color: var(--year);
   font-weight: 700;
+}
+
+.length {
+  color: var(--text);
 }
 
 .director {

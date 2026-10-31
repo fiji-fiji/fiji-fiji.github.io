@@ -1,4 +1,4 @@
-const CACHE = "watchlist-v10";
+const CACHE = "watchlist-v11";
 const SHELL = [
   "./",
   "index.html",

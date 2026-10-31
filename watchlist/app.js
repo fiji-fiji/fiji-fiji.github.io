@@ -29,10 +29,9 @@ const HISTORY_RESET_AFTER = 30 * 60 * 1000;
 const CLEF_INSET = 10;
 const CLEF_SIZE = 32;
 const GLASS_ALPHA_ON_FILM = 0.7;
-const MAX_POOLS = 3;
+const MAX_POOLS = 4;
 const MAX_LEAVING_CARDS = 2;
-const POOL_FADE_IN = 4400;
-const POOL_FADE = 4500;
+const POOL_FIRST_FADE = 1500;
 const POOL_LEAVE = 750;
 
 const root = document.documentElement;
@@ -74,6 +73,7 @@ let current = null;
 let upcoming = null;
 let preloaded = null;
 let activeCard = null;
+let poolFrame = null;
 // The films shown so far, oldest first. Only kept in memory, so each launch starts afresh.
 let shownFilms = [];
 let hiddenSince = null;
@@ -306,8 +306,6 @@ function applyPalette(palette, film) {
   root.style.setProperty("--glow-size", `${box.height * GLOW_SCALE}px`);
   root.style.setProperty("--glass-rgb", palette.glass.join(", "));
   root.style.setProperty("--glass-alpha", GLASS_ALPHA_ON_FILM);
-  root.style.setProperty("--page-fade", `${POOL_FADE_IN}ms`);
-  root.style.setProperty("--page", `rgb(${palette.deep.join(", ")})`);
   // iOS can also colour its own edges from this.
   document.querySelector('meta[name="theme-color"]').content = `rgb(${palette.deep.join(", ")})`;
 
@@ -323,14 +321,49 @@ function applyPalette(palette, film) {
   pool.style.background = `rgb(${palette.base.join(", ")})`;
   pool.style.setProperty("--deep", palette.deep.join(", "));
 
-  const older = [...pools.children];
-  // Fast tapping shouldn't stack up layers; the ones underneath are already mostly covered.
-  older.slice(0, Math.max(0, older.length - MAX_POOLS + 1)).forEach((old) => old.remove());
+  // Fast tapping can't stack layers without limit. Dropping the newest one underneath
+  // barely shows, as it has only just started to fade in. The bottom layer has to stay:
+  // it's the solid one that stops the profile's colour showing through.
+  if (pools.children.length >= MAX_POOLS) pools.lastElementChild.remove();
+  pool.dataset.deep = palette.deep.join(",");
+  // With no earlier poster to blend from, there's nothing to linger over.
+  if (!pools.children.length) pool.style.transitionDuration = `${POOL_FIRST_FADE}ms`;
   pools.append(pool);
   // Force a style pass so the fade runs from zero.
   void pool.offsetWidth;
   pool.classList.add("is-on");
-  older.forEach((old) => setTimeout(() => old.remove(), calm() ? 0 : POOL_FADE));
+  watchPools();
+}
+
+// Runs while pools are fading. It removes layers once fully covered, and gives the page
+// behind them the exact colour they add up to at the bottom edge, which is where it shows
+// on iPhones. Working it out each frame keeps it right however layers are stacked.
+function watchPools() {
+  if (poolFrame === null) poolFrame = requestAnimationFrame(tickPools);
+}
+
+function tickPools() {
+  poolFrame = null;
+  const layers = [...pools.children].map((pool) => ({ pool, opacity: Number(getComputedStyle(pool).opacity) }));
+  let covering = -1;
+  layers.forEach(({ pool, opacity }, index) => {
+    if (opacity >= 1 && !pool.classList.contains("is-leaving")) covering = index;
+  });
+  layers.slice(0, Math.max(covering, 0)).forEach(({ pool }) => pool.remove());
+
+  const visible = layers.slice(Math.max(covering, 0));
+  if (!visible.length) {
+    root.style.removeProperty("background-color");
+    return;
+  }
+  let color = hexToRgb(THEME_COLORS[root.dataset.theme] || THEME_COLORS.emilio);
+  for (const { pool, opacity } of visible) {
+    const deep = pool.dataset.deep.split(",").map(Number);
+    color = color.map((channel, index) => channel + (deep[index] - channel) * opacity);
+  }
+  root.style.backgroundColor = `rgb(${color.map(Math.round).join(", ")})`;
+  const settled = visible.length === 1 && visible[0].opacity >= 1 && !visible[0].pool.classList.contains("is-leaving");
+  if (!settled) watchPools();
 }
 
 function setPool(film) {
@@ -349,13 +382,15 @@ function setPool(film) {
 function clearPools() {
   root.style.removeProperty("--glass-rgb");
   root.style.removeProperty("--glass-alpha");
-  root.style.removeProperty("--page-fade");
-  root.style.removeProperty("--page");
   document.querySelector('meta[name="theme-color"]').content = THEME_COLORS[root.dataset.theme] || THEME_COLORS.emilio;
   for (const pool of [...pools.children]) {
     pool.classList.add("is-leaving");
-    setTimeout(() => pool.remove(), calm() ? 0 : POOL_LEAVE);
+    setTimeout(() => {
+      pool.remove();
+      watchPools();
+    }, calm() ? 0 : POOL_LEAVE);
   }
+  watchPools();
 }
 
 function hexToRgb(hex) {
@@ -424,11 +459,22 @@ window.addEventListener("resize", () => {
   if (!clef.hidden) placeClef();
 });
 
+function formatRuntime(minutes) {
+  if (minutes < 60) return `${minutes} min`;
+  return `${Math.floor(minutes / 60)}h ${String(minutes % 60).padStart(2, "0")}`;
+}
+
 function metaParts(film) {
   const parts = [];
-  if (film.year) parts.push(el("span", { class: "year", textContent: film.year }));
-  if (film.year && film.director) parts.push(" · ");
-  if (film.director) parts.push(el("span", { class: "director", textContent: film.director }));
+  const pieces = [];
+  if (film.year) pieces.push(el("span", { class: "year", textContent: film.year }));
+  // Before the director, so a long list of names can't push it out of view.
+  if (film.runtime) pieces.push(el("span", { class: "length", textContent: formatRuntime(film.runtime) }));
+  if (film.director) pieces.push(el("span", { class: "director", textContent: film.director }));
+  pieces.forEach((piece, index) => {
+    if (index) parts.push(" · ");
+    parts.push(piece);
+  });
   return parts;
 }
 
@@ -921,7 +967,6 @@ function renderFilm() {
   }
   sections.push(group("Where to stream in France", ...streamParts));
 
-  if (film.runtime) sections.push(group("Length", note(`${film.runtime} min`)));
   return sections;
 }
 
