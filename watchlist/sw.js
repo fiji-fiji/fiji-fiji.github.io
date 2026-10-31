@@ -1,8 +1,9 @@
-const CACHE = "watchlist-v4";
+const CACHE = "watchlist-v5";
 const SHELL = [
   "./",
   "index.html",
   "styles.css",
+  "melt.js",
   "app.js",
   "profiles.json",
   "manifest.webmanifest",

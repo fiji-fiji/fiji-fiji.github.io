@@ -22,6 +22,11 @@ const CLICK_GUARD = 300;
 const SHEET_DRAG_DISTANCE = 110;
 const SHEET_CLOSE_MS = 240;
 const THEME_COLORS = { emilio: "#5f0f40", emma: "#05668d" };
+// How far each new film can move the colour clouds, and how faint the others get.
+const WATER_SHIFT_VMAX = 16;
+const WATER_MIN_STRENGTH = 0.25;
+const WATER_MAX_BACKGROUND_STRENGTH = 0.65;
+const GLOW_SCALE = 1.25;
 
 const root = document.documentElement;
 const stage = document.getElementById("stage");
@@ -60,7 +65,9 @@ let current = null;
 let upcoming = null;
 let preloaded = null;
 let activeCard = null;
+let dominantBlob = -1;
 
+const melt = createMelt();
 const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 const cssVar = (name) => getComputedStyle(root).getPropertyValue(name).trim();
 const SPRING = cssVar("--spring");
@@ -186,6 +193,7 @@ function preload(film) {
   preloaded = null;
   if (!film || !film.poster) return;
   const image = new Image();
+  image.addEventListener("load", () => melt.prepare(image), { once: true });
   image.src = film.poster;
   preloaded = { film, image };
 }
@@ -212,12 +220,18 @@ function makeCard(film) {
 }
 
 function retireCard(card, exit) {
-  if (calm()) {
-    card.remove();
-    return;
-  }
+  // On top of the new card, so that one is revealed as this one leaves.
+  deck.append(card);
   let frames;
   let timing;
+  if (calm()) {
+    frames = [{ opacity: 1 }, { opacity: 0 }];
+    timing = { duration: 200, easing: "linear", fill: "forwards" };
+    const fade = card.animate(frames, timing);
+    fade.onfinish = () => card.remove();
+    fade.oncancel = () => card.remove();
+    return;
+  }
   if (exit && exit.direction) {
     const reach = exit.direction * (window.innerWidth + card.offsetWidth);
     frames = [
@@ -226,8 +240,12 @@ function retireCard(card, exit) {
     ];
     timing = { duration: 340, easing: "cubic-bezier(0.25, 0.6, 0.4, 1)", fill: "forwards" };
   } else {
-    frames = [{ transform: "scale(1)", opacity: 1 }, { transform: "scale(1.06)", opacity: 0 }];
-    timing = { duration: 220, easing: "ease-out", fill: "forwards" };
+    // Used when a melt isn't possible, such as a film with no poster.
+    frames = [
+      { transform: "scale(1)", opacity: 1, filter: "blur(0px)" },
+      { transform: "scale(1.03)", opacity: 0, filter: "blur(14px)" },
+    ];
+    timing = { duration: 620, easing: "ease-in-out", fill: "forwards" };
   }
   const animation = card.animate(frames, timing);
   const remove = () => card.remove();
@@ -237,20 +255,60 @@ function retireCard(card, exit) {
 
 function swapCard(card, exit) {
   const previous = activeCard;
+  const swiped = Boolean(exit && exit.direction);
   activeCard = card;
   deck.append(card);
+
+  if (previous && !swiped && !calm()) {
+    if (melt.play(previous.querySelector("img"), card.querySelector("img"), card)) {
+      previous.remove();
+      return;
+    }
+  }
+  melt.stop();
   if (previous) retireCard(previous, exit);
-  if (!calm()) {
+  if (!calm() && (!previous || swiped)) {
     card.animate(
-      [{ transform: "scale(0.9)", opacity: 0 }, { transform: "scale(1)", opacity: 1 }],
+      [{ transform: "scale(0.94)", opacity: 0 }, { transform: "scale(1)", opacity: 1 }],
       { duration: 545, easing: SPRING },
     );
   }
 }
 
 function clearCards() {
+  melt.stop();
   if (activeCard) retireCard(activeCard);
   activeCard = null;
+}
+
+function randomBetween(low, high) {
+  return low + Math.random() * (high - low);
+}
+
+// Brings a different palette colour to the front and moves the clouds a little.
+function shiftWater() {
+  const blobs = document.querySelectorAll(`.water[data-water="${root.dataset.theme}"] i`);
+  if (!blobs.length) return;
+  let next = Math.floor(Math.random() * blobs.length);
+  if (next === dominantBlob) next = (next + 1) % blobs.length;
+  dominantBlob = next;
+
+  const box = document.querySelector(".poster-box").getBoundingClientRect();
+  root.style.setProperty("--glow-x", `${box.left + box.width / 2}px`);
+  root.style.setProperty("--glow-y", `${box.top + box.height / 2}px`);
+  root.style.setProperty("--glow-size", `${box.height * GLOW_SCALE}px`);
+  document.querySelectorAll(`.water[data-water="${root.dataset.theme}"] u`).forEach((glow, index) => {
+    glow.classList.toggle("is-on", index === next);
+  });
+
+  blobs.forEach((blob, index) => {
+    const strength = index === next ? 1 : randomBetween(WATER_MIN_STRENGTH, WATER_MAX_BACKGROUND_STRENGTH);
+    blob.style.setProperty("--strength", strength.toFixed(2));
+    if (!calm()) {
+      blob.style.setProperty("--shift-x", `${randomBetween(-WATER_SHIFT_VMAX, WATER_SHIFT_VMAX).toFixed(1)}vmax`);
+      blob.style.setProperty("--shift-y", `${randomBetween(-WATER_SHIFT_VMAX, WATER_SHIFT_VMAX).toFixed(1)}vmax`);
+    }
+  });
 }
 
 function setAmbient(film) {
@@ -307,6 +365,7 @@ function show(film, exit) {
   animateCaption();
   swapCard(makeCard(film), exit);
   setAmbient(film);
+  shiftWater();
   refreshUpcoming();
 }
 
