@@ -26,7 +26,7 @@ const GLOW_SCALE = 1.25;
 const GLASS_ALPHA_ON_FILM = 0.7;
 const MAX_POOLS = 3;
 const MAX_LEAVING_CARDS = 2;
-const POOL_FADE = 1800;
+const POOL_FADE = 2300;
 const POOL_LEAVE = 750;
 
 const root = document.documentElement;
@@ -293,7 +293,9 @@ function applyPalette(palette, film) {
   root.style.setProperty("--glow-size", `${box.height * GLOW_SCALE}px`);
   root.style.setProperty("--glass-rgb", palette.glass.join(", "));
   root.style.setProperty("--glass-alpha", GLASS_ALPHA_ON_FILM);
-  document.querySelector('meta[name="theme-color"]').content = `rgb(${palette.base.join(", ")})`;
+  root.style.setProperty("--page", `rgb(${palette.deep.join(", ")})`);
+  // iOS can also colour its own edges from this.
+  document.querySelector('meta[name="theme-color"]').content = `rgb(${palette.deep.join(", ")})`;
 
   const [first, second, third, fourth] = palette.vivid;
   const blobs = [[first, 0.95], [fourth, 0.7], [second, 0.9], [third, 0.8]].map(([color, alpha]) => {
@@ -333,6 +335,7 @@ function setPool(film) {
 function clearPools() {
   root.style.removeProperty("--glass-rgb");
   root.style.removeProperty("--glass-alpha");
+  root.style.removeProperty("--page");
   document.querySelector('meta[name="theme-color"]').content = THEME_COLORS[root.dataset.theme] || THEME_COLORS.emilio;
   for (const pool of [...pools.children]) {
     pool.classList.add("is-leaving");
@@ -348,7 +351,7 @@ function animateCaption() {
   if (calm()) return;
   caption.animate(
     [{ opacity: 0, transform: "translateY(6px)" }, { opacity: 1, transform: "none" }],
-    { duration: 950, easing: "ease-out" },
+    { duration: 1200, easing: "ease-out" },
   );
 }
 

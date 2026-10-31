@@ -42,6 +42,7 @@
   --ease-out: cubic-bezier(0.22, 0.8, 0.3, 1);
   --font: "Courier Prime", Courier, "Courier New", monospace;
   --radius-card: 20px;
+  --overscan: 140px;
 
   /* Emilio */
   --base: #5f0f40;
@@ -106,12 +107,13 @@ body {
   overscroll-behavior: none;
 }
 
+/* --page follows the poster, so no strip of profile colour can show at the screen's edges. */
 html {
-  background: var(--base);
+  background: var(--page, var(--base));
   color: var(--text);
   font-family: var(--font);
   -webkit-font-smoothing: antialiased;
-  transition: color 480ms ease, background-color 480ms ease;
+  transition: color 480ms ease, background-color 1200ms ease;
 }
 
 button {
@@ -143,11 +145,13 @@ a {
 
 /* Water: the moving background. Both palettes exist so one can ripple over the other. */
 
+/* These run past the bottom of the screen, because iOS can leave a gap
+   under fixed layers that stop exactly at the edge. */
 .water,
 #pools,
 .scrim {
   position: fixed;
-  inset: 0;
+  inset: 0 0 calc(-1 * var(--overscan)) 0;
   pointer-events: none;
 }
 
@@ -241,7 +245,7 @@ a {
   inset: 0;
   overflow: hidden;
   opacity: 0;
-  transition: opacity 1700ms ease-in-out;
+  transition: opacity 2200ms ease-in-out;
 }
 
 .pool.is-on {
@@ -269,7 +273,7 @@ a {
 .pool s {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(var(--deep), 0.97) 0, rgba(var(--deep), 0.92) 270px, rgba(var(--deep), 0) calc(270px + 18%));
+  background: linear-gradient(to top, rgb(var(--deep)) var(--overscan), rgba(var(--deep), 0.92) calc(var(--overscan) + 270px), rgba(var(--deep), 0) calc(var(--overscan) + 270px + 18%));
   text-decoration: none;
 }
 
@@ -281,11 +285,11 @@ a {
 }
 
 .scrim[data-scrim="emilio"] {
-  background: linear-gradient(to top, rgba(95, 15, 64, 0.96) 0, rgba(95, 15, 64, 0.9) 250px, rgba(95, 15, 64, 0) calc(250px + 16%));
+  background: linear-gradient(to top, rgb(95, 15, 64) var(--overscan), rgba(95, 15, 64, 0.9) calc(var(--overscan) + 250px), rgba(95, 15, 64, 0) calc(var(--overscan) + 250px + 16%));
 }
 
 .scrim[data-scrim="emma"] {
-  background: linear-gradient(to top, rgba(5, 102, 141, 0.96) 0, rgba(5, 102, 141, 0.9) 250px, rgba(5, 102, 141, 0) calc(250px + 16%));
+  background: linear-gradient(to top, rgb(5, 102, 141) var(--overscan), rgba(5, 102, 141, 0.9) calc(var(--overscan) + 250px), rgba(5, 102, 141, 0) calc(var(--overscan) + 250px + 16%));
 }
 
 :root[data-theme="emilio"] .scrim[data-scrim="emilio"],
@@ -304,7 +308,7 @@ a {
     0 10px 30px rgba(0, 0, 0, 0.24);
   -webkit-backdrop-filter: blur(22px) saturate(170%);
   backdrop-filter: blur(22px) saturate(170%);
-  transition: background-color 1500ms ease-in-out, border-color 480ms ease;
+  transition: background-color 2000ms ease-in-out, border-color 480ms ease;
 }
 
 /* Layout */
