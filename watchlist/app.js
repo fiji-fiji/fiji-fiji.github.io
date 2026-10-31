@@ -401,7 +401,7 @@ function animateCaption() {
   if (calm()) return;
   caption.animate(
     [{ opacity: 0, transform: "translateY(6px)" }, { opacity: 1, transform: "none" }],
-    { duration: 1800, easing: "ease-out" },
+    { duration: 1400, easing: "ease-out" },
   );
 }
 
