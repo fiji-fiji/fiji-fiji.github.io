@@ -1,0 +1,4355 @@
+{
+ "updated": "2026-10-31",
+ "has_history": true,
+ "has_taste": true,
+ "watched_count": 494,
+ "rated_count": 249,
+ "composers": [
+  {
+   "id": 531,
+   "name": "Danny Elfman",
+   "watchlist": 2,
+   "watched": 13,
+   "five_star": 1,
+   "discover": [
+    {
+     "tmdb_id": 557,
+     "title": "Spider-Man",
+     "year": 2002
+    },
+    {
+     "tmdb_id": 99861,
+     "title": "Avengers: Age of Ultron",
+     "year": 2015
+    },
+    {
+     "tmdb_id": 607,
+     "title": "Men in Black",
+     "year": 1997
+    },
+    {
+     "tmdb_id": 268,
+     "title": "Batman",
+     "year": 1989
+    },
+    {
+     "tmdb_id": 453395,
+     "title": "Doctor Strange in the Multiverse of Madness",
+     "year": 2022
+    }
+   ]
+  },
+  {
+   "id": 1178828,
+   "name": "Hildur Guðnadóttir",
+   "watchlist": 1,
+   "watched": 3,
+   "five_star": 1,
+   "discover": [
+    {
+     "tmdb_id": 1272837,
+     "title": "28 Years Later: The Bone Temple",
+     "year": 2026
+    },
+    {
+     "tmdb_id": 400535,
+     "title": "Sicario: Day of the Soldado",
+     "year": 2018
+    },
+    {
+     "tmdb_id": 777245,
+     "title": "Women Talking",
+     "year": 2022
+    },
+    {
+     "tmdb_id": 127846,
+     "title": "A Hijacking",
+     "year": 2012
+    },
+    {
+     "tmdb_id": 945729,
+     "title": "A Haunting in Venice",
+     "year": 2023
+    }
+   ]
+  },
+  {
+   "id": 9245,
+   "name": "Nicola Piovani",
+   "watchlist": 0,
+   "watched": 1,
+   "five_star": 1,
+   "discover": [
+    {
+     "tmdb_id": 575452,
+     "title": "The Traitor",
+     "year": 2019
+    },
+    {
+     "tmdb_id": 32480,
+     "title": "The Marquis of Grillo",
+     "year": 1981
+    },
+    {
+     "tmdb_id": 25403,
+     "title": "Caro diario",
+     "year": 1993
+    },
+    {
+     "tmdb_id": 1254,
+     "title": "Don't Worry, I'm Fine",
+     "year": 2006
+    },
+    {
+     "tmdb_id": 68053,
+     "title": "Slap the Monster on Page One",
+     "year": 1972
+    }
+   ]
+  },
+  {
+   "id": 411483,
+   "name": "Philippe Chany",
+   "watchlist": 0,
+   "watched": 1,
+   "five_star": 1,
+   "discover": [
+    {
+     "tmdb_id": 15097,
+     "title": "Fear City: A Family-Style Comedy",
+     "year": 1994
+    },
+    {
+     "tmdb_id": 37652,
+     "title": "Didier",
+     "year": 1997
+    }
+   ]
+  },
+  {
+   "id": 947,
+   "name": "Hans Zimmer",
+   "watchlist": 2,
+   "watched": 19,
+   "five_star": 0,
+   "discover": [
+    {
+     "tmdb_id": 98,
+     "title": "Gladiator",
+     "year": 2000
+    },
+    {
+     "tmdb_id": 361743,
+     "title": "Top Gun: Maverick",
+     "year": 2022
+    },
+    {
+     "tmdb_id": 381284,
+     "title": "Hidden Figures",
+     "year": 2016
+    },
+    {
+     "tmdb_id": 49026,
+     "title": "The Dark Knight Rises",
+     "year": 2012
+    },
+    {
+     "tmdb_id": 911430,
+     "title": "F1",
+     "year": 2025
+    }
+   ]
+  },
+  {
+   "id": 2949,
+   "name": "Alexandre Desplat",
+   "watchlist": 6,
+   "watched": 12,
+   "five_star": 0,
+   "discover": [
+    {
+     "tmdb_id": 205596,
+     "title": "The Imitation Game",
+     "year": 2014
+    },
+    {
+     "tmdb_id": 555604,
+     "title": "Guillermo del Toro's Pinocchio",
+     "year": 2022
+    },
+    {
+     "tmdb_id": 399174,
+     "title": "Isle of Dogs",
+     "year": 2018
+    },
+    {
+     "tmdb_id": 1062722,
+     "title": "Frankenstein",
+     "year": 2025
+    },
+    {
+     "tmdb_id": 306819,
+     "title": "The Danish Girl",
+     "year": 2015
+    }
+   ]
+  },
+  {
+   "id": 117,
+   "name": "Howard Shore",
+   "watchlist": 0,
+   "watched": 11,
+   "five_star": 0,
+   "discover": [
+    {
+     "tmdb_id": 1422,
+     "title": "The Departed",
+     "year": 2006
+    },
+    {
+     "tmdb_id": 9426,
+     "title": "The Fly",
+     "year": 1986
+    },
+    {
+     "tmdb_id": 49051,
+     "title": "The Hobbit: An Unexpected Journey",
+     "year": 2012
+    },
+    {
+     "tmdb_id": 122917,
+     "title": "The Hobbit: The Battle of the Five Armies",
+     "year": 2014
+    },
+    {
+     "tmdb_id": 10843,
+     "title": "After Hours",
+     "year": 1985
+    }
+   ]
+  },
+  {
+   "id": 15347,
+   "name": "Michael Giacchino",
+   "watchlist": 1,
+   "watched": 10,
+   "five_star": 0,
+   "discover": [
+    {
+     "tmdb_id": 634649,
+     "title": "Spider-Man: No Way Home",
+     "year": 2021
+    },
+    {
+     "tmdb_id": 906126,
+     "title": "Society of the Snow",
+     "year": 2023
+    },
+    {
+     "tmdb_id": 414906,
+     "title": "The Batman",
+     "year": 2022
+    },
+    {
+     "tmdb_id": 330459,
+     "title": "Rogue One: A Star Wars Story",
+     "year": 2016
+    },
+    {
+     "tmdb_id": 284052,
+     "title": "Doctor Strange",
+     "year": 2016
+    }
+   ]
+  },
+  {
+   "id": 153,
+   "name": "Thomas Newman",
+   "watchlist": 1,
+   "watched": 10,
+   "five_star": 0,
+   "discover": [
+    {
+     "tmdb_id": 9475,
+     "title": "Scent of a Woman",
+     "year": 1992
+    },
+    {
+     "tmdb_id": 937278,
+     "title": "A Man Called Otto",
+     "year": 2022
+    },
+    {
+     "tmdb_id": 976573,
+     "title": "Elemental",
+     "year": 2023
+    },
+    {
+     "tmdb_id": 921,
+     "title": "Cinderella Man",
+     "year": 2005
+    },
+    {
+     "tmdb_id": 1633,
+     "title": "Fried Green Tomatoes",
+     "year": 1991
+    }
+   ]
+  },
+  {
+   "id": 11098,
+   "name": "John Powell",
+   "watchlist": 0,
+   "watched": 9,
+   "five_star": 0,
+   "discover": [
+    {
+     "tmdb_id": 1087192,
+     "title": "How to Train Your Dragon",
+     "year": 2025
+    },
+    {
+     "tmdb_id": 166428,
+     "title": "How to Train Your Dragon: The Hidden World",
+     "year": 2019
+    },
+    {
+     "tmdb_id": 82702,
+     "title": "How to Train Your Dragon 2",
+     "year": 2014
+    },
+    {
+     "tmdb_id": 2501,
+     "title": "The Bourne Identity",
+     "year": 2002
+    },
+    {
+     "tmdb_id": 10950,
+     "title": "I Am Sam",
+     "year": 2001
+    }
+   ]
+  },
+  {
+   "id": 1213,
+   "name": "James Newton Howard",
+   "watchlist": 1,
+   "watched": 8,
+   "five_star": 0,
+   "discover": [
+    {
+     "tmdb_id": 745,
+     "title": "The Sixth Sense",
+     "year": 1999
+    },
+    {
+     "tmdb_id": 527774,
+     "title": "Raya and the Last Dragon",
+     "year": 2021
+    },
+    {
+     "tmdb_id": 1592,
+     "title": "Primal Fear",
+     "year": 1996
+    },
+    {
+     "tmdb_id": 9016,
+     "title": "Treasure Planet",
+     "year": 2002
+    },
+    {
+     "tmdb_id": 1813,
+     "title": "The Devil's Advocate",
+     "year": 1997
+    }
+   ]
+  },
+  {
+   "id": 491,
+   "name": "John Williams",
+   "watchlist": 1,
+   "watched": 8,
+   "five_star": 0,
+   "discover": [
+    {
+     "tmdb_id": 1891,
+     "title": "The Empire Strikes Back",
+     "year": 1980
+    },
+    {
+     "tmdb_id": 11,
+     "title": "Star Wars",
+     "year": 1977
+    },
+    {
+     "tmdb_id": 329,
+     "title": "Jurassic Park",
+     "year": 1993
+    },
+    {
+     "tmdb_id": 85,
+     "title": "Raiders of the Lost Ark",
+     "year": 1981
+    },
+    {
+     "tmdb_id": 1892,
+     "title": "Return of the Jedi",
+     "year": 1983
+    }
+   ]
+  },
+  {
+   "id": 1225,
+   "name": "Carter Burwell",
+   "watchlist": 2,
+   "watched": 6,
+   "five_star": 0
+  },
+  {
+   "id": 582922,
+   "name": "Daniel Pemberton",
+   "watchlist": 1,
+   "watched": 6,
+   "five_star": 0
+  },
+  {
+   "id": 636,
+   "name": "Joe Hisaishi",
+   "watchlist": 1,
+   "watched": 6,
+   "five_star": 0
+  },
+  {
+   "id": 23486,
+   "name": "Christophe Beck",
+   "watchlist": 0,
+   "watched": 6,
+   "five_star": 0
+  },
+  {
+   "id": 7885,
+   "name": "Randy Newman",
+   "watchlist": 0,
+   "watched": 6,
+   "five_star": 0
+  },
+  {
+   "id": 5628,
+   "name": "Angelo Badalamenti",
+   "watchlist": 1,
+   "watched": 5,
+   "five_star": 0
+  },
+  {
+   "id": 142391,
+   "name": "Atticus Ross",
+   "watchlist": 1,
+   "watched": 5,
+   "five_star": 0
+  },
+  {
+   "id": 1729,
+   "name": "James Horner",
+   "watchlist": 1,
+   "watched": 5,
+   "five_star": 0
+  },
+  {
+   "id": 3186,
+   "name": "Trent Reznor",
+   "watchlist": 1,
+   "watched": 5,
+   "five_star": 0
+  },
+  {
+   "id": 37,
+   "name": "Alan Silvestri",
+   "watchlist": 0,
+   "watched": 5,
+   "five_star": 0
+  },
+  {
+   "id": 10572,
+   "name": "Theodore Shapiro",
+   "watchlist": 0,
+   "watched": 5,
+   "five_star": 0
+  },
+  {
+   "id": 312,
+   "name": "Jon Brion",
+   "watchlist": 1,
+   "watched": 4,
+   "five_star": 0
+  },
+  {
+   "id": 5359,
+   "name": "Mychael Danna",
+   "watchlist": 1,
+   "watched": 4,
+   "five_star": 0
+  },
+  {
+   "id": 15813,
+   "name": "Alan Menken",
+   "watchlist": 0,
+   "watched": 4,
+   "five_star": 0
+  },
+  {
+   "id": 7045,
+   "name": "Craig Armstrong",
+   "watchlist": 0,
+   "watched": 4,
+   "five_star": 0
+  },
+  {
+   "id": 5553,
+   "name": "Harry Gregson-Williams",
+   "watchlist": 0,
+   "watched": 4,
+   "five_star": 0
+  },
+  {
+   "id": 64868,
+   "name": "Oliver Wallace",
+   "watchlist": 0,
+   "watched": 4,
+   "five_star": 0
+  },
+  {
+   "id": 24190,
+   "name": "Rolfe Kent",
+   "watchlist": 0,
+   "watched": 4,
+   "five_star": 0
+  },
+  {
+   "id": 74333,
+   "name": "Jonny Greenwood",
+   "watchlist": 4,
+   "watched": 3,
+   "five_star": 0
+  },
+  {
+   "id": 19016,
+   "name": "Michael Brook",
+   "watchlist": 2,
+   "watched": 3,
+   "five_star": 0
+  },
+  {
+   "id": 9152,
+   "name": "Patrick Doyle",
+   "watchlist": 1,
+   "watched": 3,
+   "five_star": 0
+  },
+  {
+   "id": 3338912,
+   "name": "Christopher Stracey",
+   "watchlist": 0,
+   "watched": 3,
+   "five_star": 0
+  },
+  {
+   "id": 11269,
+   "name": "Dario Marianelli",
+   "watchlist": 0,
+   "watched": 3,
+   "five_star": 0
+  },
+  {
+   "id": 21587,
+   "name": "David Lawrence",
+   "watchlist": 0,
+   "watched": 3,
+   "five_star": 0
+  },
+  {
+   "id": 3393,
+   "name": "David Newman",
+   "watchlist": 0,
+   "watched": 3,
+   "five_star": 0
+  },
+  {
+   "id": 1741366,
+   "name": "Este Haim",
+   "watchlist": 0,
+   "watched": 3,
+   "five_star": 0
+  },
+  {
+   "id": 5466,
+   "name": "Frank Churchill",
+   "watchlist": 0,
+   "watched": 3,
+   "five_star": 0
+  },
+  {
+   "id": 5488,
+   "name": "Gabriel Yared",
+   "watchlist": 0,
+   "watched": 3,
+   "five_star": 0
+  }
+ ],
+ "pairs": [
+  {
+   "director": "Tim Burton",
+   "composer": "Danny Elfman",
+   "total": 18,
+   "watched": 7,
+   "watchlist": 0,
+   "films": [
+    {
+     "tmdb_id": 5683,
+     "title": "Pee-wee's Big Adventure",
+     "year": 1985,
+     "state": null
+    },
+    {
+     "tmdb_id": 4011,
+     "title": "Beetlejuice",
+     "year": 1988,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 268,
+     "title": "Batman",
+     "year": 1989,
+     "state": null
+    },
+    {
+     "tmdb_id": 162,
+     "title": "Edward Scissorhands",
+     "year": 1990,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 364,
+     "title": "Batman Returns",
+     "year": 1992,
+     "state": null
+    },
+    {
+     "tmdb_id": 75,
+     "title": "Mars Attacks!",
+     "year": 1996,
+     "state": null
+    },
+    {
+     "tmdb_id": 2668,
+     "title": "Sleepy Hollow",
+     "year": 1999,
+     "state": null
+    },
+    {
+     "tmdb_id": 48868,
+     "title": "The World of Stainboy",
+     "year": 2000,
+     "state": null
+    },
+    {
+     "tmdb_id": 869,
+     "title": "Planet of the Apes",
+     "year": 2001,
+     "state": null
+    },
+    {
+     "tmdb_id": 587,
+     "title": "Big Fish",
+     "year": 2003,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 118,
+     "title": "Charlie and the Chocolate Factory",
+     "year": 2005,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 3933,
+     "title": "Corpse Bride",
+     "year": 2005,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 12155,
+     "title": "Alice in Wonderland",
+     "year": 2010,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 62213,
+     "title": "Dark Shadows",
+     "year": 2012,
+     "state": null
+    },
+    {
+     "tmdb_id": 62214,
+     "title": "Frankenweenie",
+     "year": 2012,
+     "state": null
+    },
+    {
+     "tmdb_id": 87093,
+     "title": "Big Eyes",
+     "year": 2014,
+     "state": null
+    },
+    {
+     "tmdb_id": 329996,
+     "title": "Dumbo",
+     "year": 2019,
+     "state": null
+    },
+    {
+     "tmdb_id": 917496,
+     "title": "Beetlejuice Beetlejuice",
+     "year": 2024,
+     "state": "watched"
+    }
+   ]
+  },
+  {
+   "director": "Hayao Miyazaki",
+   "composer": "Joe Hisaishi",
+   "total": 15,
+   "watched": 6,
+   "watchlist": 1,
+   "films": [
+    {
+     "tmdb_id": 81,
+     "title": "Warriors of the Wind",
+     "year": 1984,
+     "state": null
+    },
+    {
+     "tmdb_id": 10515,
+     "title": "Castle in the Sky",
+     "year": 1986,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 8392,
+     "title": "My Neighbor Totoro",
+     "year": 1988,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 16859,
+     "title": "Kiki's Delivery Service",
+     "year": 1989,
+     "state": null
+    },
+    {
+     "tmdb_id": 11621,
+     "title": "Porco Rosso",
+     "year": 1992,
+     "state": null
+    },
+    {
+     "tmdb_id": 128,
+     "title": "Princess Mononoke",
+     "year": 1997,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 129,
+     "title": "Spirited Away",
+     "year": 2001,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 222480,
+     "title": "Imaginary Flying Machines",
+     "year": 2002,
+     "state": null
+    },
+    {
+     "tmdb_id": 158483,
+     "title": "Mei and the Kittenbus",
+     "year": 2002,
+     "state": null
+    },
+    {
+     "tmdb_id": 4935,
+     "title": "Howl's Moving Castle",
+     "year": 2004,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 12429,
+     "title": "Ponyo",
+     "year": 2008,
+     "state": null
+    },
+    {
+     "tmdb_id": 214676,
+     "title": "Mr. Dough and the Egg Princess",
+     "year": 2010,
+     "state": null
+    },
+    {
+     "tmdb_id": 149870,
+     "title": "The Wind Rises",
+     "year": 2013,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 508884,
+     "title": "Boro the Caterpillar",
+     "year": 2018,
+     "state": null
+    },
+    {
+     "tmdb_id": 508883,
+     "title": "The Boy and the Heron",
+     "year": 2023,
+     "state": "watchlist"
+    }
+   ]
+  },
+  {
+   "director": "David Lynch",
+   "composer": "Angelo Badalamenti",
+   "total": 14,
+   "watched": 5,
+   "watchlist": 1,
+   "films": [
+    {
+     "tmdb_id": 793,
+     "title": "Blue Velvet",
+     "year": 1986,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 452522,
+     "title": "Twin Peaks",
+     "year": 1989,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 44257,
+     "title": "Industrial Symphony No. 1: The Dream of the Brokenhearted",
+     "year": 1990,
+     "state": null
+    },
+    {
+     "tmdb_id": 483,
+     "title": "Wild at Heart",
+     "year": 1990,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 1923,
+     "title": "Twin Peaks: Fire Walk with Me",
+     "year": 1992,
+     "state": null
+    },
+    {
+     "tmdb_id": 1783656,
+     "title": "Twin Peaks: Log Lady Introductions",
+     "year": 1993,
+     "state": null
+    },
+    {
+     "tmdb_id": 1033807,
+     "title": "Premonitions Following an Evil Deed",
+     "year": 1995,
+     "state": null
+    },
+    {
+     "tmdb_id": 638,
+     "title": "Lost Highway",
+     "year": 1997,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 404,
+     "title": "The Straight Story",
+     "year": 1999,
+     "state": "watchlist"
+    },
+    {
+     "tmdb_id": 1018,
+     "title": "Mulholland Drive",
+     "year": 2001,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 104391,
+     "title": "Darkened Room",
+     "year": 2002,
+     "state": null
+    },
+    {
+     "tmdb_id": 44351,
+     "title": "Rabbits",
+     "year": 2002,
+     "state": null
+    },
+    {
+     "tmdb_id": 284457,
+     "title": "Twin Peaks: The Missing Pieces",
+     "year": 2014,
+     "state": null
+    },
+    {
+     "tmdb_id": 561930,
+     "title": "Ant Head",
+     "year": 2018,
+     "state": null
+    }
+   ]
+  },
+  {
+   "director": "Steven Spielberg",
+   "composer": "John Williams",
+   "total": 33,
+   "watched": 4,
+   "watchlist": 1,
+   "films": [
+    {
+     "tmdb_id": 5121,
+     "title": "The Sugarland Express",
+     "year": 1974,
+     "state": null
+    },
+    {
+     "tmdb_id": 578,
+     "title": "Jaws",
+     "year": 1975,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 840,
+     "title": "Close Encounters of the Third Kind",
+     "year": 1977,
+     "state": null
+    },
+    {
+     "tmdb_id": 11519,
+     "title": "1941",
+     "year": 1979,
+     "state": null
+    },
+    {
+     "tmdb_id": 85,
+     "title": "Raiders of the Lost Ark",
+     "year": 1981,
+     "state": null
+    },
+    {
+     "tmdb_id": 601,
+     "title": "E.T. the Extra-Terrestrial",
+     "year": 1982,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 87,
+     "title": "Indiana Jones and the Temple of Doom",
+     "year": 1984,
+     "state": null
+    },
+    {
+     "tmdb_id": 576510,
+     "title": "Amazing Stories",
+     "year": 1986,
+     "state": null
+    },
+    {
+     "tmdb_id": 10110,
+     "title": "Empire of the Sun",
+     "year": 1987,
+     "state": null
+    },
+    {
+     "tmdb_id": 11352,
+     "title": "Always",
+     "year": 1989,
+     "state": null
+    },
+    {
+     "tmdb_id": 89,
+     "title": "Indiana Jones and the Last Crusade",
+     "year": 1989,
+     "state": null
+    },
+    {
+     "tmdb_id": 879,
+     "title": "Hook",
+     "year": 1991,
+     "state": null
+    },
+    {
+     "tmdb_id": 424,
+     "title": "Schindler's List",
+     "year": 1993,
+     "state": "watchlist"
+    },
+    {
+     "tmdb_id": 329,
+     "title": "Jurassic Park",
+     "year": 1993,
+     "state": null
+    },
+    {
+     "tmdb_id": 11831,
+     "title": "Amistad",
+     "year": 1997,
+     "state": null
+    },
+    {
+     "tmdb_id": 330,
+     "title": "The Lost World: Jurassic Park",
+     "year": 1997,
+     "state": null
+    },
+    {
+     "tmdb_id": 857,
+     "title": "Saving Private Ryan",
+     "year": 1998,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 793912,
+     "title": "The Unfinished Journey",
+     "year": 1999,
+     "state": null
+    },
+    {
+     "tmdb_id": 644,
+     "title": "A.I. Artificial Intelligence",
+     "year": 2001,
+     "state": null
+    },
+    {
+     "tmdb_id": 640,
+     "title": "Catch Me If You Can",
+     "year": 2002,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 180,
+     "title": "Minority Report",
+     "year": 2002,
+     "state": null
+    },
+    {
+     "tmdb_id": 594,
+     "title": "The Terminal",
+     "year": 2004,
+     "state": null
+    },
+    {
+     "tmdb_id": 74,
+     "title": "War of the Worlds",
+     "year": 2005,
+     "state": null
+    },
+    {
+     "tmdb_id": 612,
+     "title": "Munich",
+     "year": 2005,
+     "state": null
+    },
+    {
+     "tmdb_id": 1198548,
+     "title": "A Timeless Call",
+     "year": 2008,
+     "state": null
+    },
+    {
+     "tmdb_id": 217,
+     "title": "Indiana Jones and the Kingdom of the Crystal Skull",
+     "year": 2008,
+     "state": null
+    },
+    {
+     "tmdb_id": 17578,
+     "title": "The Adventures of Tintin",
+     "year": 2011,
+     "state": null
+    },
+    {
+     "tmdb_id": 57212,
+     "title": "War Horse",
+     "year": 2011,
+     "state": null
+    },
+    {
+     "tmdb_id": 72976,
+     "title": "Lincoln",
+     "year": 2012,
+     "state": null
+    },
+    {
+     "tmdb_id": 267935,
+     "title": "The BFG",
+     "year": 2016,
+     "state": null
+    },
+    {
+     "tmdb_id": 446354,
+     "title": "The Post",
+     "year": 2017,
+     "state": null
+    },
+    {
+     "tmdb_id": 804095,
+     "title": "The Fabelmans",
+     "year": 2022,
+     "state": null
+    },
+    {
+     "tmdb_id": 1275779,
+     "title": "Disclosure Day",
+     "year": 2026,
+     "state": null
+    }
+   ]
+  },
+  {
+   "director": "Paul Thomas Anderson",
+   "composer": "Jonny Greenwood",
+   "total": 7,
+   "watched": 3,
+   "watchlist": 2,
+   "films": [
+    {
+     "tmdb_id": 7345,
+     "title": "There Will Be Blood",
+     "year": 2007,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 68722,
+     "title": "The Master",
+     "year": 2012,
+     "state": null
+    },
+    {
+     "tmdb_id": 171274,
+     "title": "Inherent Vice",
+     "year": 2014,
+     "state": "watchlist"
+    },
+    {
+     "tmdb_id": 355600,
+     "title": "Junun",
+     "year": 2015,
+     "state": null
+    },
+    {
+     "tmdb_id": 400617,
+     "title": "Phantom Thread",
+     "year": 2017,
+     "state": "watchlist"
+    },
+    {
+     "tmdb_id": 718032,
+     "title": "Licorice Pizza",
+     "year": 2021,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 1054867,
+     "title": "One Battle After Another",
+     "year": 2025,
+     "state": "watched"
+    }
+   ]
+  },
+  {
+   "director": "Christopher Nolan",
+   "composer": "Hans Zimmer",
+   "total": 6,
+   "watched": 4,
+   "watchlist": 0,
+   "films": [
+    {
+     "tmdb_id": 272,
+     "title": "Batman Begins",
+     "year": 2005,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 155,
+     "title": "The Dark Knight",
+     "year": 2008,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 27205,
+     "title": "Inception",
+     "year": 2010,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 49026,
+     "title": "The Dark Knight Rises",
+     "year": 2012,
+     "state": null
+    },
+    {
+     "tmdb_id": 157336,
+     "title": "Interstellar",
+     "year": 2014,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 374720,
+     "title": "Dunkirk",
+     "year": 2017,
+     "state": null
+    }
+   ]
+  },
+  {
+   "director": "Denis Villeneuve",
+   "composer": "Hans Zimmer",
+   "total": 4,
+   "watched": 2,
+   "watchlist": 1,
+   "films": [
+    {
+     "tmdb_id": 335984,
+     "title": "Blade Runner 2049",
+     "year": 2017,
+     "state": "watchlist"
+    },
+    {
+     "tmdb_id": 438631,
+     "title": "Dune",
+     "year": 2021,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 693134,
+     "title": "Dune: Part Two",
+     "year": 2024,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 1170608,
+     "title": "Dune: Part Three",
+     "year": 2026,
+     "state": null
+    }
+   ]
+  },
+  {
+   "director": "Alfred Hitchcock",
+   "composer": "Bernard Herrmann",
+   "total": 7,
+   "watched": 0,
+   "watchlist": 2,
+   "films": [
+    {
+     "tmdb_id": 11219,
+     "title": "The Trouble with Harry",
+     "year": 1955,
+     "state": null
+    },
+    {
+     "tmdb_id": 574,
+     "title": "The Man Who Knew Too Much",
+     "year": 1956,
+     "state": null
+    },
+    {
+     "tmdb_id": 22527,
+     "title": "The Wrong Man",
+     "year": 1956,
+     "state": null
+    },
+    {
+     "tmdb_id": 426,
+     "title": "Vertigo",
+     "year": 1958,
+     "state": "watchlist"
+    },
+    {
+     "tmdb_id": 213,
+     "title": "North by Northwest",
+     "year": 1959,
+     "state": null
+    },
+    {
+     "tmdb_id": 539,
+     "title": "Psycho",
+     "year": 1960,
+     "state": "watchlist"
+    },
+    {
+     "tmdb_id": 506,
+     "title": "Marnie",
+     "year": 1964,
+     "state": null
+    }
+   ]
+  },
+  {
+   "director": "David Fincher",
+   "composer": "Trent Reznor",
+   "total": 5,
+   "watched": 2,
+   "watchlist": 0,
+   "films": [
+    {
+     "tmdb_id": 37799,
+     "title": "The Social Network",
+     "year": 2010,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 65754,
+     "title": "The Girl with the Dragon Tattoo",
+     "year": 2011,
+     "state": null
+    },
+    {
+     "tmdb_id": 210577,
+     "title": "Gone Girl",
+     "year": 2014,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 614560,
+     "title": "Mank",
+     "year": 2020,
+     "state": null
+    },
+    {
+     "tmdb_id": 800158,
+     "title": "The Killer",
+     "year": 2023,
+     "state": null
+    }
+   ]
+  },
+  {
+   "director": "Denis Villeneuve",
+   "composer": "Jóhann Jóhannsson",
+   "total": 3,
+   "watched": 2,
+   "watchlist": 0,
+   "films": [
+    {
+     "tmdb_id": 146233,
+     "title": "Prisoners",
+     "year": 2013,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 273481,
+     "title": "Sicario",
+     "year": 2015,
+     "state": null
+    },
+    {
+     "tmdb_id": 329865,
+     "title": "Arrival",
+     "year": 2016,
+     "state": "watched"
+    }
+   ]
+  },
+  {
+   "director": "Federico Fellini",
+   "composer": "Nino Rota",
+   "total": 19,
+   "watched": 0,
+   "watchlist": 1,
+   "films": [
+    {
+     "tmdb_id": 43361,
+     "title": "The White Sheik",
+     "year": 1952,
+     "state": null
+    },
+    {
+     "tmdb_id": 12548,
+     "title": "I Vitelloni",
+     "year": 1953,
+     "state": null
+    },
+    {
+     "tmdb_id": 405,
+     "title": "La Strada",
+     "year": 1954,
+     "state": null
+    },
+    {
+     "tmdb_id": 36102,
+     "title": "The Swindle",
+     "year": 1955,
+     "state": null
+    },
+    {
+     "tmdb_id": 19426,
+     "title": "Nights of Cabiria",
+     "year": 1957,
+     "state": null
+    },
+    {
+     "tmdb_id": 439,
+     "title": "La Dolce Vita",
+     "year": 1960,
+     "state": "watchlist"
+    },
+    {
+     "tmdb_id": 45267,
+     "title": "Boccaccio '70",
+     "year": 1962,
+     "state": null
+    },
+    {
+     "tmdb_id": 1328864,
+     "title": "The Temptation of Dr. Antonio",
+     "year": 1962,
+     "state": null
+    },
+    {
+     "tmdb_id": 422,
+     "title": "8½",
+     "year": 1963,
+     "state": null
+    },
+    {
+     "tmdb_id": 19120,
+     "title": "Juliet of the Spirits",
+     "year": 1965,
+     "state": null
+    },
+    {
+     "tmdb_id": 41225,
+     "title": "Spirits of the Dead",
+     "year": 1968,
+     "state": null
+    },
+    {
+     "tmdb_id": 1673140,
+     "title": "Toby Dammit",
+     "year": 1968,
+     "state": null
+    },
+    {
+     "tmdb_id": 11163,
+     "title": "Satyricon",
+     "year": 1969,
+     "state": null
+    },
+    {
+     "tmdb_id": 335210,
+     "title": "Fellini: A Director’s Notebook",
+     "year": 1969,
+     "state": null
+    },
+    {
+     "tmdb_id": 42590,
+     "title": "The Clowns",
+     "year": 1970,
+     "state": null
+    },
+    {
+     "tmdb_id": 11035,
+     "title": "Roma",
+     "year": 1972,
+     "state": null
+    },
+    {
+     "tmdb_id": 7857,
+     "title": "Amarcord",
+     "year": 1973,
+     "state": null
+    },
+    {
+     "tmdb_id": 42236,
+     "title": "Fellini's Casanova",
+     "year": 1976,
+     "state": null
+    },
+    {
+     "tmdb_id": 47850,
+     "title": "Orchestra Rehearsal",
+     "year": 1979,
+     "state": null
+    }
+   ]
+  },
+  {
+   "director": "François Truffaut",
+   "composer": "Georges Delerue",
+   "total": 12,
+   "watched": 0,
+   "watchlist": 1,
+   "films": [
+    {
+     "tmdb_id": 1818,
+     "title": "Shoot the Piano Player",
+     "year": 1960,
+     "state": null
+    },
+    {
+     "tmdb_id": 256,
+     "title": "Antoine and Colette",
+     "year": 1962,
+     "state": null
+    },
+    {
+     "tmdb_id": 8773,
+     "title": "Love at Twenty",
+     "year": 1962,
+     "state": null
+    },
+    {
+     "tmdb_id": 1628,
+     "title": "Jules and Jim",
+     "year": 1962,
+     "state": null
+    },
+    {
+     "tmdb_id": 1719,
+     "title": "The Soft Skin",
+     "year": 1964,
+     "state": null
+    },
+    {
+     "tmdb_id": 42513,
+     "title": "Two English Girls",
+     "year": 1971,
+     "state": null
+    },
+    {
+     "tmdb_id": 4683,
+     "title": "A Gorgeous Kid Like Me",
+     "year": 1972,
+     "state": null
+    },
+    {
+     "tmdb_id": 1675,
+     "title": "Day for Night",
+     "year": 1973,
+     "state": "watchlist"
+    },
+    {
+     "tmdb_id": 259,
+     "title": "Love on the Run",
+     "year": 1979,
+     "state": null
+    },
+    {
+     "tmdb_id": 1716,
+     "title": "The Last Metro",
+     "year": 1980,
+     "state": null
+    },
+    {
+     "tmdb_id": 12579,
+     "title": "The Woman Next Door",
+     "year": 1981,
+     "state": null
+    },
+    {
+     "tmdb_id": 2455,
+     "title": "Confidentially Yours",
+     "year": 1983,
+     "state": null
+    }
+   ]
+  },
+  {
+   "director": "Sergio Leone",
+   "composer": "Ennio Morricone",
+   "total": 6,
+   "watched": 1,
+   "watchlist": 0,
+   "films": [
+    {
+     "tmdb_id": 391,
+     "title": "A Fistful of Dollars",
+     "year": 1964,
+     "state": null
+    },
+    {
+     "tmdb_id": 938,
+     "title": "For a Few Dollars More",
+     "year": 1965,
+     "state": null
+    },
+    {
+     "tmdb_id": 429,
+     "title": "The Good, the Bad and the Ugly",
+     "year": 1966,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 335,
+     "title": "Once Upon a Time in the West",
+     "year": 1968,
+     "state": null
+    },
+    {
+     "tmdb_id": 336,
+     "title": "Duck, You Sucker",
+     "year": 1971,
+     "state": null
+    },
+    {
+     "tmdb_id": 311,
+     "title": "Once Upon a Time in America",
+     "year": 1984,
+     "state": null
+    }
+   ]
+  },
+  {
+   "director": "David Cronenberg",
+   "composer": "Howard Shore",
+   "total": 19,
+   "watched": 0,
+   "watchlist": 0,
+   "films": [
+    {
+     "tmdb_id": 28942,
+     "title": "The Brood",
+     "year": 1979,
+     "state": null
+    },
+    {
+     "tmdb_id": 9538,
+     "title": "Scanners",
+     "year": 1981,
+     "state": null
+    },
+    {
+     "tmdb_id": 837,
+     "title": "Videodrome",
+     "year": 1983,
+     "state": null
+    },
+    {
+     "tmdb_id": 9426,
+     "title": "The Fly",
+     "year": 1986,
+     "state": null
+    },
+    {
+     "tmdb_id": 9540,
+     "title": "Dead Ringers",
+     "year": 1988,
+     "state": null
+    },
+    {
+     "tmdb_id": 2742,
+     "title": "Naked Lunch",
+     "year": 1991,
+     "state": null
+    },
+    {
+     "tmdb_id": 1413,
+     "title": "M. Butterfly",
+     "year": 1993,
+     "state": null
+    },
+    {
+     "tmdb_id": 884,
+     "title": "Crash",
+     "year": 1996,
+     "state": null
+    },
+    {
+     "tmdb_id": 1946,
+     "title": "eXistenZ",
+     "year": 1999,
+     "state": null
+    },
+    {
+     "tmdb_id": 100607,
+     "title": "Camera",
+     "year": 2000,
+     "state": null
+    },
+    {
+     "tmdb_id": 9613,
+     "title": "Spider",
+     "year": 2002,
+     "state": null
+    },
+    {
+     "tmdb_id": 59,
+     "title": "A History of Violence",
+     "year": 2005,
+     "state": null
+    },
+    {
+     "tmdb_id": 36108,
+     "title": "To Each His Own Cinema",
+     "year": 2007,
+     "state": null
+    },
+    {
+     "tmdb_id": 2252,
+     "title": "Eastern Promises",
+     "year": 2007,
+     "state": null
+    },
+    {
+     "tmdb_id": 48231,
+     "title": "A Dangerous Method",
+     "year": 2011,
+     "state": null
+    },
+    {
+     "tmdb_id": 49014,
+     "title": "Cosmopolis",
+     "year": 2012,
+     "state": null
+    },
+    {
+     "tmdb_id": 157851,
+     "title": "Maps to the Stars",
+     "year": 2014,
+     "state": null
+    },
+    {
+     "tmdb_id": 819876,
+     "title": "Crimes of the Future",
+     "year": 2022,
+     "state": null
+    },
+    {
+     "tmdb_id": 970947,
+     "title": "The Shrouds",
+     "year": 2025,
+     "state": null
+    }
+   ]
+  },
+  {
+   "director": "Krzysztof Kieślowski",
+   "composer": "Zbigniew Preisner",
+   "total": 18,
+   "watched": 0,
+   "watchlist": 0,
+   "films": [
+    {
+     "tmdb_id": 124,
+     "title": "No End",
+     "year": 1985,
+     "state": null
+    },
+    {
+     "tmdb_id": 10754,
+     "title": "A Short Film About Killing",
+     "year": 1988,
+     "state": null
+    },
+    {
+     "tmdb_id": 31056,
+     "title": "A Short Film About Love",
+     "year": 1988,
+     "state": null
+    },
+    {
+     "tmdb_id": 51108,
+     "title": "Decalogue II",
+     "year": 1989,
+     "state": null
+    },
+    {
+     "tmdb_id": 51110,
+     "title": "Decalogue IV",
+     "year": 1989,
+     "state": null
+    },
+    {
+     "tmdb_id": 51111,
+     "title": "Decalogue VIII",
+     "year": 1989,
+     "state": null
+    },
+    {
+     "tmdb_id": 118662,
+     "title": "Decalogue I",
+     "year": 1989,
+     "state": null
+    },
+    {
+     "tmdb_id": 118665,
+     "title": "Decalogue V",
+     "year": 1989,
+     "state": null
+    },
+    {
+     "tmdb_id": 118663,
+     "title": "Decalogue III",
+     "year": 1989,
+     "state": null
+    },
+    {
+     "tmdb_id": 118667,
+     "title": "Decalogue VI",
+     "year": 1989,
+     "state": null
+    },
+    {
+     "tmdb_id": 118669,
+     "title": "Decalogue IX",
+     "year": 1989,
+     "state": null
+    },
+    {
+     "tmdb_id": 118668,
+     "title": "Decalogue VII",
+     "year": 1989,
+     "state": null
+    },
+    {
+     "tmdb_id": 118670,
+     "title": "Decalogue X",
+     "year": 1989,
+     "state": null
+    },
+    {
+     "tmdb_id": 128028,
+     "title": "City Life",
+     "year": 1990,
+     "state": null
+    },
+    {
+     "tmdb_id": 1600,
+     "title": "The Double Life of Véronique",
+     "year": 1991,
+     "state": null
+    },
+    {
+     "tmdb_id": 108,
+     "title": "Three Colors: Blue",
+     "year": 1993,
+     "state": null
+    },
+    {
+     "tmdb_id": 109,
+     "title": "Three Colors: White",
+     "year": 1994,
+     "state": null
+    },
+    {
+     "tmdb_id": 110,
+     "title": "Three Colors: Red",
+     "year": 1994,
+     "state": null
+    }
+   ]
+  },
+  {
+   "director": "Andrei Tarkovsky",
+   "composer": "Eduard Artemyev",
+   "total": 3,
+   "watched": 0,
+   "watchlist": 0,
+   "films": [
+    {
+     "tmdb_id": 593,
+     "title": "Solaris",
+     "year": 1972,
+     "state": null
+    },
+    {
+     "tmdb_id": 1396,
+     "title": "Mirror",
+     "year": 1975,
+     "state": null
+    },
+    {
+     "tmdb_id": 1398,
+     "title": "Stalker",
+     "year": 1979,
+     "state": null
+    }
+   ]
+  },
+  {
+   "director": "Jacques Audiard",
+   "composer": "Alexandre Desplat",
+   "total": 7,
+   "watched": 1,
+   "watchlist": 4,
+   "films": [
+    {
+     "tmdb_id": 64347,
+     "title": "See How They Fall",
+     "year": 1994,
+     "state": null
+    },
+    {
+     "tmdb_id": 48580,
+     "title": "A Self-Made Hero",
+     "year": 1996,
+     "state": "watchlist"
+    },
+    {
+     "tmdb_id": 6173,
+     "title": "Read My Lips",
+     "year": 2001,
+     "state": null
+    },
+    {
+     "tmdb_id": 1553,
+     "title": "The Beat That My Heart Skipped",
+     "year": 2005,
+     "state": "watchlist"
+    },
+    {
+     "tmdb_id": 21575,
+     "title": "A Prophet",
+     "year": 2009,
+     "state": "watchlist"
+    },
+    {
+     "tmdb_id": 97365,
+     "title": "Rust and Bone",
+     "year": 2012,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 440161,
+     "title": "The Sisters Brothers",
+     "year": 2018,
+     "state": "watchlist"
+    }
+   ]
+  },
+  {
+   "director": "Joel Coen",
+   "composer": "Carter Burwell",
+   "total": 18,
+   "watched": 3,
+   "watchlist": 1,
+   "films": [
+    {
+     "tmdb_id": 1486200,
+     "title": "Jack of Spades",
+     "year": null,
+     "state": null
+    },
+    {
+     "tmdb_id": 11368,
+     "title": "Blood Simple",
+     "year": 1985,
+     "state": null
+    },
+    {
+     "tmdb_id": 378,
+     "title": "Raising Arizona",
+     "year": 1987,
+     "state": null
+    },
+    {
+     "tmdb_id": 379,
+     "title": "Miller's Crossing",
+     "year": 1990,
+     "state": null
+    },
+    {
+     "tmdb_id": 290,
+     "title": "Barton Fink",
+     "year": 1991,
+     "state": "watchlist"
+    },
+    {
+     "tmdb_id": 11934,
+     "title": "The Hudsucker Proxy",
+     "year": 1994,
+     "state": null
+    },
+    {
+     "tmdb_id": 275,
+     "title": "Fargo",
+     "year": 1996,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 115,
+     "title": "The Big Lebowski",
+     "year": 1998,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 10778,
+     "title": "The Man Who Wasn't There",
+     "year": 2001,
+     "state": null
+    },
+    {
+     "tmdb_id": 11775,
+     "title": "Intolerable Cruelty",
+     "year": 2003,
+     "state": null
+    },
+    {
+     "tmdb_id": 5516,
+     "title": "The Ladykillers",
+     "year": 2004,
+     "state": null
+    },
+    {
+     "tmdb_id": 6977,
+     "title": "No Country for Old Men",
+     "year": 2007,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 4944,
+     "title": "Burn After Reading",
+     "year": 2008,
+     "state": null
+    },
+    {
+     "tmdb_id": 12573,
+     "title": "A Serious Man",
+     "year": 2009,
+     "state": null
+    },
+    {
+     "tmdb_id": 44264,
+     "title": "True Grit",
+     "year": 2010,
+     "state": null
+    },
+    {
+     "tmdb_id": 270487,
+     "title": "Hail, Caesar!",
+     "year": 2016,
+     "state": null
+    },
+    {
+     "tmdb_id": 537996,
+     "title": "The Ballad of Buster Scruggs",
+     "year": 2018,
+     "state": null
+    },
+    {
+     "tmdb_id": 591538,
+     "title": "The Tragedy of Macbeth",
+     "year": 2021,
+     "state": null
+    }
+   ]
+  },
+  {
+   "director": "Wilfred Jackson",
+   "composer": "Oliver Wallace",
+   "total": 8,
+   "watched": 4,
+   "watchlist": 0,
+   "films": [
+    {
+     "tmdb_id": 11360,
+     "title": "Dumbo",
+     "year": 1941,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 64701,
+     "title": "The New Spirit",
+     "year": 1942,
+     "state": null
+    },
+    {
+     "tmdb_id": 237005,
+     "title": "A Feather in His Collar",
+     "year": 1946,
+     "state": null
+    },
+    {
+     "tmdb_id": 11224,
+     "title": "Cinderella",
+     "year": 1950,
+     "state": null
+    },
+    {
+     "tmdb_id": 12092,
+     "title": "Alice in Wonderland",
+     "year": 1951,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 10693,
+     "title": "Peter Pan",
+     "year": 1953,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 10340,
+     "title": "Lady and the Tramp",
+     "year": 1955,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 13026,
+     "title": "Everybody Loves Mickey",
+     "year": 2001,
+     "state": null
+    }
+   ]
+  },
+  {
+   "director": "Sam Mendes",
+   "composer": "Thomas Newman",
+   "total": 7,
+   "watched": 4,
+   "watchlist": 0,
+   "films": [
+    {
+     "tmdb_id": 14,
+     "title": "American Beauty",
+     "year": 1999,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 4147,
+     "title": "Road to Perdition",
+     "year": 2002,
+     "state": null
+    },
+    {
+     "tmdb_id": 25,
+     "title": "Jarhead",
+     "year": 2005,
+     "state": null
+    },
+    {
+     "tmdb_id": 4148,
+     "title": "Revolutionary Road",
+     "year": 2008,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 37724,
+     "title": "Skyfall",
+     "year": 2012,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 206647,
+     "title": "Spectre",
+     "year": 2015,
+     "state": null
+    },
+    {
+     "tmdb_id": 530915,
+     "title": "1917",
+     "year": 2019,
+     "state": "watched"
+    }
+   ]
+  },
+  {
+   "director": "Wes Anderson",
+   "composer": "Alexandre Desplat",
+   "total": 7,
+   "watched": 4,
+   "watchlist": 0,
+   "films": [
+    {
+     "tmdb_id": 10315,
+     "title": "Fantastic Mr. Fox",
+     "year": 2009,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 83666,
+     "title": "Moonrise Kingdom",
+     "year": 2012,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 120467,
+     "title": "The Grand Budapest Hotel",
+     "year": 2014,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 399174,
+     "title": "Isle of Dogs",
+     "year": 2018,
+     "state": null
+    },
+    {
+     "tmdb_id": 542178,
+     "title": "The French Dispatch of the Liberty, Kansas Evening Sun",
+     "year": 2021,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 747188,
+     "title": "Asteroid City",
+     "year": 2023,
+     "state": null
+    },
+    {
+     "tmdb_id": 1137350,
+     "title": "The Phoenician Scheme",
+     "year": 2025,
+     "state": null
+    }
+   ]
+  },
+  {
+   "director": "Peter Jackson",
+   "composer": "Howard Shore",
+   "total": 6,
+   "watched": 4,
+   "watchlist": 0,
+   "films": [
+    {
+     "tmdb_id": 120,
+     "title": "The Lord of the Rings: The Fellowship of the Ring",
+     "year": 2001,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 121,
+     "title": "The Lord of the Rings: The Two Towers",
+     "year": 2002,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 122,
+     "title": "The Lord of the Rings: The Return of the King",
+     "year": 2003,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 49051,
+     "title": "The Hobbit: An Unexpected Journey",
+     "year": 2012,
+     "state": null
+    },
+    {
+     "tmdb_id": 57158,
+     "title": "The Hobbit: The Desolation of Smaug",
+     "year": 2013,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 122917,
+     "title": "The Hobbit: The Battle of the Five Armies",
+     "year": 2014,
+     "state": null
+    }
+   ]
+  },
+  {
+   "director": "Pedro Almodóvar",
+   "composer": "Alberto Iglesias",
+   "total": 16,
+   "watched": 1,
+   "watchlist": 2,
+   "films": [
+    {
+     "tmdb_id": 4307,
+     "title": "The Flower of My Secret",
+     "year": 1995,
+     "state": null
+    },
+    {
+     "tmdb_id": 267,
+     "title": "Live Flesh",
+     "year": 1997,
+     "state": null
+    },
+    {
+     "tmdb_id": 99,
+     "title": "All About My Mother",
+     "year": 1999,
+     "state": "watchlist"
+    },
+    {
+     "tmdb_id": 64,
+     "title": "Talk to Her",
+     "year": 2002,
+     "state": null
+    },
+    {
+     "tmdb_id": 140,
+     "title": "Bad Education",
+     "year": 2004,
+     "state": null
+    },
+    {
+     "tmdb_id": 219,
+     "title": "Volver",
+     "year": 2006,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 8088,
+     "title": "Broken Embraces",
+     "year": 2009,
+     "state": null
+    },
+    {
+     "tmdb_id": 63311,
+     "title": "The Skin I Live In",
+     "year": 2011,
+     "state": null
+    },
+    {
+     "tmdb_id": 144789,
+     "title": "I'm So Excited!",
+     "year": 2013,
+     "state": null
+    },
+    {
+     "tmdb_id": 332872,
+     "title": "Julieta",
+     "year": 2016,
+     "state": null
+    },
+    {
+     "tmdb_id": 519010,
+     "title": "Pain and Glory",
+     "year": 2019,
+     "state": null
+    },
+    {
+     "tmdb_id": 671577,
+     "title": "The Human Voice",
+     "year": 2020,
+     "state": null
+    },
+    {
+     "tmdb_id": 766798,
+     "title": "Parallel Mothers",
+     "year": 2021,
+     "state": null
+    },
+    {
+     "tmdb_id": 963765,
+     "title": "Strange Way of Life",
+     "year": 2023,
+     "state": null
+    },
+    {
+     "tmdb_id": 1088514,
+     "title": "The Room Next Door",
+     "year": 2024,
+     "state": "watchlist"
+    },
+    {
+     "tmdb_id": 1088548,
+     "title": "Bitter Christmas",
+     "year": 2026,
+     "state": null
+    }
+   ]
+  },
+  {
+   "director": "Ethan Coen",
+   "composer": "Carter Burwell",
+   "total": 15,
+   "watched": 2,
+   "watchlist": 1,
+   "films": [
+    {
+     "tmdb_id": 1149508,
+     "title": "Go, Beavers!",
+     "year": null,
+     "state": null
+    },
+    {
+     "tmdb_id": 379,
+     "title": "Miller's Crossing",
+     "year": 1990,
+     "state": null
+    },
+    {
+     "tmdb_id": 290,
+     "title": "Barton Fink",
+     "year": 1991,
+     "state": "watchlist"
+    },
+    {
+     "tmdb_id": 11934,
+     "title": "The Hudsucker Proxy",
+     "year": 1994,
+     "state": null
+    },
+    {
+     "tmdb_id": 115,
+     "title": "The Big Lebowski",
+     "year": 1998,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 10778,
+     "title": "The Man Who Wasn't There",
+     "year": 2001,
+     "state": null
+    },
+    {
+     "tmdb_id": 5516,
+     "title": "The Ladykillers",
+     "year": 2004,
+     "state": null
+    },
+    {
+     "tmdb_id": 6977,
+     "title": "No Country for Old Men",
+     "year": 2007,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 4944,
+     "title": "Burn After Reading",
+     "year": 2008,
+     "state": null
+    },
+    {
+     "tmdb_id": 12573,
+     "title": "A Serious Man",
+     "year": 2009,
+     "state": null
+    },
+    {
+     "tmdb_id": 44264,
+     "title": "True Grit",
+     "year": 2010,
+     "state": null
+    },
+    {
+     "tmdb_id": 270487,
+     "title": "Hail, Caesar!",
+     "year": 2016,
+     "state": null
+    },
+    {
+     "tmdb_id": 537996,
+     "title": "The Ballad of Buster Scruggs",
+     "year": 2018,
+     "state": null
+    },
+    {
+     "tmdb_id": 957304,
+     "title": "Drive-Away Dolls",
+     "year": 2024,
+     "state": null
+    },
+    {
+     "tmdb_id": 1149504,
+     "title": "Honey Don't!",
+     "year": 2025,
+     "state": null
+    }
+   ]
+  },
+  {
+   "director": "Clyde Geronimi",
+   "composer": "Oliver Wallace",
+   "total": 14,
+   "watched": 3,
+   "watchlist": 0,
+   "films": [
+    {
+     "tmdb_id": 67132,
+     "title": "Mr. Mouse Takes a Trip",
+     "year": 1940,
+     "state": null
+    },
+    {
+     "tmdb_id": 44480,
+     "title": "Education for Death: The Making of the Nazi",
+     "year": 1943,
+     "state": null
+    },
+    {
+     "tmdb_id": 64692,
+     "title": "Private Pluto",
+     "year": 1943,
+     "state": null
+    },
+    {
+     "tmdb_id": 22779,
+     "title": "Victory Through Air Power",
+     "year": 1943,
+     "state": null
+    },
+    {
+     "tmdb_id": 237005,
+     "title": "A Feather in His Collar",
+     "year": 1946,
+     "state": null
+    },
+    {
+     "tmdb_id": 20343,
+     "title": "Make Mine Music",
+     "year": 1946,
+     "state": null
+    },
+    {
+     "tmdb_id": 67583,
+     "title": "The Big Wash",
+     "year": 1948,
+     "state": null
+    },
+    {
+     "tmdb_id": 43650,
+     "title": "The Legend of Sleepy Hollow",
+     "year": 1949,
+     "state": null
+    },
+    {
+     "tmdb_id": 13465,
+     "title": "The Adventures of Ichabod and Mr. Toad",
+     "year": 1949,
+     "state": null
+    },
+    {
+     "tmdb_id": 11224,
+     "title": "Cinderella",
+     "year": 1950,
+     "state": null
+    },
+    {
+     "tmdb_id": 12092,
+     "title": "Alice in Wonderland",
+     "year": 1951,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 10693,
+     "title": "Peter Pan",
+     "year": 1953,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 10340,
+     "title": "Lady and the Tramp",
+     "year": 1955,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 260331,
+     "title": "Walt Disney's Fables - Vol.1",
+     "year": 2003,
+     "state": null
+    }
+   ]
+  },
+  {
+   "director": "Park Chan-wook",
+   "composer": "Cho Young-wuk",
+   "total": 10,
+   "watched": 0,
+   "watchlist": 3,
+   "films": [
+    {
+     "tmdb_id": 2440,
+     "title": "Joint Security Area",
+     "year": 2000,
+     "state": null
+    },
+    {
+     "tmdb_id": 65318,
+     "title": "If You Were Me",
+     "year": 2003,
+     "state": null
+    },
+    {
+     "tmdb_id": 638991,
+     "title": "Never Ending Peace and Love",
+     "year": 2003,
+     "state": null
+    },
+    {
+     "tmdb_id": 4550,
+     "title": "Lady Vengeance",
+     "year": 2005,
+     "state": null
+    },
+    {
+     "tmdb_id": 5488,
+     "title": "I'm a Cyborg, But That's OK",
+     "year": 2006,
+     "state": null
+    },
+    {
+     "tmdb_id": 22536,
+     "title": "Thirst",
+     "year": 2009,
+     "state": null
+    },
+    {
+     "tmdb_id": 290098,
+     "title": "The Handmaiden",
+     "year": 2016,
+     "state": "watchlist"
+    },
+    {
+     "tmdb_id": 547302,
+     "title": "Decades Apart",
+     "year": 2017,
+     "state": null
+    },
+    {
+     "tmdb_id": 705996,
+     "title": "Decision to Leave",
+     "year": 2022,
+     "state": "watchlist"
+    },
+    {
+     "tmdb_id": 639988,
+     "title": "No Other Choice",
+     "year": 2025,
+     "state": "watchlist"
+    }
+   ]
+  },
+  {
+   "director": "Hamilton Luske",
+   "composer": "Oliver Wallace",
+   "total": 9,
+   "watched": 3,
+   "watchlist": 0,
+   "films": [
+    {
+     "tmdb_id": 20343,
+     "title": "Make Mine Music",
+     "year": 1946,
+     "state": null
+    },
+    {
+     "tmdb_id": 46929,
+     "title": "Fun and Fancy Free",
+     "year": 1947,
+     "state": null
+    },
+    {
+     "tmdb_id": 11224,
+     "title": "Cinderella",
+     "year": 1950,
+     "state": null
+    },
+    {
+     "tmdb_id": 12092,
+     "title": "Alice in Wonderland",
+     "year": 1951,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 10693,
+     "title": "Peter Pan",
+     "year": 1953,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 151430,
+     "title": "Ben and Me",
+     "year": 1953,
+     "state": null
+    },
+    {
+     "tmdb_id": 10340,
+     "title": "Lady and the Tramp",
+     "year": 1955,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 212961,
+     "title": "Disneyland: U.S.A.",
+     "year": 1956,
+     "state": null
+    },
+    {
+     "tmdb_id": 342016,
+     "title": "Our Friend the Atom",
+     "year": 1957,
+     "state": null
+    }
+   ]
+  },
+  {
+   "director": "Gus Van Sant",
+   "composer": "Danny Elfman",
+   "total": 7,
+   "watched": 2,
+   "watchlist": 1,
+   "films": [
+    {
+     "tmdb_id": 577,
+     "title": "To Die For",
+     "year": 1995,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 489,
+     "title": "Good Will Hunting",
+     "year": 1997,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 10139,
+     "title": "Milk",
+     "year": 2008,
+     "state": null
+    },
+    {
+     "tmdb_id": 47760,
+     "title": "Restless",
+     "year": 2011,
+     "state": null
+    },
+    {
+     "tmdb_id": 133694,
+     "title": "Promised Land",
+     "year": 2012,
+     "state": null
+    },
+    {
+     "tmdb_id": 443009,
+     "title": "Don't Worry, He Won't Get Far on Foot",
+     "year": 2018,
+     "state": null
+    },
+    {
+     "tmdb_id": 1263012,
+     "title": "Dead Man's Wire",
+     "year": 2026,
+     "state": "watchlist"
+    }
+   ]
+  },
+  {
+   "director": "James Wan",
+   "composer": "Joseph Bishara",
+   "total": 7,
+   "watched": 3,
+   "watchlist": 0,
+   "films": [
+    {
+     "tmdb_id": 208009,
+     "title": "Doggie Heaven",
+     "year": 2008,
+     "state": null
+    },
+    {
+     "tmdb_id": 49018,
+     "title": "Insidious",
+     "year": 2011,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 91586,
+     "title": "Insidious: Chapter 2",
+     "year": 2013,
+     "state": null
+    },
+    {
+     "tmdb_id": 138843,
+     "title": "The Conjuring",
+     "year": 2013,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 259693,
+     "title": "The Conjuring 2",
+     "year": 2016,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 297802,
+     "title": "Aquaman",
+     "year": 2018,
+     "state": null
+    },
+    {
+     "tmdb_id": 619778,
+     "title": "Malignant",
+     "year": 2021,
+     "state": null
+    }
+   ]
+  },
+  {
+   "director": "Brad Bird",
+   "composer": "Michael Giacchino",
+   "total": 6,
+   "watched": 3,
+   "watchlist": 0,
+   "films": [
+    {
+     "tmdb_id": 9806,
+     "title": "The Incredibles",
+     "year": 2004,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 2062,
+     "title": "Ratatouille",
+     "year": 2007,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 56292,
+     "title": "Mission: Impossible - Ghost Protocol",
+     "year": 2011,
+     "state": null
+    },
+    {
+     "tmdb_id": 158852,
+     "title": "Tomorrowland",
+     "year": 2015,
+     "state": null
+    },
+    {
+     "tmdb_id": 260513,
+     "title": "Incredibles 2",
+     "year": 2018,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 940009,
+     "title": "Ray Gunn",
+     "year": 2026,
+     "state": null
+    }
+   ]
+  },
+  {
+   "director": "Damien Chazelle",
+   "composer": "Justin Hurwitz",
+   "total": 6,
+   "watched": 3,
+   "watchlist": 0,
+   "films": [
+    {
+     "tmdb_id": 1484467,
+     "title": "Sacrifice",
+     "year": null,
+     "state": null
+    },
+    {
+     "tmdb_id": 46504,
+     "title": "Guy and Madeline on a Park Bench",
+     "year": 2010,
+     "state": null
+    },
+    {
+     "tmdb_id": 244786,
+     "title": "Whiplash",
+     "year": 2014,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 313369,
+     "title": "La La Land",
+     "year": 2016,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 369972,
+     "title": "First Man",
+     "year": 2018,
+     "state": null
+    },
+    {
+     "tmdb_id": 615777,
+     "title": "Babylon",
+     "year": 2022,
+     "state": "watched"
+    }
+   ]
+  },
+  {
+   "director": "Andrew Adamson",
+   "composer": "Harry Gregson-Williams",
+   "total": 5,
+   "watched": 3,
+   "watchlist": 0,
+   "films": [
+    {
+     "tmdb_id": 808,
+     "title": "Shrek",
+     "year": 2001,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 809,
+     "title": "Shrek 2",
+     "year": 2004,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 411,
+     "title": "The Chronicles of Narnia: The Lion, the Witch and the Wardrobe",
+     "year": 2005,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 2454,
+     "title": "The Chronicles of Narnia: Prince Caspian",
+     "year": 2008,
+     "state": null
+    },
+    {
+     "tmdb_id": 121830,
+     "title": "Mr. Pip",
+     "year": 2012,
+     "state": null
+    }
+   ]
+  },
+  {
+   "director": "Chris Columbus",
+   "composer": "John Williams",
+   "total": 5,
+   "watched": 3,
+   "watchlist": 0,
+   "films": [
+    {
+     "tmdb_id": 771,
+     "title": "Home Alone",
+     "year": 1990,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 772,
+     "title": "Home Alone 2: Lost in New York",
+     "year": 1992,
+     "state": null
+    },
+    {
+     "tmdb_id": 9441,
+     "title": "Stepmom",
+     "year": 1998,
+     "state": null
+    },
+    {
+     "tmdb_id": 671,
+     "title": "Harry Potter and the Philosopher's Stone",
+     "year": 2001,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 672,
+     "title": "Harry Potter and the Chamber of Secrets",
+     "year": 2002,
+     "state": "watched"
+    }
+   ]
+  },
+  {
+   "director": "Andrew Stanton",
+   "composer": "Thomas Newman",
+   "total": 4,
+   "watched": 3,
+   "watchlist": 0,
+   "films": [
+    {
+     "tmdb_id": 12,
+     "title": "Finding Nemo",
+     "year": 2003,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 10681,
+     "title": "WALL·E",
+     "year": 2008,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 127380,
+     "title": "Finding Dory",
+     "year": 2016,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 1032892,
+     "title": "In the Blink of an Eye",
+     "year": 2026,
+     "state": null
+    }
+   ]
+  },
+  {
+   "director": "Michel Hazanavicius",
+   "composer": "Ludovic Bource",
+   "total": 4,
+   "watched": 3,
+   "watchlist": 0,
+   "films": [
+    {
+     "tmdb_id": 63761,
+     "title": "Sitcom, A Movie",
+     "year": 1999,
+     "state": null
+    },
+    {
+     "tmdb_id": 15152,
+     "title": "OSS 117: Cairo, Nest of Spies",
+     "year": 2006,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 15588,
+     "title": "OSS 117: Lost in Rio",
+     "year": 2009,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 74643,
+     "title": "The Artist",
+     "year": 2011,
+     "state": "watched"
+    }
+   ]
+  },
+  {
+   "director": "Robert Zemeckis",
+   "composer": "Alan Silvestri",
+   "total": 22,
+   "watched": 2,
+   "watchlist": 0,
+   "films": [
+    {
+     "tmdb_id": 9326,
+     "title": "Romancing the Stone",
+     "year": 1984,
+     "state": null
+    },
+    {
+     "tmdb_id": 105,
+     "title": "Back to the Future",
+     "year": 1985,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 576510,
+     "title": "Amazing Stories",
+     "year": 1986,
+     "state": null
+    },
+    {
+     "tmdb_id": 856,
+     "title": "Who Framed Roger Rabbit",
+     "year": 1988,
+     "state": null
+    },
+    {
+     "tmdb_id": 165,
+     "title": "Back to the Future Part II",
+     "year": 1989,
+     "state": null
+    },
+    {
+     "tmdb_id": 196,
+     "title": "Back to the Future Part III",
+     "year": 1990,
+     "state": null
+    },
+    {
+     "tmdb_id": 9374,
+     "title": "Death Becomes Her",
+     "year": 1992,
+     "state": null
+    },
+    {
+     "tmdb_id": 213503,
+     "title": "Two-Fisted Tales",
+     "year": 1992,
+     "state": null
+    },
+    {
+     "tmdb_id": 13,
+     "title": "Forrest Gump",
+     "year": 1994,
+     "state": "watched"
+    },
+    {
+     "tmdb_id": 686,
+     "title": "Contact",
+     "year": 1997,
+     "state": null
+    },
+    {
+     "tmdb_id": 8358,
+     "title": "Cast Away",
+     "year": 2000,
+     "state": null
+    },
+    {
+     "tmdb_id": 2655,
+     "title": "What Lies Beneath",
+     "year": 2000,
+     "state": null
+    },
+    {
+     "tmdb_id": 5255,
+     "title": "The Polar Express",
+     "year": 2004,
+     "state": null
+    },
+    {
+     "tmdb_id": 2310,
+     "title": "Beowulf",
+     "year": 2007,
+     "state": null
+    },
+    {
+     "tmdb_id": 17979,
+     "title": "A Christmas Carol",
+     "year": 2009,
+     "state": null
+    },
+    {
+     "tmdb_id": 87502,
+     "title": "Flight",
+     "year": 2012,
+     "state": null
+    },
+    {
+     "tmdb_id": 285783,
+     "title": "The Walk",
+     "year": 2015,
+     "state": null
+    },
+    {
+     "tmdb_id": 369885,
+     "title": "Allied",
+     "year": 2016,
+     "state": null
+    },
+    {
+     "tmdb_id": 351044,
+     "title": "Welcome to Marwen",
+     "year": 2018,
+     "state": null
+    },
+    {
+     "tmdb_id": 531219,
+     "title": "Roald Dahl's The Witches",
+     "year": 2020,
+     "state": null
+    },
+    {
+     "tmdb_id": 532639,
+     "title": "Pinocchio",
+     "year": 2022,
+     "state": null
+    },
+    {
+     "tmdb_id": 940139,
+     "title": "Here",
+     "year": 2024,
+     "state": null
+    }
+   ]
+  }
+ ],
+ "score_first": [
+  {
+   "tmdb_id": 1398,
+   "title": "Stalker",
+   "year": 1979,
+   "director": "Andrei Tarkovsky",
+   "composers": [
+    "Eduard Artemyev"
+   ],
+   "tags": [
+    "synthesizer",
+    "tar",
+    "flute",
+    "sparse",
+    "meditative",
+    "eerie"
+   ],
+   "state": null
+  },
+  {
+   "tmdb_id": 78,
+   "title": "Blade Runner",
+   "year": 1982,
+   "director": "Ridley Scott",
+   "composers": [
+    "Vangelis"
+   ],
+   "tags": [
+    "synthesizer",
+    "saxophone",
+    "melancholic",
+    "atmospheric"
+   ],
+   "state": null
+  },
+  {
+   "tmdb_id": 713,
+   "title": "The Piano",
+   "year": 1993,
+   "director": "Jane Campion",
+   "composers": [
+    "Michael Nyman"
+   ],
+   "tags": [
+    "solo piano",
+    "romantic",
+    "restless"
+   ],
+   "state": "watched"
+  },
+  {
+   "tmdb_id": 11416,
+   "title": "The Mission",
+   "year": 1986,
+   "director": "Roland Joffé",
+   "composers": [
+    "Ennio Morricone"
+   ],
+   "tags": [
+    "oboe",
+    "choir",
+    "pan pipes",
+    "soaring",
+    "sacred"
+   ],
+   "state": null
+  },
+  {
+   "tmdb_id": 311,
+   "title": "Once Upon a Time in America",
+   "year": 1984,
+   "director": "Sergio Leone",
+   "composers": [
+    "Ennio Morricone"
+   ],
+   "tags": [
+    "pan flute",
+    "strings",
+    "nostalgic",
+    "melancholic"
+   ],
+   "state": null
+  },
+  {
+   "tmdb_id": 16642,
+   "title": "Days of Heaven",
+   "year": 1978,
+   "director": "Terrence Malick",
+   "composers": [
+    "Ennio Morricone"
+   ],
+   "tags": [
+    "strings",
+    "pastoral",
+    "wistful"
+   ],
+   "state": null
+  },
+  {
+   "tmdb_id": 405,
+   "title": "La Strada",
+   "year": 1954,
+   "director": "Federico Fellini",
+   "composers": [
+    "Nino Rota"
+   ],
+   "tags": [
+    "trumpet",
+    "melancholic",
+    "tender"
+   ],
+   "state": null
+  },
+  {
+   "tmdb_id": 422,
+   "title": "8½",
+   "year": 1963,
+   "director": "Federico Fellini",
+   "composers": [
+    "Nino Rota"
+   ],
+   "tags": [
+    "circus band",
+    "brass",
+    "playful",
+    "nostalgic"
+   ],
+   "state": null
+  },
+  {
+   "tmdb_id": 11948,
+   "title": "Merry Christmas, Mr. Lawrence",
+   "year": 1983,
+   "director": "Nagisa Ōshima",
+   "composers": [
+    "Ryuichi Sakamoto"
+   ],
+   "tags": [
+    "synthesizer",
+    "bells",
+    "tender",
+    "melancholic"
+   ],
+   "state": null
+  },
+  {
+   "tmdb_id": 11986,
+   "title": "Betty Blue",
+   "year": 1986,
+   "director": "Jean-Jacques Beineix",
+   "composers": [
+    "Gabriel Yared"
+   ],
+   "tags": [
+    "piano",
+    "saxophone",
+    "melancholic",
+    "romantic"
+   ],
+   "state": null
+  },
+  {
+   "tmdb_id": 9443,
+   "title": "Chariots of Fire",
+   "year": 1981,
+   "director": "Hugh Hudson",
+   "composers": [
+    "Vangelis"
+   ],
+   "tags": [
+    "synthesizer",
+    "piano",
+    "triumphant"
+   ],
+   "state": null
+  },
+  {
+   "tmdb_id": 11524,
+   "title": "Thief",
+   "year": 1981,
+   "director": "Michael Mann",
+   "composers": [
+    "Edgar Froese",
+    "Christopher Franke",
+    "Johannes Schmölling",
+    "Klaus Krüger"
+   ],
+   "tags": [
+    "synthesizer",
+    "pulsing",
+    "nocturnal"
+   ],
+   "state": null
+  },
+  {
+   "tmdb_id": 11327,
+   "title": "Midnight Express",
+   "year": 1978,
+   "director": "Alan Parker",
+   "composers": [
+    "Giorgio Moroder"
+   ],
+   "tags": [
+    "synthesizer",
+    "disco",
+    "pulsing",
+    "tense"
+   ],
+   "state": null
+  },
+  {
+   "tmdb_id": 1103,
+   "title": "Escape from New York",
+   "year": 1981,
+   "director": "John Carpenter",
+   "composers": [
+    "Alan Howarth",
+    "John Carpenter"
+   ],
+   "tags": [
+    "synthesizer",
+    "minimal",
+    "pulsing"
+   ],
+   "state": null
+  },
+  {
+   "tmdb_id": 1091,
+   "title": "The Thing",
+   "year": 1982,
+   "director": "John Carpenter",
+   "composers": [
+    "Ennio Morricone"
+   ],
+   "tags": [
+    "synthesizer",
+    "pulsing",
+    "sparse",
+    "dread"
+   ],
+   "state": null
+  },
+  {
+   "tmdb_id": 871,
+   "title": "Planet of the Apes",
+   "year": 1968,
+   "director": "Franklin J. Schaffner",
+   "composers": [
+    "Jerry Goldsmith"
+   ],
+   "tags": [
+    "percussion",
+    "atonal",
+    "horns",
+    "avant-garde"
+   ],
+   "state": null
+  },
+  {
+   "tmdb_id": 1714,
+   "title": "Fahrenheit 451",
+   "year": 1966,
+   "director": "François Truffaut",
+   "composers": [
+    "Bernard Herrmann"
+   ],
+   "tags": [
+    "strings",
+    "harp",
+    "xylophone",
+    "wistful",
+    "tense"
+   ],
+   "state": null
+  },
+  {
+   "tmdb_id": 1628,
+   "title": "Jules and Jim",
+   "year": 1962,
+   "director": "François Truffaut",
+   "composers": [
+    "Georges Delerue"
+   ],
+   "tags": [
+    "waltz",
+    "strings",
+    "bittersweet"
+   ],
+   "state": null
+  },
+  {
+   "tmdb_id": 4808,
+   "title": "Charade",
+   "year": 1963,
+   "director": "Stanley Donen",
+   "composers": [
+    "Henry Mancini"
+   ],
+   "tags": [
+    "orchestra",
+    "jazz",
+    "playful"
+   ],
+   "state": null
+  },
+  {
+   "tmdb_id": 220,
+   "title": "East of Eden",
+   "year": 1955,
+   "director": "Elia Kazan",
+   "composers": [
+    "Leonard Rosenman"
+   ],
+   "tags": [
+    "strings",
+    "anxious",
+    "romantic"
+   ],
+   "state": null
+  },
+  {
+   "tmdb_id": 654,
+   "title": "On the Waterfront",
+   "year": 1954,
+   "director": "Elia Kazan",
+   "composers": [
+    "Leonard Bernstein"
+   ],
+   "tags": [
+    "solo horn",
+    "percussion",
+    "saxophone",
+    "brooding",
+    "tense"
+   ],
+   "state": null
+  },
+  {
+   "tmdb_id": 702,
+   "title": "A Streetcar Named Desire",
+   "year": 1951,
+   "director": "Elia Kazan",
+   "composers": [
+    "Alex North"
+   ],
+   "tags": [
+    "jazz",
+    "clarinet",
+    "saxophone",
+    "sultry"
+   ],
+   "state": null
+  },
+  {
+   "tmdb_id": 541,
+   "title": "The Man with the Golden Arm",
+   "year": 1955,
+   "director": "Otto Preminger",
+   "composers": [
+    "Elmer Bernstein"
+   ],
+   "tags": [
+    "big band",
+    "jazz",
+    "tense"
+   ],
+   "state": null
+  },
+  {
+   "tmdb_id": 8741,
+   "title": "The Thin Red Line",
+   "year": 1998,
+   "director": "Terrence Malick",
+   "composers": [
+    "Hans Zimmer"
+   ],
+   "tags": [
+    "strings",
+    "choir",
+    "ostinato",
+    "meditative"
+   ],
+   "state": null
+  },
+  {
+   "tmdb_id": 8967,
+   "title": "The Tree of Life",
+   "year": 2011,
+   "director": "Terrence Malick",
+   "composers": [
+    "Alexandre Desplat"
+   ],
+   "tags": [
+    "strings",
+    "piano",
+    "choir",
+    "contemplative"
+   ],
+   "state": "watched"
+  },
+  {
+   "tmdb_id": 4512,
+   "title": "The Assassination of Jesse James by the Coward Robert Ford",
+   "year": 2007,
+   "director": "Andrew Dominik",
+   "composers": [
+    "Warren Ellis",
+    "Nick Cave"
+   ],
+   "tags": [
+    "piano",
+    "violin",
+    "celesta",
+    "sparse",
+    "elegiac"
+   ],
+   "state": null
+  },
+  {
+   "tmdb_id": 20766,
+   "title": "The Road",
+   "year": 2009,
+   "director": "John Hillcoat",
+   "composers": [
+    "Nick Cave",
+    "Warren Ellis"
+   ],
+   "tags": [
+    "piano",
+    "violin",
+    "sparse",
+    "bleak"
+   ],
+   "state": null
+  },
+  {
+   "tmdb_id": 458737,
+   "title": "First Reformed",
+   "year": 2017,
+   "director": "Paul Schrader",
+   "composers": [
+    "Brian Williams"
+   ],
+   "tags": [
+    "drone",
+    "sparse",
+    "dread"
+   ],
+   "state": null
+  },
+  {
+   "tmdb_id": 68730,
+   "title": "Silence",
+   "year": 2016,
+   "director": "Martin Scorsese",
+   "composers": [
+    "Kathryn Kluge",
+    "Kim Allen Kluge"
+   ],
+   "tags": [
+    "ambient",
+    "nature sounds",
+    "sparse",
+    "meditative"
+   ],
+   "state": null
+  },
+  {
+   "tmdb_id": 1956,
+   "title": "Gerry",
+   "year": 2002,
+   "director": "Gus Van Sant",
+   "composers": [
+    "Arvo Pärt"
+   ],
+   "tags": [
+    "piano",
+    "violin",
+    "sparse",
+    "meditative"
+   ],
+   "state": null
+  },
+  {
+   "tmdb_id": 937287,
+   "title": "Challengers",
+   "year": 2024,
+   "director": "Luca Guadagnino",
+   "composers": [
+    "Trent Reznor",
+    "Atticus Ross"
+   ],
+   "tags": [
+    "techno",
+    "synthesizer",
+    "pulsing",
+    "euphoric"
+   ],
+   "state": "watched"
+  },
+  {
+   "tmdb_id": 559907,
+   "title": "The Green Knight",
+   "year": 2021,
+   "director": "David Lowery",
+   "composers": [
+    "Daniel Hart"
+   ],
+   "tags": [
+    "voice",
+    "strings",
+    "choir",
+    "eerie",
+    "dreamlike"
+   ],
+   "state": null
+  },
+  {
+   "tmdb_id": 793,
+   "title": "Blue Velvet",
+   "year": 1986,
+   "director": "David Lynch",
+   "composers": [
+    "Angelo Badalamenti"
+   ],
+   "tags": [
+    "strings",
+    "dreamy",
+    "noir",
+    "ominous"
+   ],
+   "state": "watched"
+  },
+  {
+   "tmdb_id": 21484,
+   "title": "Possession",
+   "year": 1981,
+   "director": "Andrzej Żuławski",
+   "composers": [
+    "Andrzej Korzyński"
+   ],
+   "tags": [
+    "synthesizer",
+    "unsettling"
+   ],
+   "state": null
+  },
+  {
+   "tmdb_id": 5924,
+   "title": "Papillon",
+   "year": 1973,
+   "director": "Franklin J. Schaffner",
+   "composers": [
+    "Jerry Goldsmith"
+   ],
+   "tags": [
+    "accordion",
+    "waltz",
+    "longing"
+   ],
+   "state": null
+  },
+  {
+   "tmdb_id": 223,
+   "title": "Rebecca",
+   "year": 1940,
+   "director": "Alfred Hitchcock",
+   "composers": [
+    "Franz Waxman"
+   ],
+   "tags": [
+    "orchestra",
+    "gothic",
+    "romantic"
+   ],
+   "state": null
+  },
+  {
+   "tmdb_id": 149870,
+   "title": "The Wind Rises",
+   "year": 2013,
+   "director": "Hayao Miyazaki",
+   "composers": [
+    "Joe Hisaishi"
+   ],
+   "tags": [
+    "mandolin",
+    "accordion",
+    "piano",
+    "gentle",
+    "wistful"
+   ],
+   "state": "watched"
+  },
+  {
+   "tmdb_id": 9062,
+   "title": "Love Story",
+   "year": 1970,
+   "director": "Arthur Hiller",
+   "composers": [
+    "Francis Lai"
+   ],
+   "tags": [
+    "piano",
+    "sentimental",
+    "romantic"
+   ],
+   "state": "watched"
+  },
+  {
+   "tmdb_id": 655,
+   "title": "Paris, Texas",
+   "year": 1984,
+   "director": "Wim Wenders",
+   "composers": [
+    "Ry Cooder"
+   ],
+   "tags": [
+    "slide guitar",
+    "sparse",
+    "melancholic"
+   ],
+   "state": "watched"
+  },
+  {
+   "tmdb_id": 7345,
+   "title": "There Will Be Blood",
+   "year": 2007,
+   "director": "Paul Thomas Anderson",
+   "composers": [
+    "Jonny Greenwood"
+   ],
+   "tags": [
+    "strings",
+    "dissonant",
+    "dread"
+   ],
+   "state": "watched"
+  },
+  {
+   "tmdb_id": 329865,
+   "title": "Arrival",
+   "year": 2016,
+   "director": "Denis Villeneuve",
+   "composers": [
+    "Jóhann Jóhannsson"
+   ],
+   "tags": [
+    "strings",
+    "voices",
+    "meditative",
+    "eerie"
+   ],
+   "state": "watched"
+  },
+  {
+   "tmdb_id": 273481,
+   "title": "Sicario",
+   "year": 2015,
+   "director": "Denis Villeneuve",
+   "composers": [
+    "Jóhann Jóhannsson"
+   ],
+   "tags": [
+    "low brass",
+    "percussion",
+    "dread",
+    "pulsing"
+   ],
+   "state": null
+  },
+  {
+   "tmdb_id": 593,
+   "title": "Solaris",
+   "year": 1972,
+   "director": "Andrei Tarkovsky",
+   "composers": [
+    "Vyacheslav Ovchinnikov",
+    "Eduard Artemyev"
+   ],
+   "tags": [
+    "synthesizer",
+    "organ",
+    "meditative",
+    "sparse"
+   ],
+   "state": null
+  },
+  {
+   "tmdb_id": 429,
+   "title": "The Good, the Bad and the Ugly",
+   "year": 1966,
+   "director": "Sergio Leone",
+   "composers": [
+    "Ennio Morricone"
+   ],
+   "tags": [
+    "whistling",
+    "electric guitar",
+    "voice",
+    "epic"
+   ],
+   "state": "watched"
+  },
+  {
+   "tmdb_id": 335,
+   "title": "Once Upon a Time in the West",
+   "year": 1968,
+   "director": "Sergio Leone",
+   "composers": [
+    "Ennio Morricone"
+   ],
+   "tags": [
+    "harmonica",
+    "soprano voice",
+    "elegiac",
+    "epic"
+   ],
+   "state": null
+  },
+  {
+   "tmdb_id": 103,
+   "title": "Taxi Driver",
+   "year": 1976,
+   "director": "Martin Scorsese",
+   "composers": [
+    "Bernard Herrmann"
+   ],
+   "tags": [
+    "saxophone",
+    "brooding",
+    "nocturnal"
+   ],
+   "state": "watched"
+  },
+  {
+   "tmdb_id": 829,
+   "title": "Chinatown",
+   "year": 1974,
+   "director": "Roman Polanski",
+   "composers": [
+    "Jerry Goldsmith"
+   ],
+   "tags": [
+    "solo trumpet",
+    "noir",
+    "melancholic"
+   ],
+   "state": "watched"
+  },
+  {
+   "tmdb_id": 238,
+   "title": "The Godfather",
+   "year": 1972,
+   "director": "Francis Ford Coppola",
+   "composers": [
+    "Nino Rota"
+   ],
+   "tags": [
+    "solo trumpet",
+    "waltz",
+    "nostalgic",
+    "melancholic"
+   ],
+   "state": "watched"
+  },
+  {
+   "tmdb_id": 843,
+   "title": "In the Mood for Love",
+   "year": 2000,
+   "director": "Wong Kar-wai",
+   "composers": [
+    "Michael Galasso"
+   ],
+   "tags": [
+    "strings",
+    "cello",
+    "waltz",
+    "melancholic",
+    "romantic"
+   ],
+   "state": "watched"
+  },
+  {
+   "tmdb_id": 698232,
+   "title": "Under the Skin",
+   "year": 2013,
+   "director": "Pedro Sotero, Daniel Bandeira",
+   "composers": [],
+   "tags": [
+    "strings",
+    "viola",
+    "microtonal",
+    "eerie",
+    "sparse"
+   ],
+   "state": null
+  },
+  {
+   "tmdb_id": 475557,
+   "title": "Joker",
+   "year": 2019,
+   "director": "Todd Phillips",
+   "composers": [
+    "Hildur Guðnadóttir"
+   ],
+   "tags": [
+    "solo cello",
+    "sparse",
+    "melancholic",
+    "brooding"
+   ],
+   "state": "watched"
+  },
+  {
+   "tmdb_id": 16804,
+   "title": "Departures",
+   "year": 2008,
+   "director": "Yojiro Takita",
+   "composers": [
+    "Joe Hisaishi"
+   ],
+   "tags": [
+    "solo cello",
+    "gentle",
+    "melancholic"
+   ],
+   "state": null
+  },
+  {
+   "tmdb_id": 641,
+   "title": "Requiem for a Dream",
+   "year": 2000,
+   "director": "Darren Aronofsky",
+   "composers": [
+    "Clint Mansell"
+   ],
+   "tags": [
+    "string quartet",
+    "tense",
+    "bleak"
+   ],
+   "state": "watched"
+  },
+  {
+   "tmdb_id": 922,
+   "title": "Dead Man",
+   "year": 1995,
+   "director": "Jim Jarmusch",
+   "composers": [
+    "Neil Young"
+   ],
+   "tags": [
+    "solo electric guitar",
+    "sparse",
+    "bleak"
+   ],
+   "state": "watched"
+  },
+  {
+   "tmdb_id": 37799,
+   "title": "The Social Network",
+   "year": 2010,
+   "director": "David Fincher",
+   "composers": [
+    "Atticus Ross",
+    "Trent Reznor"
+   ],
+   "tags": [
+    "synthesizer",
+    "piano",
+    "pulsing",
+    "uneasy"
+   ],
+   "state": "watched"
+  },
+  {
+   "tmdb_id": 244786,
+   "title": "Whiplash",
+   "year": 2014,
+   "director": "Damien Chazelle",
+   "composers": [
+    "Justin Hurwitz"
+   ],
+   "tags": [
+    "drums",
+    "big band",
+    "jazz",
+    "tense"
+   ],
+   "state": "watched"
+  },
+  {
+   "tmdb_id": 34653,
+   "title": "A Single Man",
+   "year": 2009,
+   "director": "Tom Ford",
+   "composers": [
+    "Abel Korzeniowski"
+   ],
+   "tags": [
+    "strings",
+    "melancholic",
+    "elegant"
+   ],
+   "state": "watched"
+  },
+  {
+   "tmdb_id": 590,
+   "title": "The Hours",
+   "year": 2002,
+   "director": "Stephen Daldry",
+   "composers": [
+    "Philip Glass"
+   ],
+   "tags": [
+    "piano",
+    "strings",
+    "minimalist",
+    "melancholic"
+   ],
+   "state": null
+  },
+  {
+   "tmdb_id": 11314,
+   "title": "Koyaanisqatsi",
+   "year": 1982,
+   "director": "Godfrey Reggio",
+   "composers": [
+    "Philip Glass"
+   ],
+   "tags": [
+    "organ",
+    "choir",
+    "minimalist",
+    "pulsing"
+   ],
+   "state": null
+  },
+  {
+   "tmdb_id": 157336,
+   "title": "Interstellar",
+   "year": 2014,
+   "director": "Christopher Nolan",
+   "composers": [
+    "Hans Zimmer"
+   ],
+   "tags": [
+    "organ",
+    "strings",
+    "soaring"
+   ],
+   "state": "watched"
+  },
+  {
+   "tmdb_id": 194,
+   "title": "Amélie",
+   "year": 2001,
+   "director": "Jean-Pierre Jeunet",
+   "composers": [
+    "Yann Tiersen"
+   ],
+   "tags": [
+    "accordion",
+    "toy piano",
+    "playful",
+    "wistful"
+   ],
+   "state": "watched"
+  },
+  {
+   "tmdb_id": 11216,
+   "title": "Cinema Paradiso",
+   "year": 1988,
+   "director": "Giuseppe Tornatore",
+   "composers": [
+    "Ennio Morricone"
+   ],
+   "tags": [
+    "strings",
+    "piano",
+    "nostalgic",
+    "sentimental"
+   ],
+   "state": "watched"
+  },
+  {
+   "tmdb_id": 300668,
+   "title": "Annihilation",
+   "year": 2018,
+   "director": "Alex Garland",
+   "composers": [
+    "Ben Salisbury",
+    "Geoff Barrow"
+   ],
+   "tags": [
+    "acoustic guitar",
+    "synthesizer",
+    "eerie"
+   ],
+   "state": null
+  },
+  {
+   "tmdb_id": 68722,
+   "title": "The Master",
+   "year": 2012,
+   "director": "Paul Thomas Anderson",
+   "composers": [
+    "Jonny Greenwood"
+   ],
+   "tags": [
+    "strings",
+    "percussion",
+    "uneasy"
+   ],
+   "state": null
+  },
+  {
+   "tmdb_id": 345,
+   "title": "Eyes Wide Shut",
+   "year": 1999,
+   "director": "Stanley Kubrick",
+   "composers": [
+    "Jocelyn Pook"
+   ],
+   "tags": [
+    "solo piano",
+    "sparse",
+    "uneasy"
+   ],
+   "state": "watched"
+  },
+  {
+   "tmdb_id": 62,
+   "title": "2001: A Space Odyssey",
+   "year": 1968,
+   "director": "Stanley Kubrick",
+   "composers": [],
+   "tags": [
+    "choir",
+    "orchestra",
+    "eerie",
+    "stately"
+   ],
+   "state": "watched"
+  },
+  {
+   "tmdb_id": 38,
+   "title": "Eternal Sunshine of the Spotless Mind",
+   "year": 2004,
+   "director": "Michel Gondry",
+   "composers": [
+    "Jon Brion"
+   ],
+   "tags": [
+    "piano",
+    "wistful",
+    "gentle"
+   ],
+   "state": "watched"
+  }
+ ],
+ "blind_spots": [
+  {
+   "genre": "War",
+   "films": [
+    {
+     "tmdb_id": 205596,
+     "title": "The Imitation Game",
+     "year": 2014
+    },
+    {
+     "tmdb_id": 324786,
+     "title": "Hacksaw Ridge",
+     "year": 2016
+    },
+    {
+     "tmdb_id": 228150,
+     "title": "Fury",
+     "year": 2014
+    },
+    {
+     "tmdb_id": 1417,
+     "title": "Pan's Labyrinth",
+     "year": 2006
+    },
+    {
+     "tmdb_id": 197,
+     "title": "Braveheart",
+     "year": 1995
+    },
+    {
+     "tmdb_id": 14574,
+     "title": "The Boy in the Striped Pyjamas",
+     "year": 2008
+    },
+    {
+     "tmdb_id": 616,
+     "title": "The Last Samurai",
+     "year": 2003
+    },
+    {
+     "tmdb_id": 12477,
+     "title": "Grave of the Fireflies",
+     "year": 1988
+    }
+   ]
+  },
+  {
+   "genre": "Thriller",
+   "films": [
+    {
+     "tmdb_id": 49026,
+     "title": "The Dark Knight Rises",
+     "year": 2012
+    },
+    {
+     "tmdb_id": 1422,
+     "title": "The Departed",
+     "year": 2006
+    },
+    {
+     "tmdb_id": 752,
+     "title": "V for Vendetta",
+     "year": 2006
+    },
+    {
+     "tmdb_id": 393,
+     "title": "Kill Bill: Vol. 2",
+     "year": 2004
+    },
+    {
+     "tmdb_id": 78,
+     "title": "Blade Runner",
+     "year": 1982
+    },
+    {
+     "tmdb_id": 218,
+     "title": "The Terminator",
+     "year": 1984
+    },
+    {
+     "tmdb_id": 280,
+     "title": "Terminator 2: Judgment Day",
+     "year": 1991
+    },
+    {
+     "tmdb_id": 745,
+     "title": "The Sixth Sense",
+     "year": 1999
+    }
+   ]
+  },
+  {
+   "genre": "History",
+   "films": [
+    {
+     "tmdb_id": 381284,
+     "title": "Hidden Figures",
+     "year": 2016
+    },
+    {
+     "tmdb_id": 359724,
+     "title": "Ford v Ferrari",
+     "year": 2019
+    },
+    {
+     "tmdb_id": 152532,
+     "title": "Dallas Buyers Club",
+     "year": 2013
+    },
+    {
+     "tmdb_id": 398978,
+     "title": "The Irishman",
+     "year": 2019
+    },
+    {
+     "tmdb_id": 1579,
+     "title": "Apocalypto",
+     "year": 2006
+    },
+    {
+     "tmdb_id": 117,
+     "title": "The Untouchables",
+     "year": 1987
+    },
+    {
+     "tmdb_id": 1578,
+     "title": "Raging Bull",
+     "year": 1980
+    },
+    {
+     "tmdb_id": 613,
+     "title": "Downfall",
+     "year": 2004
+    }
+   ]
+  }
+ ]
+}

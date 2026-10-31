@@ -1,6 +1,6 @@
-const SKIPS_KEY = "watchlist.skips";
-const SETTINGS_KEY = "watchlist.settings";
-const FRIEND_KEY = "watchlist.friend";
+const PROFILE_KEY = "watchlist.profile";
+const LEGACY_PREFIX = "watchlist.";
+const LEGACY_STATE = ["skips", "settings", "friend"];
 const LEGACY_SEEN_KEY = "watchlist.seen";
 
 const DAY = 24 * 60 * 60 * 1000;
@@ -29,6 +29,7 @@ const sheet = document.getElementById("sheet");
 const sheetTitle = document.getElementById("sheet-title");
 const sheetBody = document.getElementById("sheet-body");
 const sheetClose = document.getElementById("sheet-close");
+const profileSwitch = document.getElementById("profile-switch");
 
 const NO_FILTERS = {
   moods: [],
@@ -46,10 +47,18 @@ let current = null;
 let upcoming = null;
 let preloaded = null;
 
-const settings = loadSettings();
-let filters = settings.filters;
-let skips = readJson(SKIPS_KEY, {});
-let friend = readJson(FRIEND_KEY, null);
+let profiles = [];
+let profile = null;
+let loadId = 0;
+let settings = { skipDays: 30 };
+let filters = { ...NO_FILTERS };
+let skips = {};
+let friend = null;
+
+// Each profile keeps its own skips, filters and friend list.
+function stateKey(name) {
+  return `watchlist.${profile.id}.${name}`;
+}
 
 function readJson(key, fallback) {
   try {
@@ -68,7 +77,7 @@ function writeJson(key, value) {
 }
 
 function loadSettings() {
-  const saved = readJson(SETTINGS_KEY, {});
+  const saved = readJson(stateKey("settings"), {});
   return {
     skipDays: SKIP_WINDOWS.includes(saved.skipDays) ? saved.skipDays : 30,
     filters: { ...NO_FILTERS, ...saved.filters },
@@ -76,7 +85,7 @@ function loadSettings() {
 }
 
 function saveSettings() {
-  writeJson(SETTINGS_KEY, { skipDays: settings.skipDays, filters });
+  writeJson(stateKey("settings"), { skipDays: settings.skipDays, filters });
 }
 
 function el(tag, props = {}, ...children) {
@@ -169,7 +178,7 @@ function rememberSkip(film) {
   for (const id of Object.keys(skips)) {
     if (skips[id] < oldest) delete skips[id];
   }
-  writeJson(SKIPS_KEY, skips);
+  writeJson(stateKey("skips"), skips);
 }
 
 function show(film) {
@@ -363,7 +372,7 @@ function renderTonight() {
     on: {
       click: () => {
         skips = {};
-        writeJson(SKIPS_KEY, skips);
+        writeJson(stateKey("skips"), skips);
         forget.textContent = "Forgotten";
         forget.disabled = true;
       },
@@ -772,7 +781,7 @@ function moviePanel() {
           click: () => {
             friend = null;
             try {
-              localStorage.removeItem(FRIEND_KEY);
+              localStorage.removeItem(stateKey("friend"));
             } catch {
               // Nothing was stored, so there is nothing to remove.
             }
@@ -802,7 +811,7 @@ function moviePanel() {
           return;
         }
         friend = parsed;
-        writeJson(FRIEND_KEY, friend);
+        writeJson(stateKey("friend"), friend);
         filtersChanged();
         renderStatus();
       },
@@ -855,28 +864,135 @@ openExplore.addEventListener("click", () => {
 
 // Start
 
-async function loadInsights() {
+async function fetchJson(path) {
+  const response = await fetch(path);
+  if (!response.ok) throw new Error(`HTTP ${response.status}`);
+  return response.json();
+}
+
+// State saved before there were profiles belongs to the first profile, the app's original owner.
+function migrateLegacyState() {
   try {
-    const response = await fetch("insights.json");
-    if (response.ok) insights = await response.json();
+    localStorage.removeItem(LEGACY_SEEN_KEY);
+    for (const name of LEGACY_STATE) {
+      const oldKey = `${LEGACY_PREFIX}${name}`;
+      const saved = localStorage.getItem(oldKey);
+      if (saved !== null) {
+        localStorage.setItem(`watchlist.${profiles[0].id}.${name}`, saved);
+        localStorage.removeItem(oldKey);
+      }
+    }
   } catch {
-    // Explore stays closed; picking films still works.
+    // Storage is optional.
   }
+}
+
+function renderSwitch() {
+  profileSwitch.hidden = profiles.length < 2;
+  profileSwitch.replaceChildren(...profiles.map((option) => el("button", {
+    type: "button",
+    textContent: option.name,
+    "aria-pressed": String(option.id === profile.id),
+    on: { click: () => selectProfile(option) },
+  })));
+}
+
+function resetStage() {
+  current = null;
+  upcoming = null;
+  preload(null);
+  poster.hidden = true;
+  poster.removeAttribute("src");
+  promptMark.hidden = false;
+  openFilm.disabled = true;
+  titleLine.textContent = "";
+  metaLine.textContent = "";
+  whyLine.textContent = "";
+}
+
+// Fetching the other profiles lets the service worker keep them for offline use.
+function cacheOtherProfiles() {
+  for (const option of profiles) {
+    if (option.id !== profile.id) {
+      fetch(`p/${option.id}/films.json`).catch(() => {});
+      fetch(`p/${option.id}/insights.json`).catch(() => {});
+    }
+  }
+}
+
+async function selectProfile(option) {
+  if (profile && option.id === profile.id) return;
+  loadId += 1;
+  const thisLoad = loadId;
+  profile = option;
+  try {
+    localStorage.setItem(PROFILE_KEY, option.id);
+  } catch {
+    // Storage is optional.
+  }
+
+  // Nothing from the previous profile may be picked while this one loads.
+  films = [];
+  insights = null;
+  settings = loadSettings();
+  filters = settings.filters;
+  skips = readJson(stateKey("skips"), {});
+  friend = readJson(stateKey("friend"), null);
+  renderSwitch();
+  resetStage();
+  lens.hidden = true;
+  openTonight.classList.remove("is-active");
+  openExplore.disabled = true;
+  openTonight.disabled = true;
+  metaLine.textContent = "Loading…";
+
+  let loaded;
+  let loadedInsights = null;
+  try {
+    [loaded, loadedInsights] = await Promise.all([
+      fetchJson(`p/${option.id}/films.json`),
+      fetchJson(`p/${option.id}/insights.json`).catch(() => null),
+    ]);
+  } catch {
+    if (thisLoad !== loadId) return;
+    titleLine.textContent = `Couldn’t load ${option.name}’s watchlist`;
+    metaLine.textContent = "Check your connection and try again.";
+    promptMark.hidden = true;
+    return;
+  }
+  // A newer tap on the switch wins over a slower response.
+  if (thisLoad !== loadId) return;
+
+  films = loaded;
+  insights = loadedInsights;
   openExplore.disabled = !insights;
+
+  if (!films.length) {
+    titleLine.textContent = "No films yet";
+    metaLine.textContent = "Run the import script to add this watchlist.";
+    promptMark.hidden = true;
+    return;
+  }
+
+  openTonight.disabled = false;
+  titleLine.textContent = profiles.length > 1 ? `${option.name}’s watchlist` : "Watchlist";
+  metaLine.textContent = plural(films.length, "film");
+  renderLens();
+  refreshUpcoming();
+  cacheOtherProfiles();
+}
+
+function savedProfile() {
+  try {
+    return profiles.find((option) => option.id === localStorage.getItem(PROFILE_KEY));
+  } catch {
+    return undefined;
+  }
 }
 
 async function start() {
   try {
-    localStorage.removeItem(LEGACY_SEEN_KEY);
-  } catch {
-    // Storage is optional.
-  }
-  await loadInsights();
-
-  try {
-    const response = await fetch("films.json");
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    films = await response.json();
+    profiles = await fetchJson("profiles.json");
   } catch {
     titleLine.textContent = "Couldn’t load your watchlist";
     metaLine.textContent = "Check your connection and reopen the app.";
@@ -884,19 +1000,8 @@ async function start() {
     openTonight.disabled = true;
     return;
   }
-
-  if (!films.length) {
-    titleLine.textContent = "No films yet";
-    metaLine.textContent = "Run the import script to add your watchlist.";
-    promptMark.hidden = true;
-    openTonight.disabled = true;
-    return;
-  }
-
-  titleLine.textContent = "Watchlist";
-  metaLine.textContent = plural(films.length, "film");
-  renderLens();
-  refreshUpcoming();
+  migrateLegacyState();
+  await selectProfile(savedProfile() || profiles[0]);
 }
 
 if ("serviceWorker" in navigator) {

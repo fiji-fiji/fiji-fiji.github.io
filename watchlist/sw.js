@@ -1,11 +1,10 @@
-const CACHE = "watchlist-v2";
+const CACHE = "watchlist-v3";
 const SHELL = [
   "./",
   "index.html",
   "styles.css",
   "app.js",
-  "films.json",
-  "insights.json",
+  "profiles.json",
   "manifest.webmanifest",
   "icons/icon-192.png",
   "icons/icon-512.png",
