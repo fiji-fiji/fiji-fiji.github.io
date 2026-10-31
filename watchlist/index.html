@@ -13,6 +13,8 @@
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icons/icon-192.png" type="image/png">
   <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="preload" href="fonts/courier-prime-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/courier-prime-700-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="styles.css">
   <script>
     // Set the colours before the first paint, so opening the app never flashes the wrong palette.
@@ -24,11 +26,11 @@
   </script>
 </head>
 <body>
-  <div class="water" data-water="emilio" aria-hidden="true"><i></i><i></i><i></i><i></i><u></u><u></u><u></u><u></u></div>
-  <div class="water" data-water="emma" aria-hidden="true"><i></i><i></i><i></i><i></i><u></u><u></u><u></u><u></u></div>
-  <div id="ambient" aria-hidden="true"></div>
+  <div class="water" data-water="emilio" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="water" data-water="emma" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
   <div class="scrim" data-scrim="emilio" aria-hidden="true"></div>
   <div class="scrim" data-scrim="emma" aria-hidden="true"></div>
+  <div id="pools" aria-hidden="true"></div>
 
   <main id="app">
     <header class="top">
@@ -81,6 +83,7 @@
     </div>
   </dialog>
 
+  <script src="palette.js"></script>
   <script src="melt.js"></script>
   <script src="app.js"></script>
 </body>

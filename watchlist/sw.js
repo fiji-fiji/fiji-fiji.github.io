@@ -1,9 +1,14 @@
-const CACHE = "watchlist-v5";
+const CACHE = "watchlist-v6";
 const SHELL = [
   "./",
   "index.html",
   "styles.css",
+  "palette.js",
   "melt.js",
+  "fonts/courier-prime-400-latin.woff2",
+  "fonts/courier-prime-400-latin-ext.woff2",
+  "fonts/courier-prime-700-latin.woff2",
+  "fonts/courier-prime-700-latin-ext.woff2",
   "app.js",
   "profiles.json",
   "manifest.webmanifest",

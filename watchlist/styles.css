@@ -1,16 +1,57 @@
+/* Courier Prime, made for screenplays, bundled so the app also looks right offline. */
+@font-face {
+  font-family: "Courier Prime";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fonts/courier-prime-400-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: "Courier Prime";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fonts/courier-prime-400-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Courier Prime";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("fonts/courier-prime-700-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: "Courier Prime";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("fonts/courier-prime-700-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 :root {
   --spring: cubic-bezier(0.2, 0.9, 0.3, 1.04);
   --spring-soft: cubic-bezier(0.25, 0.8, 0.3, 1);
   --spring-quick: cubic-bezier(0.25, 0.9, 0.3, 1);
   --ease-out: cubic-bezier(0.22, 0.8, 0.3, 1);
-  --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
-  --font-round: ui-rounded, -apple-system, BlinkMacSystemFont, "SF Pro Rounded", "Helvetica Neue", sans-serif;
+  --font: "Courier Prime", Courier, "Courier New", monospace;
   --radius-card: 20px;
 
   /* Emilio */
   --base: #5f0f40;
   --base-rgb: 95, 15, 64;
   --text: #fb8b24;
+  /* Lighter tints of the palette: its crimson and teal are too dark to read as text. */
+  --year: #ff9aa8;
+  --director: #7fc8da;
+  --why: #ffc48a;
+  --glass-rgb: var(--base-rgb);
   --on-accent: #5f0f40;
   --accent: #fb8b24;
   --empty: #0f4c5c;
@@ -37,6 +78,10 @@
   --base: #05668d;
   --base-rgb: 5, 102, 141;
   --text: #f0f3bd;
+  --year: #02c39a;
+  /* A lighter tint of the Baltic blue, which is too dark to read as text. */
+  --director: #9fd8e6;
+  --why: #00a896;
   --on-accent: #05668d;
   --accent: #f0f3bd;
   --empty: #028090;
@@ -99,7 +144,7 @@ a {
 /* Water: the moving background. Both palettes exist so one can ripple over the other. */
 
 .water,
-#ambient,
+#pools,
 .scrim {
   position: fixed;
   inset: 0;
@@ -133,41 +178,43 @@ a {
 
 /* Drawn at a quarter size and scaled up: soft gradients look the same, and at phone
    resolution full-size layers would take about 43 MB of graphics memory each. */
-.water i {
+.water i,
+.pool i {
   position: absolute;
   width: 32.5vmax;
   height: 32.5vmax;
   border-radius: 50%;
   scale: 4;
   background: radial-gradient(closest-side, var(--blob), transparent);
-  opacity: var(--strength, 0.8);
-  translate: var(--shift-x, 0) var(--shift-y, 0);
-  will-change: transform, translate, opacity;
+  opacity: 0.8;
+  will-change: transform;
   animation: drift 24s ease-in-out infinite alternate;
-  /* Each new film shifts these, so the colours keep changing behind the poster. */
-  transition: opacity 1500ms ease-in-out, translate 1900ms cubic-bezier(0.3, 0.7, 0.2, 1);
 }
 
-.water i:nth-child(1) {
+.water i:nth-child(1),
+.pool i:nth-child(1) {
   top: -21.25vmax;
   right: -11.25vmax;
 }
 
-.water i:nth-child(2) {
+.water i:nth-child(2),
+.pool i:nth-child(2) {
   bottom: -21.25vmax;
   left: -21.25vmax;
   animation-duration: 31s;
   animation-delay: -9s;
 }
 
-.water i:nth-child(3) {
+.water i:nth-child(3),
+.pool i:nth-child(3) {
   top: -1.25vmax;
   left: -31.25vmax;
   animation-duration: 37s;
   animation-delay: -17s;
 }
 
-.water i:nth-child(4) {
+.water i:nth-child(4),
+.pool i:nth-child(4) {
   right: -26.25vmax;
   bottom: 18.75vmax;
   animation-duration: 43s;
@@ -183,62 +230,52 @@ a {
 .water[data-water="emma"] i:nth-child(3) { --blob: rgba(0, 168, 150, 0.5); }
 .water[data-water="emma"] i:nth-child(4) { --blob: rgba(240, 243, 189, 0.1); }
 
-/* A glow right behind the poster, in a different palette colour for each film.
-   It fades out before reaching the switch, and the scrim covers it below the poster. */
-.water u {
+/* Each film gets its own pool of colour taken from its poster, which fades in over the last. */
+#pools {
+  z-index: 3;
+  overflow: hidden;
+}
+
+.pool {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 1700ms ease-in-out;
+}
+
+.pool.is-on {
+  opacity: 1;
+}
+
+.pool.is-leaving {
+  opacity: 0;
+  transition-duration: 700ms;
+}
+
+/* The poster's most prominent colour, glowing right behind it. */
+.pool u {
   position: absolute;
   top: calc(var(--glow-y, 50vh) - var(--glow-size, 100vh) / 8);
   left: calc(var(--glow-x, 50vw) - var(--glow-size, 100vh) / 8);
   width: calc(var(--glow-size, 100vh) / 4);
   height: calc(var(--glow-size, 100vh) / 4);
   border-radius: 50%;
-  background: radial-gradient(closest-side, var(--glow) 45%, transparent);
-  opacity: 0;
+  background: radial-gradient(closest-side, var(--glow) 40%, transparent);
   scale: 4;
-  will-change: opacity;
-  transition: opacity 1100ms ease-in-out;
 }
 
-.water u.is-on {
-  opacity: 1;
-}
-
-.water[data-water="emilio"] u:nth-of-type(1) { --glow: rgba(154, 3, 30, 0.95); }
-.water[data-water="emilio"] u:nth-of-type(2) { --glow: rgba(15, 76, 92, 0.95); }
-.water[data-water="emilio"] u:nth-of-type(3) { --glow: rgba(227, 100, 20, 0.7); }
-.water[data-water="emilio"] u:nth-of-type(4) { --glow: rgba(251, 139, 36, 0.55); }
-.water[data-water="emma"] u:nth-of-type(1) { --glow: rgba(2, 195, 154, 0.75); }
-.water[data-water="emma"] u:nth-of-type(2) { --glow: rgba(2, 128, 144, 0.95); }
-.water[data-water="emma"] u:nth-of-type(3) { --glow: rgba(0, 168, 150, 0.85); }
-.water[data-water="emma"] u:nth-of-type(4) { --glow: rgba(240, 243, 189, 0.5); }
-
-/* The poster's colours soak into the water. A tiny image scaled up keeps the blur cheap. */
-#ambient {
-  z-index: 3;
-  overflow: hidden;
-}
-
-#ambient img {
+/* A deep shade of the poster's colour under the text, so it stays readable on any poster. */
+.pool s {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 25%;
-  height: 25%;
-  object-fit: cover;
-  opacity: 0;
-  filter: blur(10px) saturate(1.3);
-  transform: scale(4.3);
-  transform-origin: 0 0;
-  transition: opacity 700ms ease;
-}
-
-#ambient img.is-on {
-  opacity: 0.24;
+  inset: 0;
+  background: linear-gradient(to top, rgba(var(--deep), 0.97) 0, rgba(var(--deep), 0.92) 270px, rgba(var(--deep), 0) calc(270px + 18%));
+  text-decoration: none;
 }
 
 /* Keeps the caption readable whatever colour the poster adds. */
 .scrim {
-  z-index: 4;
+  z-index: 2;
   opacity: 0;
   transition: opacity 480ms ease;
 }
@@ -260,14 +297,14 @@ a {
 
 .glass {
   border: 1px solid var(--edge);
-  background: rgba(var(--base-rgb), var(--glass-alpha));
+  background: rgba(var(--glass-rgb), var(--glass-alpha));
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.22),
     inset 0 -1px 0 rgba(255, 255, 255, 0.05),
     0 10px 30px rgba(0, 0, 0, 0.24);
   -webkit-backdrop-filter: blur(22px) saturate(170%);
   backdrop-filter: blur(22px) saturate(170%);
-  transition: background-color 480ms ease, border-color 480ms ease;
+  transition: background-color 1500ms ease-in-out, border-color 480ms ease;
 }
 
 /* Layout */
@@ -494,8 +531,7 @@ a {
     inset 0 -10px 22px rgba(0, 0, 0, 0.18),
     0 20px 60px var(--orb-glow);
   color: var(--orb-text);
-  font: 700 12cqw var(--font-round);
-  letter-spacing: -0.02em;
+  font: 700 12cqw var(--font);
   animation: breathe 5s ease-in-out infinite, pop-in 545ms var(--spring);
 }
 
@@ -503,7 +539,7 @@ a {
   display: flex;
   flex-direction: column;
   gap: 3px;
-  min-height: 6.5rem;
+  min-height: 7.5rem;
 }
 
 .title,
@@ -516,20 +552,29 @@ a {
 
 .title {
   -webkit-line-clamp: 2;
-  font: 700 1.5rem/1.15 var(--font-round);
-  letter-spacing: -0.022em;
+  font: 700 1.3125rem/1.15 var(--font);
 }
 
 .meta {
-  -webkit-line-clamp: 1;
+  -webkit-line-clamp: 2;
   margin-top: 1px;
-  font: 500 0.9375rem/1.3 var(--font);
+  font: 400 0.9375rem/1.25 var(--font);
+}
+
+.year {
+  color: var(--year);
+  font-weight: 700;
+}
+
+.director {
+  color: var(--director);
 }
 
 .why {
   -webkit-line-clamp: 2;
   margin-top: 2px;
-  font: 400 0.8125rem/1.3 var(--font);
+  color: var(--why);
+  font: 400 0.8125rem/1.25 var(--font);
 }
 
 /* Floating tab bar */
@@ -643,8 +688,7 @@ dialog.is-closing::backdrop {
 
 .sheet-head h2 {
   min-width: 0;
-  font: 700 1.375rem/1.2 var(--font-round);
-  letter-spacing: -0.02em;
+  font: 700 1.25rem/1.2 var(--font);
   outline: none;
 }
 
@@ -709,11 +753,11 @@ dialog.is-closing::backdrop {
 
 .chip {
   min-height: 44px;
-  padding: 0 15px;
+  padding: 0 14px;
   border: 1px solid var(--line);
   border-radius: 22px;
   background: var(--group);
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
   font-weight: 500;
   line-height: 42px;
   text-decoration: none;
@@ -915,11 +959,8 @@ details[open] > summary::after {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .water i {
-    transition: opacity 600ms ease;
-  }
-
   .water i,
+  .pool i,
   .prompt,
   .lens,
   dialog[open],
@@ -941,14 +982,15 @@ details[open] > summary::after {
 
 /* Honour the iOS "Reduce Transparency" setting with solid surfaces. */
 @media (prefers-reduced-transparency: reduce) {
-  .glass,
-  dialog {
-    background: rgb(var(--base-rgb));
+  .glass {
+    background: rgb(var(--glass-rgb));
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
   }
 
-  #ambient {
-    display: none;
+  dialog {
+    background: rgb(var(--base-rgb));
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
   }
 }

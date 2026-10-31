@@ -22,16 +22,17 @@ const CLICK_GUARD = 300;
 const SHEET_DRAG_DISTANCE = 110;
 const SHEET_CLOSE_MS = 240;
 const THEME_COLORS = { emilio: "#5f0f40", emma: "#05668d" };
-// How far each new film can move the colour clouds, and how faint the others get.
-const WATER_SHIFT_VMAX = 16;
-const WATER_MIN_STRENGTH = 0.25;
-const WATER_MAX_BACKGROUND_STRENGTH = 0.65;
 const GLOW_SCALE = 1.25;
+const GLASS_ALPHA_ON_FILM = 0.7;
+const MAX_POOLS = 3;
+const MAX_LEAVING_CARDS = 2;
+const POOL_FADE = 1800;
+const POOL_LEAVE = 750;
 
 const root = document.documentElement;
 const stage = document.getElementById("stage");
 const deck = document.getElementById("deck");
-const ambient = document.getElementById("ambient");
+const pools = document.getElementById("pools");
 const caption = document.querySelector(".caption");
 const promptMark = document.getElementById("prompt");
 const titleLine = document.getElementById("title");
@@ -65,7 +66,6 @@ let current = null;
 let upcoming = null;
 let preloaded = null;
 let activeCard = null;
-let dominantBlob = -1;
 
 const melt = createMelt();
 const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -222,6 +222,9 @@ function makeCard(film) {
 function retireCard(card, exit) {
   // On top of the new card, so that one is revealed as this one leaves.
   deck.append(card);
+  // Blurring is costly, so fast tapping shouldn't stack up cards on their way out.
+  const leaving = [...deck.children].filter((other) => other !== activeCard);
+  leaving.slice(0, Math.max(0, leaving.length - MAX_LEAVING_CARDS)).forEach((other) => other.remove());
   let frames;
   let timing;
   if (calm()) {
@@ -281,62 +284,71 @@ function clearCards() {
   activeCard = null;
 }
 
-function randomBetween(low, high) {
-  return low + Math.random() * (high - low);
-}
-
-// Brings a different palette colour to the front and moves the clouds a little.
-function shiftWater() {
-  const blobs = document.querySelectorAll(`.water[data-water="${root.dataset.theme}"] i`);
-  if (!blobs.length) return;
-  let next = Math.floor(Math.random() * blobs.length);
-  if (next === dominantBlob) next = (next + 1) % blobs.length;
-  dominantBlob = next;
-
+// Fades in a pool of colour taken from the poster, over the previous one.
+function applyPalette(palette, film) {
+  if (current !== film) return;
   const box = document.querySelector(".poster-box").getBoundingClientRect();
   root.style.setProperty("--glow-x", `${box.left + box.width / 2}px`);
   root.style.setProperty("--glow-y", `${box.top + box.height / 2}px`);
   root.style.setProperty("--glow-size", `${box.height * GLOW_SCALE}px`);
-  document.querySelectorAll(`.water[data-water="${root.dataset.theme}"] u`).forEach((glow, index) => {
-    glow.classList.toggle("is-on", index === next);
-  });
+  root.style.setProperty("--glass-rgb", palette.glass.join(", "));
+  root.style.setProperty("--glass-alpha", GLASS_ALPHA_ON_FILM);
+  document.querySelector('meta[name="theme-color"]').content = `rgb(${palette.base.join(", ")})`;
 
-  blobs.forEach((blob, index) => {
-    const strength = index === next ? 1 : randomBetween(WATER_MIN_STRENGTH, WATER_MAX_BACKGROUND_STRENGTH);
-    blob.style.setProperty("--strength", strength.toFixed(2));
-    if (!calm()) {
-      blob.style.setProperty("--shift-x", `${randomBetween(-WATER_SHIFT_VMAX, WATER_SHIFT_VMAX).toFixed(1)}vmax`);
-      blob.style.setProperty("--shift-y", `${randomBetween(-WATER_SHIFT_VMAX, WATER_SHIFT_VMAX).toFixed(1)}vmax`);
-    }
+  const [first, second, third, fourth] = palette.vivid;
+  const blobs = [[first, 0.95], [fourth, 0.7], [second, 0.9], [third, 0.8]].map(([color, alpha]) => {
+    const blob = el("i");
+    blob.style.setProperty("--blob", `rgba(${color.join(", ")}, ${alpha})`);
+    return blob;
   });
+  const glow = el("u");
+  glow.style.setProperty("--glow", `rgba(${first.join(", ")}, 0.9)`);
+  const pool = el("div", { class: "pool" }, ...blobs, glow, el("s"));
+  pool.style.background = `rgb(${palette.base.join(", ")})`;
+  pool.style.setProperty("--deep", palette.deep.join(", "));
+
+  const older = [...pools.children];
+  // Fast tapping shouldn't stack up layers; the ones underneath are already mostly covered.
+  older.slice(0, Math.max(0, older.length - MAX_POOLS + 1)).forEach((old) => old.remove());
+  pools.append(pool);
+  // Force a style pass so the fade runs from zero.
+  void pool.offsetWidth;
+  pool.classList.add("is-on");
+  older.forEach((old) => setTimeout(() => old.remove(), calm() ? 0 : POOL_FADE));
 }
 
-function setAmbient(film) {
-  for (const old of [...ambient.children]) {
-    old.classList.remove("is-on");
-    if (calm()) {
-      old.remove();
-    } else {
-      setTimeout(() => old.remove(), 750);
-    }
+function setPool(film) {
+  const fallback = () => applyPalette(paletteFromColors([hexToRgb(THEME_COLORS[profile.id] || THEME_COLORS.emilio)]), film);
+  if (!film.poster) {
+    fallback();
+    return;
   }
-  if (!film || !film.poster) return;
   const image = new Image();
-  image.alt = "";
-  image.addEventListener("load", () => {
-    // Force a style pass so the fade runs from zero.
-    void image.offsetWidth;
-    image.classList.add("is-on");
-  }, { once: true });
+  image.addEventListener("load", () => applyPalette(posterPalette(image), film), { once: true });
+  image.addEventListener("error", fallback, { once: true });
   image.src = film.poster;
-  ambient.append(image);
+}
+
+// Back to the profile's own colours, as on the start screen.
+function clearPools() {
+  root.style.removeProperty("--glass-rgb");
+  root.style.removeProperty("--glass-alpha");
+  document.querySelector('meta[name="theme-color"]').content = THEME_COLORS[root.dataset.theme] || THEME_COLORS.emilio;
+  for (const pool of [...pools.children]) {
+    pool.classList.add("is-leaving");
+    setTimeout(() => pool.remove(), calm() ? 0 : POOL_LEAVE);
+  }
+}
+
+function hexToRgb(hex) {
+  return [1, 3, 5].map((start) => parseInt(hex.slice(start, start + 2), 16));
 }
 
 function animateCaption() {
   if (calm()) return;
   caption.animate(
-    [{ opacity: 0, transform: "translateY(8px)" }, { opacity: 1, transform: "none" }],
-    { duration: 450, easing: SPRING_SOFT },
+    [{ opacity: 0, transform: "translateY(6px)" }, { opacity: 1, transform: "none" }],
+    { duration: 950, easing: "ease-out" },
   );
 }
 
@@ -355,17 +367,24 @@ function rememberSkip(film) {
   writeJson(stateKey("skips"), skips);
 }
 
+function metaParts(film) {
+  const parts = [];
+  if (film.year) parts.push(el("span", { class: "year", textContent: film.year }));
+  if (film.year && film.director) parts.push(" · ");
+  if (film.director) parts.push(el("span", { class: "director", textContent: film.director }));
+  return parts;
+}
+
 function show(film, exit) {
   current = film;
   promptMark.hidden = true;
   openFilm.disabled = false;
   titleLine.textContent = film.title;
-  metaLine.textContent = [film.year, film.director].filter(Boolean).join(" · ");
+  metaLine.replaceChildren(...metaParts(film));
   whyLine.textContent = film.why || "";
   animateCaption();
   swapCard(makeCard(film), exit);
-  setAmbient(film);
-  shiftWater();
+  setPool(film);
   refreshUpcoming();
 }
 
@@ -373,7 +392,7 @@ function showNoMatch() {
   current = null;
   upcoming = null;
   clearCards();
-  setAmbient(null);
+  clearPools();
   promptMark.hidden = true;
   openFilm.disabled = true;
   animateCaption();
@@ -1256,7 +1275,7 @@ function resetStage() {
   upcoming = null;
   preload(null);
   clearCards();
-  setAmbient(null);
+  clearPools();
   promptMark.hidden = false;
   openFilm.disabled = true;
   animateCaption();
