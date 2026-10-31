@@ -21,7 +21,7 @@ const SWIPE_TILT = 0.035;
 const CLICK_GUARD = 300;
 const SHEET_DRAG_DISTANCE = 110;
 const SHEET_CLOSE_MS = 240;
-const THEME_COLORS = { emilio: "#5f0f40", emma: "#05668d" };
+const THEME_COLORS = { emilio: "#780000", emma: "#05668d" };
 const GLOW_SCALE = 1.25;
 // How long the app can sit in the background before the Back list starts over. iOS often
 // keeps it alive rather than relaunching, but a quick trip to another app shouldn't count.
@@ -31,6 +31,7 @@ const CLEF_SIZE = 32;
 const GLASS_ALPHA_ON_FILM = 0.7;
 const MAX_POOLS = 3;
 const MAX_LEAVING_CARDS = 2;
+const POOL_FADE_IN = 4400;
 const POOL_FADE = 4500;
 const POOL_LEAVE = 750;
 
@@ -305,6 +306,7 @@ function applyPalette(palette, film) {
   root.style.setProperty("--glow-size", `${box.height * GLOW_SCALE}px`);
   root.style.setProperty("--glass-rgb", palette.glass.join(", "));
   root.style.setProperty("--glass-alpha", GLASS_ALPHA_ON_FILM);
+  root.style.setProperty("--page-fade", `${POOL_FADE_IN}ms`);
   root.style.setProperty("--page", `rgb(${palette.deep.join(", ")})`);
   // iOS can also colour its own edges from this.
   document.querySelector('meta[name="theme-color"]').content = `rgb(${palette.deep.join(", ")})`;
@@ -347,6 +349,7 @@ function setPool(film) {
 function clearPools() {
   root.style.removeProperty("--glass-rgb");
   root.style.removeProperty("--glass-alpha");
+  root.style.removeProperty("--page-fade");
   root.style.removeProperty("--page");
   document.querySelector('meta[name="theme-color"]').content = THEME_COLORS[root.dataset.theme] || THEME_COLORS.emilio;
   for (const pool of [...pools.children]) {

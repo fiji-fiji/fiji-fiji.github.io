@@ -45,24 +45,24 @@
   --overscan: 140px;
 
   /* Emilio */
-  --base: #5f0f40;
-  --base-rgb: 95, 15, 64;
-  --text: #fb8b24;
-  /* Lighter tints of the palette: its crimson and teal are too dark to read as text. */
-  --year: #ff9aa8;
-  --director: #7fc8da;
-  --why: #ffc48a;
+  --base: #780000;
+  --base-rgb: 120, 0, 0;
+  --text: #fdf0d5;
+  /* Flag Red and Papaya Whip tints: the red itself is too dark to read as small text. */
+  --year: #ff9aa2;
+  --director: #669bbc;
+  --why: #e9c9a0;
   --glass-rgb: var(--base-rgb);
-  --on-accent: #5f0f40;
-  --accent: #fb8b24;
-  --empty: #0f4c5c;
-  --orb-glow: rgba(251, 139, 36, 0.45);
-  --orb: radial-gradient(circle at 34% 28%, #fb8b24 0%, #e36414 42%, #9a031e 100%);
-  --orb-text: #5f0f40;
-  --line: rgba(251, 139, 36, 0.28);
-  --edge: rgba(251, 139, 36, 0.38);
-  --group: rgba(251, 139, 36, 0.09);
-  --pressed: rgba(251, 139, 36, 0.2);
+  --on-accent: #fdf0d5;
+  --accent: #c1121f;
+  --empty: #003049;
+  --orb-glow: rgba(193, 18, 31, 0.55);
+  --orb: radial-gradient(circle at 34% 28%, #fdf0d5 0%, #fdf0d5 42%, #c1121f 100%);
+  --orb-text: #780000;
+  --line: rgba(253, 240, 213, 0.26);
+  --edge: rgba(253, 240, 213, 0.38);
+  --group: rgba(253, 240, 213, 0.09);
+  --pressed: rgba(253, 240, 213, 0.2);
   --glass-alpha: 0.82;
   --sheet-alpha: 0.86;
 }
@@ -107,13 +107,14 @@ body {
   overscroll-behavior: none;
 }
 
-/* --page follows the poster, so no strip of profile colour can show at the screen's edges. */
+/* On iPhones the layers above can stop short of the bottom edge, leaving this showing.
+   It changes with the same timing as the pools, so it always matches what's above it. */
 html {
   background: var(--page, var(--base));
   color: var(--text);
   font-family: var(--font);
   -webkit-font-smoothing: antialiased;
-  transition: color 480ms ease, background-color 1200ms ease;
+  transition: color 480ms ease, background-color var(--page-fade, 700ms) ease-in-out;
 }
 
 button {
@@ -173,7 +174,7 @@ a {
 }
 
 .water[data-water="emilio"] {
-  background: #5f0f40;
+  background: #780000;
 }
 
 .water[data-water="emma"] {
@@ -225,10 +226,10 @@ a {
   animation-delay: -25s;
 }
 
-.water[data-water="emilio"] i:nth-child(1) { --blob: rgba(154, 3, 30, 0.95); }
-.water[data-water="emilio"] i:nth-child(2) { --blob: rgba(15, 76, 92, 0.65); }
-.water[data-water="emilio"] i:nth-child(3) { --blob: rgba(227, 100, 20, 0.34); }
-.water[data-water="emilio"] i:nth-child(4) { --blob: rgba(251, 139, 36, 0.14); }
+.water[data-water="emilio"] i:nth-child(1) { --blob: rgba(193, 18, 31, 0.95); }
+.water[data-water="emilio"] i:nth-child(2) { --blob: rgba(0, 48, 73, 0.85); }
+.water[data-water="emilio"] i:nth-child(3) { --blob: rgba(102, 155, 188, 0.3); }
+.water[data-water="emilio"] i:nth-child(4) { --blob: rgba(253, 240, 213, 0.1); }
 .water[data-water="emma"] i:nth-child(1) { --blob: rgba(2, 195, 154, 0.34); }
 .water[data-water="emma"] i:nth-child(2) { --blob: rgba(2, 128, 144, 0.8); }
 .water[data-water="emma"] i:nth-child(3) { --blob: rgba(0, 168, 150, 0.5); }
@@ -285,7 +286,7 @@ a {
 }
 
 .scrim[data-scrim="emilio"] {
-  background: linear-gradient(to top, rgb(95, 15, 64) var(--overscan), rgba(95, 15, 64, 0.9) calc(var(--overscan) + 250px), rgba(95, 15, 64, 0) calc(var(--overscan) + 250px + 16%));
+  background: linear-gradient(to top, rgb(120, 0, 0) var(--overscan), rgba(120, 0, 0, 0.9) calc(var(--overscan) + 250px), rgba(120, 0, 0, 0) calc(var(--overscan) + 250px + 16%));
 }
 
 .scrim[data-scrim="emma"] {
