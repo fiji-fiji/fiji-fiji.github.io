@@ -23,10 +23,15 @@ const SHEET_DRAG_DISTANCE = 110;
 const SHEET_CLOSE_MS = 240;
 const THEME_COLORS = { emilio: "#5f0f40", emma: "#05668d" };
 const GLOW_SCALE = 1.25;
+// How long the app can sit in the background before the Back list starts over. iOS often
+// keeps it alive rather than relaunching, but a quick trip to another app shouldn't count.
+const HISTORY_RESET_AFTER = 30 * 60 * 1000;
+const CLEF_INSET = 10;
+const CLEF_SIZE = 32;
 const GLASS_ALPHA_ON_FILM = 0.7;
 const MAX_POOLS = 3;
 const MAX_LEAVING_CARDS = 2;
-const POOL_FADE = 2300;
+const POOL_FADE = 4500;
 const POOL_LEAVE = 750;
 
 const root = document.documentElement;
@@ -49,6 +54,8 @@ const sheetTitle = document.getElementById("sheet-title");
 const sheetBody = document.getElementById("sheet-body");
 const sheetClose = document.getElementById("sheet-close");
 const profileSwitch = document.getElementById("profile-switch");
+const clef = document.getElementById("clef");
+const goBackButton = document.getElementById("go-back");
 
 const NO_FILTERS = {
   moods: [],
@@ -66,8 +73,13 @@ let current = null;
 let upcoming = null;
 let preloaded = null;
 let activeCard = null;
+// The films shown so far, oldest first. Only kept in memory, so each launch starts afresh.
+let shownFilms = [];
+let hiddenSince = null;
 
 const melt = createMelt();
+const ost = createOstPlayer(renderClef);
+let soundtracks = {};
 const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 const cssVar = (name) => getComputedStyle(root).getPropertyValue(name).trim();
 const SPRING = cssVar("--spring");
@@ -351,7 +363,7 @@ function animateCaption() {
   if (calm()) return;
   caption.animate(
     [{ opacity: 0, transform: "translateY(6px)" }, { opacity: 1, transform: "none" }],
-    { duration: 1200, easing: "ease-out" },
+    { duration: 1800, easing: "ease-out" },
   );
 }
 
@@ -370,6 +382,45 @@ function rememberSkip(film) {
   writeJson(stateKey("skips"), skips);
 }
 
+// Soundtrack
+
+function soundtrackFor(film) {
+  return film ? soundtracks[String(film.tmdb_id)] : undefined;
+}
+
+// Sits on the poster's bottom-right corner, but outside the tap area that changes films.
+function placeClef() {
+  const box = document.querySelector(".poster-box").getBoundingClientRect();
+  const app = document.getElementById("app").getBoundingClientRect();
+  root.style.setProperty("--clef-x", `${box.right - app.left - CLEF_SIZE - CLEF_INSET}px`);
+  root.style.setProperty("--clef-y", `${box.bottom - app.top - CLEF_SIZE - CLEF_INSET}px`);
+}
+
+function renderClef() {
+  const available = Boolean(soundtrackFor(current));
+  const playing = Boolean(available && ost.current() === soundtrackFor(current));
+  if (available) placeClef();
+  clef.hidden = !available;
+  clef.setAttribute("aria-pressed", String(playing));
+  clef.setAttribute("aria-label", playing ? "Stop the soundtrack" : "Play the soundtrack");
+  document.getElementById("now-playing")?.replaceChildren(playing ? `Playing: ${ost.trackName()}` : "");
+}
+
+function toggleSoundtrack() {
+  const entry = soundtrackFor(current);
+  if (!entry) return;
+  if (ost.current() === entry) {
+    ost.stop();
+  } else {
+    ost.play(entry);
+  }
+}
+
+clef.addEventListener("click", toggleSoundtrack);
+window.addEventListener("resize", () => {
+  if (!clef.hidden) placeClef();
+});
+
 function metaParts(film) {
   const parts = [];
   if (film.year) parts.push(el("span", { class: "year", textContent: film.year }));
@@ -378,7 +429,13 @@ function metaParts(film) {
   return parts;
 }
 
-function show(film, exit) {
+function renderGoBack() {
+  goBackButton.disabled = shownFilms.length === 0;
+}
+
+function show(film, exit, { remember = true } = {}) {
+  if (remember && current) shownFilms.push(current);
+  renderGoBack();
   current = film;
   promptMark.hidden = true;
   openFilm.disabled = false;
@@ -388,14 +445,43 @@ function show(film, exit) {
   animateCaption();
   swapCard(makeCard(film), exit);
   setPool(film);
+  ost.stop();
+  renderClef();
   refreshUpcoming();
 }
 
+function goBack() {
+  const film = shownFilms.pop();
+  if (!film) return;
+  // Back on screen, so it no longer counts as skipped; leaving it again will count.
+  delete skips[film.id];
+  writeJson(stateKey("skips"), skips);
+  show(film, undefined, { remember: false });
+}
+
+goBackButton.addEventListener("click", goBack);
+
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "hidden") {
+    hiddenSince = Date.now();
+    return;
+  }
+  if (hiddenSince !== null && Date.now() - hiddenSince >= HISTORY_RESET_AFTER) {
+    shownFilms = [];
+    renderGoBack();
+  }
+  hiddenSince = null;
+});
+
 function showNoMatch() {
+  if (current) shownFilms.push(current);
+  renderGoBack();
   current = null;
   upcoming = null;
   clearCards();
   clearPools();
+  ost.stop();
+  renderClef();
   promptMark.hidden = true;
   openFilm.disabled = true;
   animateCaption();
@@ -779,16 +865,46 @@ function renderFilm() {
   }
   sections.push(group("Score", ...scoreParts));
 
-  sections.push(group(
-    "Soundtrack",
-    el(
-      "div",
-      { class: "chips" },
-      outLink("Spotify", `https://open.spotify.com/search/${query}`),
-      outLink("Apple Music", `https://music.apple.com/search?term=${query}`),
-    ),
-    el("p", { class: "fine", style: "margin-top:8px", textContent: "Opens a search for the soundtrack." }),
-  ));
+  const soundtrack = soundtrackFor(film);
+  if (soundtrack) {
+    const toggle = chip("Play or stop", ost.current() === soundtrack, () => {
+      toggleSoundtrack();
+      toggle.setAttribute("aria-pressed", String(ost.current() === soundtrack));
+    });
+    sections.push(group(
+      "Soundtrack",
+      note(`${soundtrack.album} · ${soundtrack.artist}`),
+      el(
+        "div",
+        { class: "chips", style: "margin-top:10px" },
+        toggle,
+        outLink("Full album on Spotify", soundtrack.spotify),
+        outLink("Apple Music", soundtrack.apple),
+      ),
+      el("p", {
+        id: "now-playing",
+        class: "fine",
+        style: "margin-top:8px",
+        textContent: ost.current() === soundtrack ? `Playing: ${ost.trackName()}` : "",
+      }),
+      el("p", {
+        class: "fine",
+        style: "margin-top:4px",
+        textContent: "The app plays Apple Music’s preview of each track, about 30 seconds long.",
+      }),
+    ));
+  } else {
+    sections.push(group(
+      "Soundtrack",
+      note("No soundtrack album was found for this film."),
+      el(
+        "div",
+        { class: "chips", style: "margin-top:10px" },
+        outLink("Search Spotify", `https://open.spotify.com/search/${query}`),
+        outLink("Search Apple Music", `https://music.apple.com/search?term=${query}`),
+      ),
+    ));
+  }
 
   const streamParts = [note(stream.length ? stream.join(", ") : "Not on a subscription service in France right now.")];
   if (rent.length) streamParts.push(note(`To rent: ${rent.slice(0, 5).join(", ")}`));
@@ -1274,17 +1390,21 @@ function flowTheme(id, origin) {
 }
 
 function resetStage() {
+  shownFilms = [];
+  renderGoBack();
   current = null;
   upcoming = null;
   preload(null);
   clearCards();
   clearPools();
+  ost.stop();
   promptMark.hidden = false;
   openFilm.disabled = true;
   animateCaption();
   titleLine.textContent = "";
   metaLine.textContent = "";
   whyLine.textContent = "";
+  renderClef();
 }
 
 // Fetching the other profiles lets the service worker keep them for offline use.
@@ -1370,6 +1490,11 @@ function savedProfile() {
 }
 
 async function start() {
+  // Soundtracks are optional: without this file the films simply have no button.
+  fetchJson("ost.json").then((data) => {
+    soundtracks = data;
+    renderClef();
+  }).catch(() => {});
   try {
     profiles = await fetchJson("profiles.json");
   } catch {

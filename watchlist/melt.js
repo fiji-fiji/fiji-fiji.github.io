@@ -2,7 +2,7 @@
 // in uneven drips while the new one rises out of it. If WebGL or an image isn't
 // available, play() returns false and the caller uses a plain dissolve instead.
 
-const MELT_DURATION = 2200;
+const MELT_DURATION = 4400;
 const MELT_MAX_PIXEL_RATIO = 2;
 const MELT_TEXTURE_CACHE = 4;
 

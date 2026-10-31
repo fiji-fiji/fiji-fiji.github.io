@@ -245,7 +245,7 @@ a {
   inset: 0;
   overflow: hidden;
   opacity: 0;
-  transition: opacity 2200ms ease-in-out;
+  transition: opacity 4400ms ease-in-out;
 }
 
 .pool.is-on {
@@ -308,7 +308,7 @@ a {
     0 10px 30px rgba(0, 0, 0, 0.24);
   -webkit-backdrop-filter: blur(22px) saturate(170%);
   backdrop-filter: blur(22px) saturate(170%);
-  transition: background-color 2000ms ease-in-out, border-color 480ms ease;
+  transition: background-color 3800ms ease-in-out, border-color 480ms ease;
 }
 
 /* Layout */
@@ -369,18 +369,68 @@ a {
 
 .switch button {
   position: relative;
-  min-width: 68px;
+  min-width: 72px;
   min-height: 36px;
   padding: 0 12px;
   border-radius: 19px;
-  font-size: 0.875rem;
-  font-weight: 500;
+  font-family: Baskerville, "Baskerville Old Face", "Libre Baskerville", Georgia, serif;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   transition: color 320ms ease;
 }
 
 .switch button[aria-pressed="true"] {
   color: var(--on-accent);
-  font-weight: 600;
+}
+
+/* The soundtrack button: small, sitting on the poster's corner. */
+.clef {
+  position: absolute;
+  top: var(--clef-y, 0);
+  left: var(--clef-x, 0);
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border-radius: 50%;
+  /* More solid than other glass: this one sits on the poster, which can be very bright. */
+  background: rgba(var(--glass-rgb), 0.85);
+  animation: fade-in 900ms ease;
+  transition: transform 450ms var(--spring-quick), background-color 500ms ease, color 500ms ease;
+}
+
+/* A bigger area to tap than the button looks. */
+.clef::before {
+  position: absolute;
+  inset: -8px;
+  content: "";
+}
+
+.clef:active {
+  transform: scale(0.88);
+}
+
+.clef svg {
+  width: 19px;
+  height: 19px;
+  fill: currentColor;
+}
+
+.clef .clef-curve {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-width: 1.9;
+}
+
+.clef[aria-pressed="true"] {
+  background: var(--accent);
+  color: var(--on-accent);
+  animation: clef-playing 3.6s ease-in-out infinite;
 }
 
 /* Active filters sit beside the switch, so turning them on doesn't move the poster. */
@@ -585,7 +635,7 @@ a {
 
 .bar {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   margin:
     0
     max(env(safe-area-inset-right), 16px)
@@ -937,6 +987,10 @@ details[open] > summary::after {
   to { transform: translate3d(6%, 7%, 0) scale(1.14); }
 }
 
+@keyframes clef-playing {
+  50% { box-shadow: 0 0 0 7px rgba(255, 255, 255, 0.1), 0 0 22px var(--accent); }
+}
+
 @keyframes breathe {
   50% { transform: scale(1.035); }
 }
@@ -965,6 +1019,8 @@ details[open] > summary::after {
 @media (prefers-reduced-motion: reduce) {
   .water i,
   .pool i,
+  .clef,
+  .clef[aria-pressed="true"],
   .prompt,
   .lens,
   dialog[open],
