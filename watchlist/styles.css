@@ -4,6 +4,8 @@
   --princeton-orange: #fb8b24;
   --autumn-leaf: #e36414;
   --dark-teal: #0f4c5c;
+  --sans: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+  --serif: ui-serif, Georgia, serif;
 }
 
 * {
@@ -17,36 +19,54 @@ body {
   overflow: hidden;
   overscroll-behavior: none;
   background: var(--crimson-violet);
+  color: var(--princeton-orange);
+  font-family: var(--sans);
 }
 
-#stage {
-  position: fixed;
-  inset: 0;
-  display: grid;
-  grid-template-rows: minmax(0, 1fr) auto;
-  gap: 20px;
-  width: 100%;
-  padding:
-    max(env(safe-area-inset-top), 24px)
-    max(env(safe-area-inset-right), 24px)
-    max(env(safe-area-inset-bottom), 24px)
-    max(env(safe-area-inset-left), 24px);
+button {
   border: 0;
-  background: var(--crimson-violet);
-  color: var(--princeton-orange);
+  background: none;
+  color: inherit;
   font: inherit;
-  text-align: center;
   cursor: pointer;
   touch-action: manipulation;
-  user-select: none;
-  -webkit-user-select: none;
-  -webkit-touch-callout: none;
   -webkit-tap-highlight-color: transparent;
 }
 
-#stage:focus-visible {
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+summary:focus-visible {
   outline: 3px solid var(--princeton-orange);
   outline-offset: -3px;
+}
+
+a {
+  color: inherit;
+}
+
+#app {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto auto;
+}
+
+#stage {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  gap: 14px;
+  width: 100%;
+  min-height: 0;
+  padding:
+    max(env(safe-area-inset-top), 20px)
+    max(env(safe-area-inset-right), 20px)
+    8px
+    max(env(safe-area-inset-left), 20px);
+  text-align: center;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
 }
 
 .frame {
@@ -83,10 +103,8 @@ body {
   -webkit-user-drag: none;
 }
 
-#poster[hidden],
-.prompt[hidden],
-.credit[hidden] {
-  display: none;
+[hidden] {
+  display: none !important;
 }
 
 .prompt {
@@ -97,36 +115,308 @@ body {
   border: 2px solid var(--autumn-leaf);
   border-radius: 50%;
   background: var(--deep-crimson);
-  font: italic 600 12cqw ui-serif, Georgia, serif;
+  font: italic 600 12cqw var(--serif);
 }
 
 /* Fixed height so the poster does not shift between one- and two-line titles. */
 .caption {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  min-height: 6rem;
+  gap: 3px;
+  min-height: 7.25rem;
+}
+
+.title,
+.meta,
+.why {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
 }
 
 .title {
-  display: -webkit-box;
-  overflow: hidden;
-  -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
-  font: 600 1.5rem/1.2 ui-serif, Georgia, serif;
+  font: 600 1.375rem/1.2 var(--serif);
 }
 
 .meta {
-  display: -webkit-box;
-  overflow: hidden;
-  -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
-  font: 400 1rem/1.3 -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+  font: 400 1rem/1.3 var(--sans);
 }
 
-.credit {
-  grid-column: 1;
-  font: 400 0.6875rem/1.35 -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+.why {
+  -webkit-line-clamp: 2;
+  margin-top: 2px;
+  font: italic 400 0.875rem/1.3 var(--serif);
+}
+
+.lens {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 max(env(safe-area-inset-right), 20px) 6px max(env(safe-area-inset-left), 20px);
+  font-size: 0.8125rem;
+}
+
+.lens-text {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.lens-clear {
+  min-height: 32px;
+  padding: 0 10px;
+  border: 1px solid var(--autumn-leaf);
+  border-radius: 16px;
+  font-size: 0.8125rem;
+}
+
+.bar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding-bottom: env(safe-area-inset-bottom);
+  border-top: 1px solid var(--autumn-leaf);
+}
+
+.bar button {
+  min-height: 52px;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.bar button:active,
+.bar button.is-active {
+  background: var(--deep-crimson);
+}
+
+.bar button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+/* Sheets */
+
+dialog {
+  width: 100%;
+  max-width: 560px;
+  max-height: 88vh;
+  max-height: 88dvh;
+  margin: auto auto 0;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-top: 2px solid var(--princeton-orange);
+  border-radius: 14px 14px 0 0;
+  background: var(--crimson-violet);
+  color: var(--princeton-orange);
+}
+
+dialog::backdrop {
+  background: rgba(15, 76, 92, 0.75);
+}
+
+.sheet-inner {
+  display: flex;
+  flex-direction: column;
+  max-height: 88vh;
+  max-height: 88dvh;
+}
+
+.sheet-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 8px 6px 20px;
+}
+
+.sheet-head h2 {
+  min-width: 0;
+  font: 600 1.375rem/1.2 var(--serif);
+  outline: none;
+}
+
+#sheet-close {
+  flex: none;
+  min-width: 64px;
+  min-height: 44px;
+}
+
+.sheet-body {
+  flex: 1;
+  min-height: 0;
+  padding: 0 20px max(env(safe-area-inset-bottom), 20px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.group {
+  padding: 12px 0;
+}
+
+.group h3 {
+  margin-bottom: 8px;
+  font: 600 0.8125rem/1.3 var(--sans);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.note {
+  font-size: 0.9375rem;
+  line-height: 1.4;
+}
+
+.note + .note {
+  margin-top: 8px;
+}
+
+.fine {
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  min-height: 44px;
+  padding: 0 14px;
+  border: 1px solid var(--autumn-leaf);
+  border-radius: 22px;
+  font-size: 0.9375rem;
+  line-height: 42px;
+  text-decoration: none;
+}
+
+.chip[aria-pressed="true"] {
+  border-color: var(--princeton-orange);
+  background: var(--princeton-orange);
+  color: var(--crimson-violet);
+  font-weight: 600;
+}
+
+.primary {
+  display: block;
+  width: 100%;
+  min-height: 52px;
+  border-radius: 10px;
+  background: var(--princeton-orange);
+  color: var(--crimson-violet);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 52px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.primary:disabled {
+  opacity: 0.45;
+}
+
+/* The negative offset cancels the sheet's bottom padding, so nothing shows below the button. */
+.sticky-action {
+  position: sticky;
+  bottom: calc(-1 * max(env(safe-area-inset-bottom), 20px));
+  padding: 12px 0 max(env(safe-area-inset-bottom), 20px);
+  background: var(--crimson-violet);
+}
+
+details {
+  border-top: 1px solid rgba(227, 100, 20, 0.5);
+}
+
+summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 52px;
+  font-size: 1.0625rem;
+  font-weight: 500;
+  list-style: none;
+  cursor: pointer;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+summary::after {
+  content: "+";
+  font-size: 1.25rem;
+}
+
+details[open] > summary::after {
+  content: "–";
+}
+
+.panel {
+  padding-bottom: 16px;
+}
+
+.row {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  padding: 9px 0;
+  border-top: 1px solid rgba(227, 100, 20, 0.25);
+  text-align: left;
+  text-decoration: none;
+}
+
+.row-title {
+  display: block;
+  font-size: 1rem;
+  line-height: 1.3;
+}
+
+.row-sub {
+  display: block;
+  margin-top: 2px;
+  font-size: 0.8125rem;
+  line-height: 1.35;
+}
+
+.search {
+  width: 100%;
+  min-height: 46px;
+  margin-bottom: 8px;
+  padding: 0 12px;
+  border: 1px solid var(--princeton-orange);
+  border-radius: 10px;
+  background: transparent;
+  color: var(--princeton-orange);
+  /* Below 16px, iOS zooms the page when the field is focused. */
+  font: 400 1rem var(--sans);
+  -webkit-appearance: none;
+}
+
+.search::placeholder {
+  color: var(--princeton-orange);
+  opacity: 0.7;
+}
+
+.file-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.file-label {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.file-input:focus-visible + .file-label {
+  outline: 3px solid var(--princeton-orange);
 }
 
 @keyframes reveal {

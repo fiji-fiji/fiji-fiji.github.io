@@ -16,19 +16,41 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <button id="stage" type="button" aria-label="Show a random film">
-    <span class="frame">
-      <span class="poster-box">
-        <img id="poster" alt="" hidden>
-        <span id="prompt" class="prompt">Tap</span>
+  <main id="app">
+    <button id="stage" type="button" aria-label="Show a random film">
+      <span class="frame">
+        <span class="poster-box">
+          <img id="poster" alt="" hidden>
+          <span id="prompt" class="prompt">Tap</span>
+        </span>
       </span>
-    </span>
-    <span class="caption" aria-live="polite">
-      <span id="title" class="title"></span>
-      <span id="meta" class="meta"></span>
-    </span>
-    <span id="credit" class="credit">Film data and posters from TMDB. This app uses the TMDB API but is not endorsed or certified by TMDB.</span>
-  </button>
+      <span class="caption" aria-live="polite">
+        <span id="title" class="title"></span>
+        <span id="meta" class="meta"></span>
+        <span id="why" class="why"></span>
+      </span>
+    </button>
+    <div id="lens" class="lens" hidden>
+      <span id="lens-text" class="lens-text"></span>
+      <button id="lens-clear" type="button" class="lens-clear">Clear</button>
+    </div>
+    <nav class="bar" aria-label="Main">
+      <button type="button" id="open-tonight">Tonight</button>
+      <button type="button" id="open-film" disabled>This film</button>
+      <button type="button" id="open-explore">Explore</button>
+    </nav>
+  </main>
+
+  <dialog id="sheet" aria-labelledby="sheet-title">
+    <div class="sheet-inner">
+      <header class="sheet-head">
+        <h2 id="sheet-title" tabindex="-1" autofocus></h2>
+        <button type="button" id="sheet-close">Close</button>
+      </header>
+      <div id="sheet-body" class="sheet-body"></div>
+    </div>
+  </dialog>
+
   <script src="app.js"></script>
 </body>
 </html>
